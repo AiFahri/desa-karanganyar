@@ -9,6 +9,11 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
+Route::get('/layananmasyarakat', function () {
+    return Inertia::render('LayananMasyarakat');
+});
+
+
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
