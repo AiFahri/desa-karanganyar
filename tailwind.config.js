@@ -17,6 +17,8 @@ export default {
             },
             backgroundColor: {
                 darkBlue: '#0272BA',
+                biruGrad: '#0272BA',
+                putihGrad: '#95CFF4',
             },
         },
     },

@@ -13,7 +13,7 @@ const Navbar = () => {
     const isActive = (path) => url === path;
 
     return (
-        <nav className="bg-darkBlue shadow-md sticky top-0">
+        <nav className="bg-darkBlue shadow-md sticky top-0 z-50">
             <div className="container px-4 sm:px-6 lg:px-16">
                 <div className="flex items-center justify-between h-auto">
                     {/* Bagian Kiri: Logo */}
@@ -34,8 +34,8 @@ const Navbar = () => {
                                 href="/"
                                 className={`px-3 py-2 rounded-md text-sm font-medium ${
                                     isActive('/') 
-                                        ? 'text-white bg-blue-600' 
-                                        : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+                                        ? 'text-white' 
+                                        : 'text-white hover:bg-gray-200 hover:text-black'
                                 }`}
                             >
                                 Beranda
@@ -45,8 +45,8 @@ const Navbar = () => {
                                 href="/profildesa"
                                 className={`px-3 py-2 rounded-md text-sm font-medium ${
                                     isActive('/profildesa') 
-                                        ? 'text-white bg-blue-600' 
-                                        : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+                                        ? 'text-white' 
+                                        : 'text-white hover:bg-gray-200 hover:text-black'
                                 }`}
                             >
                                 Profil Desa
@@ -56,8 +56,8 @@ const Navbar = () => {
                                 href="/layananmasyarakat"
                                 className={`px-3 py-2 rounded-md text-sm font-medium ${
                                     isActive('/layananmasyarakat') 
-                                        ? 'text-white bg-blue-600' 
-                                        : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+                                        ? 'text-white' 
+                                        : 'text-white hover:bg-gray-200 hover:text-black'
                                 }`}
                             >
                                 Layanan Masyarakat
@@ -67,8 +67,8 @@ const Navbar = () => {
                                 href={route('dashboard')} // Menggunakan helper route dari Ziggy
                                 className={`px-3 py-2 rounded-md text-sm font-medium ${
                                     route().current('dashboard') 
-                                        ? 'text-white bg-blue-600' 
-                                        : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+                                        ? 'text-white' 
+                                        : 'text-white hover:bg-gray-200 hover:text-black'
                                 }`}
                             >
                                 Potensi Desa
@@ -78,8 +78,8 @@ const Navbar = () => {
                                 href={route('dashboard')} // Menggunakan helper route dari Ziggy
                                 className={`px-3 py-2 rounded-md text-sm font-medium ${
                                     route().current('dashboard') 
-                                        ? 'text-white bg-blue-600' 
-                                        : 'text-gray-700 hover:bg-gray-200 hover:text-black'
+                                        ? 'text-white' 
+                                        : 'text-white hover:bg-gray-200 hover:text-black'
                                 }`}
                             >
                                 Portal Berita
