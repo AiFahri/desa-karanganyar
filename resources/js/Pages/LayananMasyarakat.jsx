@@ -5,7 +5,6 @@ const LayananMasyarakat = () => {
   return (
         <>
             <Navbar />
-   
               <section class="min-h-screen w-full bg-white flex items-center px-24">
                 
                   <div class="container mx-auto">
@@ -41,10 +40,10 @@ const LayananMasyarakat = () => {
                 <div class="max-w-6xl mx-auto">
                         <div class="flex flex-wrap justify-center gap-8">
                             {/* <!-- Card 1 - Cepat --> */}
-                            <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 max-w-xs w-full min-h-[320px] flex flex-col items-center">
-                                <div class="w-20 h-20 rounded-full border-2 border-dashed border-red-400 bg-red-50 flex items-center justify-center text-sm text-gray-600 mb-6 flex-shrink-0">
-                                    <img src="./icons/speed-icon.svg" alt="Speed Icon" class="w-10 h-10">
-                                </div>
+                            <div class="bg-transparant rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 max-w-xs w-full min-h-[320px] flex flex-col items-center">
+                            <div class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mb-6 flex-shrink-0">
+                                <img src="/LayananMasyarakat/albums.svg" alt="Speed Icon" class="w-10 h-10" />
+                            </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Cepat</h3>
                                 <p class="text-sm text-gray-600 leading-relaxed text-justify flex-grow">
                                     Proses pembayaran yang cepat menggunakan teknologi terdepan, tanpa perlu antri atau menunggu lama. Semua transaksi dapat diselesaikan secara online dengan mudah dan efisien.
@@ -54,7 +53,7 @@ const LayananMasyarakat = () => {
                             {/* <!-- Card 2 - Mudah --> */}
                             <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 max-w-xs w-full min-h-[320px] flex flex-col items-center">
                                 <div class="w-20 h-20 rounded-full border-2 border-dashed border-yellow-400 bg-yellow-50 flex items-center justify-center text-sm text-gray-600 mb-6 flex-shrink-0">
-                                    Icon Area
+                                    <img src="/LayananMasyarakat/albums.svg" alt="Speed Icon" class="w-10 h-10" />
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Mudah</h3>
                                 <p class="text-sm text-gray-600 leading-relaxed text-justify flex-grow">
@@ -65,7 +64,7 @@ const LayananMasyarakat = () => {
                             {/* <!-- Card 3 - Hemat Waktu --> */}
                             <div class="bg-white rounded-2xl p-8 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 max-w-xs w-full min-h-[320px] flex flex-col items-center">
                                 <div class="w-20 h-20 rounded-full border-2 border-dashed border-blue-400 bg-blue-50 flex items-center justify-center text-sm text-gray-600 mb-6 flex-shrink-0">
-                                    Icon Area
+                                    <img src="/LayananMasyarakat/albums.svg" alt="Speed Icon" class="w-10 h-10" />
                                 </div>
                                 <h3 class="text-xl font-semibold text-gray-800 mb-4">Hemat Waktu</h3>
                                 <p class="text-sm text-gray-600 leading-relaxed text-justify flex-grow">
