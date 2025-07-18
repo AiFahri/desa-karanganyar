@@ -1,5 +1,7 @@
 import React from 'react'
 import Navbar from '@/Components/Navbar'
+import { circInOut, easeInOut, motion } from "framer-motion";
+import { Link } from '@inertiajs/react'
 
 const LayananMasyarakat = () => {
   return (
@@ -7,16 +9,25 @@ const LayananMasyarakat = () => {
             <Navbar />
               <section class="min-h-screen w-full bg-white flex items-center">
                 <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]"></div>
-                <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[90%]"></div>
+                <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[100%]"></div>
                 
                   <div class="container mx-auto">
                     <div className="flex justify-center items-center min-h-auto my-16">
-                      <a
-                        href="/layanan"
-                        className="text-[50px] bg-gradient-to-b from-[#0272BA] to-[#95CFF4] text-white font-semibold px-6 py-2 rounded-full shadow-md hover:bg-[blue] transition"
-                      >
-                        Layanan Masyarakat
-                      </a>
+                      <Link className="" href="/layanan">
+                            <motion.div
+                              initial={{
+                                background:
+                                  "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
+                              }}
+                              whileHover={{
+                                background:
+                                  "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
+                              }}
+                              transition={{ duration: 0.3, easing: "easeIn" }}
+                              className="text-[50px] rounded-full font-bold px-[75px] py-[15px] mt-[15px] mb-[15px] text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500">
+                                Layanan Masyarakat
+                            </motion.div>
+                        </Link>
                     </div>
                        
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-[92px] items-center">
@@ -33,6 +44,7 @@ const LayananMasyarakat = () => {
                     
                       {/* gambar */}
                       <div className="order-1 md:order-2 flex items-center justify-center relative ">
+                            
                           {/* Background blur - ukuran diperkecil dan diposisikan ulang */}
                           <div className="absolute inset-0 w-full h-auto rounded-full bg-blue-100 blur-[75px] flex-shrink-0"></div>
                           <img 
@@ -40,6 +52,14 @@ const LayananMasyarakat = () => {
                               alt="Gambar layanan" 
                               className="relative z-10 max-w-full h-auto"
                           />
+                          <motion.img 
+                              initial={{scale: 0.8}}
+                              animate={{rotate: 360}}
+                              transition={{duration: 36, repeat: Infinity, ease: 'linear'}}
+                              src="/LayananMasyarakat/col (1).png" 
+                              alt="Gambar layanan" 
+                              className="absolute z-9 max-w-full h-auto"
+                          />  
                       </div>
                     </div>
 
