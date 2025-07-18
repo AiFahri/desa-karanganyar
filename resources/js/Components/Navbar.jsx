@@ -53,9 +53,9 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href="/layananmasyarakat"
+                                href="/layanan"
                                 className={`px-3 py-2 rounded-md text-sm font-medium ${
-                                    isActive('/layananmasyarakat') 
+                                    isActive('/layanan') 
                                         ? 'text-white' 
                                         : 'text-white hover:bg-gray-200 hover:text-black'
                                 }`}

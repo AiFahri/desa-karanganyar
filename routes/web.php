@@ -9,8 +9,12 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::get('/layananmasyarakat', function () {
+Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
+});
+
+Route::get('/profildesa', function () {
+    return Inertia::render('ProfilDesa');
 });
 
 
