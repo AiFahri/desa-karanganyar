@@ -5,11 +5,11 @@ import { Observer } from "gsap/Observer";
 gsap.registerPlugin(Observer);
 
 export default function InfiniteScroll({
-  width = "284px",
-  maxHeight = "100dvh",
-  negativeMargin = "-142px",
+  width = "30vh",
+  maxHeight = "100%",
+  negativeMargin = "-15vh",
   items = [],
-  itemMinHeight = 284,
+  itemMinHeight = 30.34,
   isTilted = false,
   tiltDirection = "left",
   autoplay = false,
@@ -133,13 +133,13 @@ export default function InfiniteScroll({
 
   return (
     <div
-      className="relative flex items-center justify-center w-full max-h-[100vh] overflow-hidden overscroll-contain border-transparent"
+      className="relative flex items-center justify-center w-full overflow-hidden overscroll-auto border-transparent max-h-full"
       ref={wrapperRef}
       style={{ maxHeight }}
     >
 
       <div
-        className="flex flex-col overscroll-hidden px-4 cursor-grab origin-center"
+        className="flex flex-col overscroll-hidden px-4 cursor-grab origin-center overflow-hidden max-h-full"
         ref={containerRef}
         style={{
           width,
@@ -151,7 +151,7 @@ export default function InfiniteScroll({
             className="flex items-center justify-center overflow-hidden p-0 text-xl font-semibold text-center rounded-3xl select-none box-border relative object-fill"
             key={i}
             style={{
-              height: `${itemMinHeight}px`,
+              height: `${itemMinHeight}vh`,
               marginTop: negativeMargin,
             }}
           >

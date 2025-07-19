@@ -18,13 +18,13 @@ const items = [
 
 const Hero = () => {
     return (
-        <div className="w-full">
+        <div className="w-full overflow-hidden mt-[76px]">
             <div className="w-full max-h-screen overflow-hidden">
                 <img
                     src={heroBG}
-                    className="absolute w-full max-w-[100dvw] max-h-[100dvh] top-0 object-cover z-0"
+                    className="absolute w-full min-h-[100dvh] top-0 object-cover z-0"
                 />
-                <div className="flex flex-row justify-between items-center px-[218px] z-10 align-middle">
+                <div className="flex flex-row justify-between items-center px-[11.35vw] z-10 align-middle">
                     <div
                         className="flex flex-col w-full max-w-[640px] max-h-[390px] px-12 mt-[0px] mb-[0px] z-20 rounded-2xl backdrop-blur"
                         style={{
@@ -54,7 +54,7 @@ const Hero = () => {
                             </motion.div>
                         </Link>
                     </div>
-                    <div className="h-full mt-[16px] overflow-hidden">
+                    <div className="h-full mt-[0px] overflow-hidden">
                         <InfiniteScroll
                             items={items}
                             isTilted={false}

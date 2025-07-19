@@ -7,7 +7,7 @@ const LayananMasyarakat = () => {
   return (
         <>
             <Navbar />
-              <section class="min-h-screen w-full bg-white flex items-center">
+              <section class="min-h-screen w-full bg-white flex items-center pt-[76px]">
                 <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]"></div>
                 <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[100%]"></div>
                 
