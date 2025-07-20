@@ -13,7 +13,12 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Montserrat', 'Figtree', ...defaultTheme.fontFamily.sans],
+            },
+            backgroundColor: {
+                darkBlue: '#0272BA',
+                biruGrad: '#0272BA',
+                putihGrad: '#95CFF4',
             },
         },
     },
