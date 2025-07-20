@@ -1,5 +1,6 @@
 import React from 'react'
 import Navbar from '@/Components/Navbar'
+import Footer from '@/Components/Footer'
 import { circInOut, easeInOut, motion } from "framer-motion";
 import { Link } from '@inertiajs/react'
 
@@ -191,7 +192,9 @@ const LayananMasyarakat = () => {
                       <div className="w-full h-[1px] bg-black/40 mt-[24px]"></div>
                   </div>
             </section>
-        </>    
+         
+            <Footer />
+        </>
   )
 }
 

@@ -13,7 +13,7 @@ const Navbar = () => {
     const isActive = (path) => url === path;
 
     return (
-        <nav className="bg-darkBlue shadow-md fixed top-0 z-50">
+        <nav className="bg-darkBlue shadow-md fixed top-0 z-50 min-w-screen">
             <div className="container px-4 sm:px-6 lg:px-16 min-w-[100dvw]">
                 <div className="flex items-center justify-between h-auto">
                     {/* Bagian Kiri: Logo */}
