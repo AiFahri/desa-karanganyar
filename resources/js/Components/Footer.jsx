@@ -53,7 +53,7 @@ const Footer = () => {
                         <ul className="text-sm opacity-90 space-y-2 text-left inline-block">
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
-                                Surat Pengantar Nikah
+                                Surat Keterangan Domisili
                             </li>
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
@@ -61,7 +61,7 @@ const Footer = () => {
                             </li>
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
-                                Surat Keterangan Tidak Mampu
+                                Surat Kelahiran, Surat Kematian
                             </li>
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
@@ -81,26 +81,26 @@ const Footer = () => {
                             </li>
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
-                                Surat Domisili, Sertifikat Meninggal
+                                Surat Keterangan Belum Menikah
                             </li>
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
-                                Surat Jual Beli
+                                Surat Berpergian
                             </li>
                         </ul>
                     </div>
 
                     {/* Kontak Section */}
-                    <div className="text-center">
+                    <div className="text-center max-w-fit">
                         <h3 className="text-lg font-semibold mb-6">Kontak yang dapat dihubungi</h3>
                         
-                        <div className="space-y-4 text-sm opacity-90">
-                            <div className="flex items-center justify-center">
+                        <div className="space-y-4 text-sm opacity-90 max-w-full">
+                            <div className="flex items-start justify-start">
                                 <Phone className="w-4 h-4 mr-3" />
                                 <span>0000000000</span>
                             </div>
-                            
-                            <div className="flex items-center justify-center">
+
+                            <div className="flex items-start justify-start">
                                 <Mail className="w-4 h-4 mr-3" />
                                 <span>karanganyar@gmail.com</span>
                             </div>
