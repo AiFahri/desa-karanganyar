@@ -38,9 +38,7 @@ const Navbar = () => {
                             <Link
                                 href="/"
                                 className={`px-3 py-2 rounded-md text-sm font-medium group ${
-                                    isActive("/")
-                                        ? "text-white"
-                                        : "text-white"
+                                    isActive("/") ? "text-white" : "text-white"
                                 }`}
                             >
                                 <div>Beranda</div>
@@ -106,7 +104,7 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href={route("dashboard")} // Menggunakan helper route dari Ziggy
+                                href={route("register.page")} // Menggunakan helper route dari Ziggy
                                 className={`px-3 py-2 rounded-md text-sm font-medium `}
                             >
                                 <svg
