@@ -88,7 +88,7 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href={route("dashboard")} // Menggunakan helper route dari Ziggy
+                                href="/#potensiGan1" // Menggunakan helper route dari Ziggy
                                 className={`px-3 py-2 rounded-md text-sm font-medium group ${
                                     route().current("dashboard")
                                         ? "text-white"
@@ -106,7 +106,7 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href={route("dashboard")} // Menggunakan helper route dari Ziggy
+                                href="/portal" // Menggunakan helper route dari Ziggy
                                 className={`px-3 py-2 rounded-md text-sm font-medium group ${
                                     route().current("")
                                         ? "text-white"
