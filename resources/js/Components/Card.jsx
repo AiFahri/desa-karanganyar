@@ -24,7 +24,7 @@ const Card = ({
           />
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-            <div className="p-4 text-white">
+            <div className="p-4 text-white pb-12">
               <p className="text-sm leading-relaxed font-sans">{description}</p>
             </div>
           </div>

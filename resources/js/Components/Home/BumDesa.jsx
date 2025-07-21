@@ -22,19 +22,19 @@ const BumDesa = ({ id, className = "", headerTitle }) => {
                         className="border-2 border-black rounded-[20px]"
                     />
                     <div className="flex flex-row gap-x-32 items-center justify-around w-full mx-auto max-w-full">
-                        <div className="rounded-xl flex flex-col items-center px-8 py-3 shadow-md">
+                        <div className="rounded-xl flex flex-col items-center justify-around px-8 py-3 shadow-md">
                             <div className="text-[#0272BA] drop-shadow font-semibold">
                                 Rumah Terdaftar
                             </div>
                             <div>Jadwal Penarikan</div>
                         </div>
-                        <div className="rounded-xl flex flex-col items-center px-8 py-3 shadow-md">
+                        <div className="rounded-xl flex flex-col items-center justify-around px-8 py-3 shadow-md">
                             <div className="text-[#0272BA] drop-shadow font-semibold">
                                 Biaya
                             </div>
                             <div>Jadwal Penarikan</div>
                         </div>
-                        <div className="rounded-xl flex flex-col items-center px-8 py-3 shadow-md">
+                        <div className="rounded-xl flex flex-col items-center justify-around px-8 py-3 shadow-md">
                             <div className="text-[#0272BA] drop-shadow font-semibold">
                                 Jadwal Penarikan
                             </div>
