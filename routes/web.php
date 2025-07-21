@@ -8,6 +8,13 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+
+Route::get('/register-page', function () {
+    return Inertia::render('Auth/Register');
+})->name('register.page');
 
 Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
