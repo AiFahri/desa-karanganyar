@@ -1,6 +1,6 @@
 import React from 'react';
-import logoCardView from '../../assets//Home/img/logoCardView.png';
-import imgpetaRBI from '../../assets/Home/img/imgpetaRBI.png';
+import logoCardView from '../../../assets//Home/img/logoCardView.png';
+import imgpetaRBI from '../../../assets/Home/img/imgpetaRBI.png';
 
 
 const PetaRBI = ({backgroundIMG}) => {

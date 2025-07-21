@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, usePage } from "@inertiajs/react";
 import { circInOut, easeInOut, motion } from "framer-motion";
-import mailIcon from "../../assets/Home/icons/mailIcon.png"
+import mailIcon from "../../../assets/Home/icons/mailIcon.png"
 
 const BuatLayanan = () => {
   return (
