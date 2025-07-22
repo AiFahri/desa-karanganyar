@@ -1,26 +1,19 @@
 import React from "react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
 
-
 const karanganyarStats = {
     title: "Statistik Penarikan Sampah BUMDes Karanganyar",
     district: "Poncokusumo",
     regency: "Malang",
-    month: "Mei",
+    desa: "Karanganyar",
     year: 2025,
-    totalPopulation: 7989,
-    male: 4072,
-    female: 3917,
-    households: 2472,
+    count2024: 7989,
 };
 
 const BumDesa = ({ id, className = "", headerTitle, stats = karanganyarStats }) => {
 
     const chartData = [
-        { name: 'Pria', Jumlah: stats.male },
-        { name: 'Wanita', Jumlah: stats.female },
-        { name: 'Kepala Keluarga', Jumlah: stats.households },
-        { name: 'Jumlah Penduduk', Jumlah: stats.totalPopulation },
+        { name: '2024', Jumlah: stats.count2024 },
     ];
 
     return (
@@ -42,7 +35,7 @@ const BumDesa = ({ id, className = "", headerTitle, stats = karanganyarStats }) 
                         <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
                             <div className="bg-blue-600 p-5 text-white">
                             <h2 className="text-2xl font-bold mt-2">{stats.title}</h2>
-                            <p className="text-sm opacity-90">Kecamatan {stats.district}, Kabupaten {stats.regency}</p>
+                            <p className="text-sm opacity-90">Desa {stats.desa}, Kecamatan {stats.district}, Kabupaten {stats.regency}</p>
                             </div>
                             <div className="p-4 h-96">
                             <ResponsiveContainer width="100%" height="100%">
@@ -64,7 +57,7 @@ const BumDesa = ({ id, className = "", headerTitle, stats = karanganyarStats }) 
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-row gap-x-32 items-center justify-around w-full mx-auto max-w-full">
+                    <div className="flex flex-row lg:gap-x-32 items-center justify-around w-full mx-auto max-w-screen overflow-hidden">
                         <div className="rounded-xl flex flex-col items-center justify-around px-8 py-3 shadow-md">
                             <div className="text-[#0272BA] drop-shadow font-semibold">
                                 Rumah Terdaftar
