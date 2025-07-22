@@ -28,6 +28,10 @@ Route::get('/portal', function () {
     return Inertia::render('PortalBerita');
 });
 
+Route::get('/AdminDashboard', function () {
+    return Inertia::render('AdminDashboard');
+});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
