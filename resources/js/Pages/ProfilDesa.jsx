@@ -4,6 +4,7 @@ import Footer from '@/Components/Footer'
 import PetaRBI from '@/Components/Profile/PetaRBi'
 import VisiMisi from '@/Components/Profile/VisiMisi'
 import PopulationStats from '@/Components/Profile/StatsPenduduk'
+import Perangkat from '@/Components/Profile/Perangkat'
 
 const karanganyarStats = {
   villageName: "Karanganyar",
@@ -24,6 +25,7 @@ const ProfilDesa = () => {
       <PetaRBI />
       <VisiMisi />
       <PopulationStats stats={karanganyarStats} />
+      <Perangkat />
       <Footer />
     </>
   )
