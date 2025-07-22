@@ -51,7 +51,7 @@ const Navbar = () => {
                                 className="h-12 w-auto" // Slightly smaller for better balance
                             />
                             {/* Text size is now responsive */}
-                            <div className="hidden sm:flex flex-col font-sans text-white text-base lg:text-lg">
+                            <div className="hidden sm:flex flex-col font-sans text-white text-sm lg:text-lg">
                                 <span>PEMERINTAH DESA KARANGANYAR</span>
                                 <span>KECAMATAN PONCOKUSUMO</span>
                             </div>
@@ -72,10 +72,10 @@ const Navbar = () => {
                             </Dropdown>
                         ) : (
                             <div className="flex items-center space-x-4">
-                                <Link href={route("login")} className="px-4 py-2 text-sm font-medium text-white border border-white rounded-md hover:bg-white hover:text-[#0272BA] transition-colors duration-200">
+                                <Link href={route("login")} className="px-8 py-2 text-lg font-semibold text-white border border-white rounded-md hover:bg-white hover:text-[#0272BA] transition-colors duration-200">
                                     Masuk
                                 </Link>
-                                <Link href={route("register.page")} className="px-4 py-2 text-sm font-medium text-darkBlue bg-white rounded-md hover:bg-gray-100 transition-colors duration-200">
+                                <Link href={route("register.page")} className="px-8 py-2 text-lg font-semibold text-darkBlue bg-white rounded-md hover:bg-gray-100 transition-colors duration-200">
                                     Daftar
                                 </Link>
                             </div>

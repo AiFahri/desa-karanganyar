@@ -10,7 +10,7 @@ const Card = ({
 
 
   return (
-    <div className="group relative min-w-full cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
+    <div className="group relative min-w-[200px] cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
       <img src={shadowCard} className="absolute z-0 scale-[1.7] h-full"/>
       <div
         className="relative bg-white rounded-2xl hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-[#A09280] w-full max-w-[400px] mx-auto max-h-[600px]"
