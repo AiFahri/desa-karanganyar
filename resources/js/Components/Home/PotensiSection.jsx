@@ -6,7 +6,7 @@ const PotensiSection = ({ id, className = "", headerTitle }) => {
     return (
         <section
             id={id}
-            className={`relative pb-20 bg-gradient-to-br from-stone-50 to-stone-50${className}`}
+            className={`relative pb-20 bg-white overflow-hidden max-w-[100vw]`}
         >
             <div className="relative z-10 container mx-auto px-4">
                 <p className="text-[44px] pb-16 font-sans text-[#0272BA] font-semibold text-center">
