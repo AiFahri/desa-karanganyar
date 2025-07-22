@@ -23,13 +23,13 @@ const PortalBerita = () => {
                 "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
             }}
             transition={{ duration: 0.3, easing: "easeIn" }}
-            className="text-[50px] mt-20 mx-auto rounded-full font-bold px-[75px] py-[15px] mb-[15px] text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500">
+            className="text-4xl lg:text-[50px] mt-20 mx-auto rounded-full font-bold md:px-[75px] px-[50px] py-[20px] mb-[15px] text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500">
               Portal Berita
         </motion.div>
-        <div className='max-w-[1400px] mx-auto mt-28 bg-[#D9EAF5] text-[44px] py-6 px-16 font-bold text-[#0272BA] rounded-lg'>
+        <div className='max-w-[1400px] mx-auto mt-28 bg-[#D9EAF5] text-3xl text-center lg:text-left lg:text-[44px] py-6 px-16 font-bold text-[#0272BA] rounded-lg'>
           <p className='drop-shadow-md'>Informasi Pengumuman</p>
         </div>
-          <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-32 justify-items-center max-w-[1400px] mx-auto">
+          <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-16 lg:pt-32 justify-items-center max-w-[1400px] mx-auto">
             {dummyPortalP.map((item) => (
               <ItemPengumuman
                   key={item.id}
@@ -40,14 +40,14 @@ const PortalBerita = () => {
               />
             ))}
           </div>
-        <div className='max-w-[1400px] mx-auto mt-28 bg-[#D9EAF5] text-[44px] py-6 px-16 font-bold text-[#0272BA] rounded-lg'>
+        <div className='max-w-[1400px] mx-auto mt-28 bg-[#D9EAF5] text-3xl text-center lg:text-left lg:text-[44px] py-6 px-16 font-bold text-[#0272BA] rounded-lg'>
           <p className='drop-shadow-md'>Informasi Berita</p>
         </div>
         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]"></div>
         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[100%]"></div>
         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[0%] top-[200%]"></div>
         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%] top-[300%]"></div>
-        <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-32 justify-items-center max-w-[1400px] h-full max-h-full mx-auto mb-44">
+        <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-16 lg:pt-32 justify-items-center max-w-[1400px] h-full max-h-full mx-auto mb-44">
             {dummyPortalB.map((item) => (
               <ItemBerita
                   key={item.id}

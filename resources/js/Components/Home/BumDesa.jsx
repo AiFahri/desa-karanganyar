@@ -57,7 +57,7 @@ const BumDesa = ({ id, className = "", headerTitle, stats = karanganyarStats }) 
                             </div>
                         </div>
                     </div>
-                    <div className="flex flex-row gap-x-32 items-center justify-around w-full mx-auto max-w-full">
+                    <div className="flex flex-row lg:gap-x-32 items-center justify-around w-full mx-auto max-w-screen overflow-hidden">
                         <div className="rounded-xl flex flex-col items-center justify-around px-8 py-3 shadow-md">
                             <div className="text-[#0272BA] drop-shadow font-semibold">
                                 Rumah Terdaftar
