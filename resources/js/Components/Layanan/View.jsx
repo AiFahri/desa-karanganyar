@@ -130,7 +130,7 @@ const View = () => {
                                 Kami hadir untuk mempermudah setiap langkah Anda dalam mengurus dan membuat surat yang diperlukan. Di sini, kami menyediakan berbagai layanan pembuatan surat yang dirancang untuk memenuhi kebutuhan administrasi seluruh warga Desa Karanganyar.
                             </p>
                             {/* Kontainer untuk kedua tombol agar mudah diatur */}
-                            <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 md:mt-[36px]">
+                            <div className="flex flex-col sm:flex-col items-center gap-4 mt-6 md:mt-[36px]">
                                 <Link href="/layanan">
                                     <motion.div
                                         initial={{ background: "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)" }}

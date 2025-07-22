@@ -23,8 +23,8 @@ const ProfilDesa = () => {
     <>
       <Navbar />
       <PetaRBI />
-      <VisiMisi />
       <PopulationStats stats={karanganyarStats} />
+      <VisiMisi />
       <Perangkat />
       <Footer />
     </>
