@@ -87,24 +87,6 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href="/#potensiGan1"
-                                className={`px-3 py-2 rounded-md text-sm font-medium group ${
-                                    route().current("dashboard")
-                                        ? "text-white"
-                                        : "text-white"
-                                }`}
-                            >
-                                <div className="">Potensi Desa</div>
-                                <div
-                                    className={`mx-auto mb-0 mt-1 h-0 transition-all duration-300 ${
-                                        route().current("dashboard")
-                                            ? "w-full border-b-[3px] border-white rounded-full"
-                                            : "w-0 border-b-[3px] rounded-full group-hover:border-white group-hover:w-full"
-                                    }`}
-                                ></div>
-                            </Link>
-
-                            <Link
                                 href="/portal"
                                 className={`px-3 py-2 rounded-md text-sm font-medium group ${
                                     route().current("")
@@ -115,7 +97,7 @@ const Navbar = () => {
                                 <div>Portal Berita</div>
                                 <div
                                     className={`mx-auto mb-0 mt-1 h-0 transition-all duration-300 ${
-                                        route().current("")
+                                        isActive("/portal")
                                             ? "w-full border-b-[3px] border-white rounded-full"
                                             : "w-0 border-b-[3px] rounded-full group-hover:border-white group-hover:w-full"
                                     }`}
