@@ -1,34 +1,53 @@
 import React from "react";
-import { Link, usePage } from "@inertiajs/react";
-import { circInOut, easeInOut, motion } from "framer-motion";
-import mailIcon from "../../../assets/Home/icons/mailIcon.png"
+import { Link } from "@inertiajs/react";
+import { motion } from "framer-motion"; // Unused imports removed for cleaner code
+import mailIcon from "../../../assets/Home/icons/mailIcon.png";
 
 const BuatLayanan = () => {
   return (
+    // Section 1: Main Container
+    // - Now uses items-center for proper centering of all children.
+    // - Switched from percentage padding (py-[8%]) to responsive, fixed padding (py-16, px-4).
     <div
-      className="max-h-fit min-w-full flex flex-col items-start justify-center py-[8%] bg-darkBlue z-40"
+      className="w-full flex flex-col items-center justify-center py-16 sm:py-24 px-4 bg-darkBlue"
     >
-      <p className="text-white text-5xl font-sans font-bold mx-auto">
+      {/* Section 2: Title */}
+      {/* - Using a semantic <h2> tag instead of <p>. */}
+      {/* - Font size is now responsive (text-3xl on mobile, lg:text-5xl on desktop). */}
+      <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl font-sans font-bold text-center">
         Layanan Masyarakat
-      </p>
-        <div className="flex justify-center items-center min-h-auto my-16 mx-auto">
-          <Link className="" href="/layanan">
-            <motion.div
-              initial={{
-                background:
-                  "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
-              }}
-              whileHover={{
-                background:
-                  "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
-              }}
-              transition={{ duration: 0.3, easing: "easeIn" }}
-              className="text-[44px] flex flex-row justify-between items-center rounded-[20px] font-bold px-12 py-3 text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500">
-                <img src={mailIcon} className="scale-50 max-w-fit -ml-6"/>
-                Buat Surat Sekarang
-            </motion.div>
-          </Link>
-        </div>
+      </h2>
+
+      {/* Section 3: Call-to-Action Button */}
+      {/* - Container div uses responsive margin-top. */}
+      <div className="mt-10 md:mt-16">
+        <Link href="/layanan">
+          <motion.div
+            initial={{
+              background: "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
+            }}
+            whileHover={{
+              background: "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
+            }}
+            transition={{ duration: 0.3, ease: "easeIn" }}
+            // Section 3a: Responsive Button Styling
+            // - Using flex with a 'gap' provides better spacing than 'justify-between'.
+            // - Font size and padding are now responsive.
+            // - Using standard rounded-2xl for consistency.
+            className="flex flex-row items-center gap-x-3 sm:gap-x-4 rounded-2xl font-bold
+                       px-6 py-3 sm:px-8 text-center text-white font-sans
+                       text-lg sm:text-xl md:text-2xl transition-all duration-300"
+          >
+            {/* Icon is sized explicitly and has alt text for accessibility */}
+            <img
+              src={mailIcon}
+              alt="Ikon surat"
+              className="h-6 w-6 sm:h-7 sm:w-7" // Explicit sizing is more robust than scale
+            />
+            <span>Buat Surat Sekarang</span>
+          </motion.div>
+        </Link>
+      </div>
     </div>
   );
 };
