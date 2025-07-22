@@ -18,7 +18,7 @@ const View = () => {
                       whileHover={{ background: "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)" }}
                       transition={{ duration: 0.3, easing: "easeIn" }}
                       // Ukuran font dan padding dibuat responsif
-                      className="text-xl sm:text-3xl lg:text-[50px] rounded-full font-bold px-8 sm:px-12 lg:px-[75px] py-3 sm:py-4 lg:py-[15px] mt-4 mb-8 text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
+                      className="text-xl sm:text-3xl lg:text-[50px] rounded-full font-bold px-8 sm:px-12 lg:px-[75px] py-3 sm:py-4 lg:py-[21px] mt-4 mb-8 text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
                     >
                       Layanan Masyarakat
                     </motion.div>
