@@ -18,11 +18,11 @@ const items = [
 
 const Hero = () => {
     return (
-        <div className="w-full overflow-hidden mt-[76px]">
+        <div className="w-full overflow-hidden mt-[76px] max-h-screen">
             <div className="w-full max-h-screen overflow-hidden">
                 <img
                     src={heroBG}
-                    className="absolute w-full min-h-[100dvh] top-0 object-cover z-0"
+                    className="absolute w-full min-h-[100dvh] top-0 object-cover -z-10"
                 />
                 <div className="flex flex-row justify-between items-center px-[11.35vw] z-10 align-middle">
                     <div

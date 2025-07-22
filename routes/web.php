@@ -17,6 +17,10 @@ Route::get('/profil', function () {
     return Inertia::render('ProfilDesa');
 });
 
+Route::get('/portal', function () {
+    return Inertia::render('PortalBerita');
+});
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
