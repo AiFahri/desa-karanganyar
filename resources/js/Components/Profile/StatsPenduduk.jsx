@@ -61,7 +61,7 @@ export const PopulationStats = ({ stats }) => {
   ];
 
   return (
-    <div className="bg-gray-50 min-h-screen p-4 sm:p-6 md:p-8 font-sans">
+    <div className="bg-[#FDFCFC] min-h-screen p-4 sm:p-6 md:p-8 font-sans">
       <div className="max-w-7xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200">
         
         {/* Header Section */}
