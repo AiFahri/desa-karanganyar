@@ -51,9 +51,9 @@ const Navbar = () => {
                             </Link>
 
                             <Link
-                                href="/profildesa"
+                                href="/profil"
                                 className={`px-3 py-2 rounded-md text-sm font-medium group ${
-                                    isActive("/profildesa")
+                                    isActive("/profil")
                                         ? "text-white"
                                         : "text-white"
                                 }`}
@@ -61,7 +61,7 @@ const Navbar = () => {
                                 <div>Profil Desa</div>
                                 <div
                                     className={`mx-auto mb-0 mt-1 h-0 transition-all duration-300 ${
-                                        isActive("/profildesa")
+                                        isActive("/profil")
                                             ? "w-full border-b-[3px] border-white rounded-full"
                                             : "w-0 border-b-[3px] rounded-full group-hover:border-white group-hover:w-full"
                                     }`}

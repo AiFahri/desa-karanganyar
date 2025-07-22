@@ -20,7 +20,7 @@ Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
 });
 
-Route::get('/profildesa', function () {
+Route::get('/profil', function () {
     return Inertia::render('ProfilDesa');
 });
 
