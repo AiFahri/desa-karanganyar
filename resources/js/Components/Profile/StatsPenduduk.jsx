@@ -92,7 +92,7 @@ export const PopulationStats = ({ stats }) => {
                     <XAxis dataKey="name" tick={{ fontSize: 12, fill: '#666' }} />
                     <YAxis tick={{ fontSize: 12, fill: '#666' }} />
                     <Tooltip cursor={{fill: 'rgba(236, 240, 241, 0.5)'}}/>
-                    <Bar dataKey="Jumlah" fill="#0284c7" barSize={100}>
+                    <Bar dataKey="Jumlah" fill="#0284c7" barSize={100} radius={[8,8,0,0]}>
                        <LabelList 
                          dataKey="Jumlah" 
                          position="top" 
