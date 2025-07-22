@@ -1,10 +1,10 @@
 import React from "react";
-import heroBG from "../../assets/img/hero_bg.png";
+import heroBG from "../../../assets/Home/img/hero_bg.png";
 import { Link } from "@inertiajs/react";
 import InfiniteScroll from "./InfiniteGallery";
-import fotoInf1 from "../../assets/img/fotoInf1.png";
-import fotoInf2 from "../../assets/img/fotoInf2.png";
-import fotoInf3 from "../../assets/img/fotoInf3.png";
+import fotoInf1 from "../../../assets/Home/img/fotoInf1.png";
+import fotoInf2 from "../../../assets/Home/img/fotoInf2.png";
+import fotoInf3 from "../../../assets/Home/img/fotoInf3.png";
 import { motion } from "motion/react";
 
 const items = [
@@ -18,11 +18,11 @@ const items = [
 
 const Hero = () => {
     return (
-        <div className="w-full overflow-hidden mt-[76px]">
+        <div className="w-full overflow-hidden mt-[76px] max-h-screen">
             <div className="w-full max-h-screen overflow-hidden">
                 <img
                     src={heroBG}
-                    className="absolute w-full min-h-[100dvh] top-0 object-cover z-0"
+                    className="absolute w-full min-h-[100dvh] top-0 object-cover -z-10"
                 />
                 <div className="flex flex-row justify-between items-center px-[11.35vw] z-10 align-middle">
                     <div

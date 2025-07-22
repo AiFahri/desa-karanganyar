@@ -1,9 +1,9 @@
 import React from "react";
 
-const DesaKaranganyar = ({ background = bgImage, logo = logoImage }) => {
+const DesaKaranganyar = ({ background, logo }) => {
   return (
     <div
-      className="min-h-screen flex items-center justify-center py-[10%] "
+      className="min-h-screen flex items-center justify-center py-[10%] min-w-screen"
       style={{
         backgroundImage: `url(${background})`,
         backgroundSize: "cover",
