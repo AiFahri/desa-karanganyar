@@ -39,7 +39,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-darkBlue shadow-md fixed top-0 z-50 w-full">
+        <nav className="bg-darkBlue shadow-md fixed top-0 z-50 w-full max-w-[100vw]">
             <div className="mx-0 px-4 sm:px-6 lg:px-16 w-full">
                 <div className="flex items-center justify-between h-[76px]"> {/* Standard height */}
                     
@@ -51,9 +51,9 @@ const Navbar = () => {
                                 className="h-12 w-auto" // Slightly smaller for better balance
                             />
                             {/* Text size is now responsive */}
-                            <div className="hidden sm:flex flex-col font-sans text-white text-sm lg:text-lg">
-                                <span>PEMERINTAH DESA KARANGANYAR</span>
-                                <span>KECAMATAN PONCOKUSUMO</span>
+                            <div className="flex-col font-sans text-white text-sm lg:text-lg">
+                                <span className="flex max-w-[60%] md:max-w-full">PEMERINTAH DESA KARANGANYAR</span>
+                                <span className="hidden sm:flex">KECAMATAN PONCOKUSUMO</span>
                             </div>
                         </Link>
                     </div>
@@ -75,7 +75,7 @@ const Navbar = () => {
                                 <Link href={route("login")} className="px-8 py-2 text-lg font-semibold text-white border border-white rounded-md hover:bg-white hover:text-[#0272BA] transition-colors duration-200">
                                     Masuk
                                 </Link>
-                                <Link href={route("register.page")} className="px-8 py-2 text-lg font-semibold text-darkBlue bg-white rounded-md hover:bg-gray-100 transition-colors duration-200">
+                                <Link href={route("register.page")} className="px-8 py-2 text-lg font-semibold text-darkBlue bg-white rounded-md hover:bg-white hover:text-[#0272ba] transition-colors duration-200">
                                     Daftar
                                 </Link>
                             </div>
@@ -121,10 +121,10 @@ const Navbar = () => {
                            </div>
                         ) : (
                             <div className="flex items-center justify-center gap-x-4 pt-4">
-                                <Link href={route("login")} className="px-6 py-2 text-sm font-medium text-white border border-white rounded-md hover:bg-white hover:text-darkBlue transition-colors duration-200">
+                                <Link href={route("login")} className="px-6 py-2 text-sm font-medium text-white border border-white rounded-md hover:bg-white hover:text-[#0272BA] transition-colors duration-200">
                                     Masuk
                                 </Link>
-                                <Link href={route("register.page")} className="px-6 py-2 text-sm font-medium text-darkBlue bg-white rounded-md hover:bg-gray-100 transition-colors duration-200">
+                                <Link href={route("register.page")} className="px-6 py-2 text-sm font-medium bg-white rounded-md hover:bg-white hover:text-[#0272ba] transition-colors duration-200">
                                     Daftar
                                 </Link>
                             </div>

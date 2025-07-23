@@ -2,7 +2,12 @@ import React from 'react';
 
 const Perangkat = () => {
   return (
-    <div className="min-h-0 md:min-h-screen bg-white p-4 md:p-6 lg:p-8 flex flex-col">
+    
+    <div className="min-h-0 md:min-h-screen p-4 md:p-6 lg:p-8 flex flex-col"
+    
+    
+      >
+      
       <div className="h-auto">
         {/* Mobile & Tablet: Center aligned, Desktop: Left aligned */}
         <div className="text-center lg:text-left pt-8 md:pt-16 lg:pt-[129px] px-4 md:px-8 lg:pl-[240px] lg:pr-8">

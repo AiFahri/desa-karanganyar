@@ -32,6 +32,12 @@ Route::get('/AdminDashboard', function () {
     return Inertia::render('AdminDashboard');
 });
 
+Route::get('/subpeng', function () {
+    return Inertia::render('SubPengumuman');
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

@@ -18,7 +18,7 @@ const View = () => {
                       whileHover={{ background: "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)" }}
                       transition={{ duration: 0.3, easing: "easeIn" }}
                       // Ukuran font dan padding dibuat responsif
-                      className="text-xl sm:text-3xl lg:text-[50px] rounded-full font-bold px-8 sm:px-12 lg:px-[75px] py-3 sm:py-4 lg:py-[15px] mt-4 mb-8 text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
+                      className="text-xl sm:text-3xl lg:text-[50px] rounded-full font-bold px-8 sm:px-12 lg:px-[75px] py-3 sm:py-4 lg:py-[21px] mt-4 mb-8 text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
                     >
                       Layanan Masyarakat
                     </motion.div>
@@ -130,7 +130,7 @@ const View = () => {
                                 Kami hadir untuk mempermudah setiap langkah Anda dalam mengurus dan membuat surat yang diperlukan. Di sini, kami menyediakan berbagai layanan pembuatan surat yang dirancang untuk memenuhi kebutuhan administrasi seluruh warga Desa Karanganyar.
                             </p>
                             {/* Kontainer untuk kedua tombol agar mudah diatur */}
-                            <div className="flex flex-col sm:flex-row items-center gap-4 mt-6 md:mt-[36px]">
+                            <div className="flex flex-col sm:flex-col items-center gap-4 mt-6 md:mt-[36px]">
                                 <Link href="/layanan">
                                     <motion.div
                                         initial={{ background: "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)" }}
