@@ -28,6 +28,12 @@ Route::get('/portal', function () {
     return Inertia::render('PortalBerita');
 });
 
+Route::get('/subpeng', function () {
+    return Inertia::render('SubPengumuman');
+});
+
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

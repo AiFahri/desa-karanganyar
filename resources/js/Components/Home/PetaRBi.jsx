@@ -38,7 +38,7 @@ const PetaRBI = ({ backgroundIMG }) => {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d18002.44546077551!2d112.75638044999998!3d-8.075874500000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62478ae2bb219%3A0x6812d843c866d6cb!2sKaranganyar%2C%20Kec.%20Poncokusumo%2C%20Kabupaten%20Malang%2C%20Jawa%20Timur!5e1!3m2!1sid!2sid!4v1753201447698!5m2!1sid!2sid"
                     width="1400"
                     height="700"
-                    style={{ border: 1, maxWidth: "100vw", }}
+                    style={{ border: 1, maxWidth: "75vw", }}
                     allowfullscreen=""
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade"
