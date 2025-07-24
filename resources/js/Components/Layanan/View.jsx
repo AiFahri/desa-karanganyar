@@ -1,6 +1,7 @@
 import React from 'react'
 import { circInOut, easeInOut, motion } from "framer-motion";
 import { Link } from '@inertiajs/react'
+import BuatSurat from './BuatSurat';
 
 const View = () => {
   return (
@@ -131,7 +132,7 @@ const View = () => {
                             </p>
                             {/* Kontainer untuk kedua tombol agar mudah diatur */}
                             <div className="flex flex-col sm:flex-col items-center gap-4 mt-6 md:mt-[36px]">
-                                <Link href="/layanan">
+                                <Link href="layanan/buat-surat">
                                     <motion.div
                                         initial={{ background: "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)" }}
                                         whileHover={{ background: "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)" }}

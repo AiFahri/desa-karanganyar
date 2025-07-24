@@ -20,6 +20,10 @@ Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
 });
 
+Route::get('/layanan/buat-surat', function () {
+    return Inertia::render('SubLayananBuatSurat');
+});
+
 Route::get('/profil', function () {
     return Inertia::render('ProfilDesa');
 });
