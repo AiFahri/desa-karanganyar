@@ -8,14 +8,43 @@ use Inertia\Inertia;
 Route::get('/', function () {
     return Inertia::render('Home');
 });
+Route::get('/home', function () {
+    return Inertia::render('Home');
+});
+
+Route::get('/register-page', function () {
+    return Inertia::render('Auth/Register');
+})->name('register.page');
 
 Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
 });
 
-Route::get('/profildesa', function () {
+Route::get('/profil', function () {
     return Inertia::render('ProfilDesa');
 });
+
+Route::get('/portal', function () {
+    return Inertia::render('PortalBerita');
+});
+
+Route::get('/AdminDashboard', function () {
+    return Inertia::render('AdminDashboard');
+});
+
+Route::get('/subpeng', function () {
+    return Inertia::render('SubPengumuman');
+});
+
+
+
+Route::get('/AdminPengajuanLayanan', function () {
+    return Inertia::render('AdminPengajuanLayanan');
+});
+Route::get('/AdminPortalBerita', function () {
+    return Inertia::render('AdminPortalBerita');
+});
+
 
 
 Route::get('/dashboard', function () {
@@ -27,5 +56,27 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+// Admin routes dengan middleware
+Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('AdminDashboard');
+    })->name('dashboard');
+    
+    // Route pengumuman admin yang benar
+    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class);
+});
+
+// Tambahkan redirect untuk backward compatibility
+Route::get('/AdminPengumuman', function () {
+    return redirect('/admin/pengumuman');
+})->middleware(['auth', 'is_admin']);
+
+// Route publik untuk portal berita
+Route::get('/portal', [App\Http\Controllers\PengumumanController::class, 'index'])->name('portal.index');
+
+// Route publik untuk melihat pengumuman
+Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman.index');
+Route::get('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\PengumumanController::class, 'show'])->name('pengumuman.show');
 
 require __DIR__.'/auth.php';
