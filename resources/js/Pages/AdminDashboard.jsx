@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import NavbarAdmin from './NavbarAdmin';
 import SidebarAdmin from './SidebarAdmin';
+import mailIcon from '../../assets/Home/icons/mailIcon.png';
+import TotalPenggunaIcon from '../../assets/Home/icons/TotalPenggunaIcon.png';
 
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -22,18 +24,21 @@ const AdminDashboard = () => {
         <main className="flex-1 p-6">
           {/* Cards */}
           <section className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            {["Total Surat", "Total Pengguna", "Lorem Ipsum", "Lorem Ipsum"].map(
+            {["Total Surat", "Total Pengguna", "Total Berita", "Total Pengumuman"].map(
               (label, index) => (
                 <div
                   key={index}
-                  className="p-4 rounded shadow text-white flex items-center gap-4"
+                  className="p-4 rounded shadow text-white flex flex-col items-center gap-4"
                   style={{
                     background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)',
                   }}
                 >
-                  <span className="text-2xl">📧</span>
-                  <div>
-                    <p className="text-sm">{label}</p>
+                  <div className='grid grid-cols-2 justify-between flex-shrink-0 w-full items-center overflow-hidden flex-wrap'>
+                    <img src={mailIcon} className='w-[20%]'></img>
+                    <p className="text-2xl justify-self-start">{label}</p>
+                  </div>
+
+                  <div className=''>
                     <p className="font-bold">X</p>
                   </div>
                 </div>
