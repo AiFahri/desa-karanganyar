@@ -38,6 +38,14 @@ Route::get('/subpeng', function () {
 
 
 
+Route::get('/AdminPengajuanLayanan', function () {
+    return Inertia::render('AdminPengajuanLayanan');
+});
+Route::get('/AdminPortalBerita', function () {
+    return Inertia::render('AdminPortalBerita');
+});
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
