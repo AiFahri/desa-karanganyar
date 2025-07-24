@@ -7,13 +7,13 @@ import PortalIcon from '../../assets/Home/icons/PortalBeritaIconn.png';
 import PengumumanIcon from '../../assets/Home/icons/PengumumanIcon.png';
 
 const SidebarAdmin = () => {
-  const { url } = usePage(); // ← Ini mengambil route saat ini, misalnya '/AdminPortalBerita'
+  const { url } = usePage();
 
   const menuItems = [
-    { id: 'Dashboard', label: 'Dashboard', icon: HomeIcon, route: '/AdminDashboard' },
+    { id: 'Dashboard', label: 'Dashboard', icon: HomeIcon, route: '/admin/dashboard' },
     { id: 'Pengajuan', label: 'Pengajuan Layanan', icon: PengajuanIcon, route: '/AdminPengajuanLayanan' },
     { id: 'Portal', label: 'Portal Berita', icon: PortalIcon, route: '/AdminPortalBerita' },
-    { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/AdminPengumuman' },
+    { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/admin/pengumuman' },
   ];
 
   return (
@@ -25,7 +25,7 @@ const SidebarAdmin = () => {
     >
       <nav className="flex flex-col gap-4 mt-10">
         {menuItems.map((item) => {
-          const isActive = url.startsWith(item.route); // Cocokkan dengan route aktif
+          const isActive = url.startsWith(item.route);
           return (
             <Link href={item.route} key={item.id} className="w-full">
               <button
@@ -54,3 +54,4 @@ const SidebarAdmin = () => {
 };
 
 export default SidebarAdmin;
+

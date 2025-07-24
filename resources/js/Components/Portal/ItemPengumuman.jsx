@@ -1,49 +1,52 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from '@inertiajs/react';
 
-const ItemPortal = ({
+const ItemPengumuman = ({
+  id,
+  slug,
   title,
   date,
   description,
-  buttonText,
+  buttonText = "Selengkapnya",
 }) => {
   return (
-    // Use flex-col for mobile, and lg:flex-row for large screens.
-    // Adjust padding to be smaller on mobile and larger on desktop.
     <div className="border border-gray-200 w-full rounded-lg p-6 flex flex-col lg:flex-row lg:justify-between lg:items-end bg-white my-4 gap-6 lg:gap-4 lg:p-7 lg:px-14">
       
-      {/* Text content area */}
       <div>
         <h2 className="text-xl font-semibold mb-1">{title}</h2>
-        <div className="text-blue-600 font-medium text-base mb-2">{date}</div>
+        <div className="text-blue-600 font-medium text-base mb-2">
+          {new Date(date).toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'long', 
+            year: 'numeric'
+          })}
+        </div>
         <p className="text-gray-500 max-w-xl">{description}</p>
       </div>
       
-      {/* The button is now a flex container itself to better space the text and icon */}
-      <motion.div
-        initial={{
-          background:
-            "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
-        }}
-        whileHover={{
-          background:
-            "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
-        }}
-        transition={{ duration: 0.3, easing: "easeIn" }}
-        // Button is full-width on mobile and auto-width on desktop.
-        // Use justify-between to create space instead of a fixed margin.
-        className="text-white cursor-pointer font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow transition w-full lg:w-auto lg:min-w-[240px]"
-      >
-        {buttonText}
-        
-        {/* The wrapper div with a fixed margin is removed */}
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-          <path d="M13.8217 3.82196C14.1343 3.50951 14.5581 3.33398 15 3.33398C15.442 3.33398 15.8658 3.50951 16.1784 3.82196L23.6784 11.322C23.9908 11.6345 24.1664 12.0584 24.1664 12.5003C24.1664 12.9422 23.9908 13.3661 23.6784 13.6786L16.1784 21.1786C15.864 21.4822 15.443 21.6502 15.006 21.6464C14.569 21.6426 14.151 21.4673 13.842 21.1583C13.533 20.8493 13.3577 20.4313 13.3539 19.9943C13.3501 19.5573 13.5181 19.1363 13.8217 18.822L18.3334 14.167H2.50004C2.05801 14.167 1.63409 13.9914 1.32153 13.6788C1.00897 13.3662 0.833374 12.9423 0.833374 12.5003C0.833374 12.0583 1.00897 11.6343 1.32153 11.3218C1.63409 11.0092 2.05801 10.8336 2.50004 10.8336H18.3334L13.8217 6.17863C13.5093 5.86608 13.3337 5.44224 13.3337 5.00029C13.3337 4.55835 13.5093 4.13451 13.8217 3.82196Z" fill="#FDFCFC"/>
-        </svg>
-
-      </motion.div>
+      <Link href={`/pengumuman/${slug}`}>
+        <motion.div
+          initial={{
+            background: "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
+          }}
+          whileHover={{
+            background: "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
+          }}
+          transition={{ duration: 0.3, easing: "easeIn" }}
+          className="text-white cursor-pointer font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow transition w-full lg:w-auto lg:min-w-[240px]"
+        >
+          {buttonText}
+          
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+            <path d="M5.20833 12.5H19.7917" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12.5 5.20833L19.7917 12.5L12.5 19.7917" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </motion.div>
+      </Link>
     </div>
   );
 };
 
-export default ItemPortal;
+export default ItemPengumuman;
+

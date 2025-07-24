@@ -3,11 +3,10 @@ import Navbar from '@/Components/Navbar'
 import { circInOut, easeInOut, motion } from "framer-motion";
 import ItemBerita from '@/Components/Portal/ItemBerita';
 import ItemPengumuman from '@/Components/Portal/ItemPengumuman';
-import { dummyPortalP } from '@/data/dummyPortalP';
 import { dummyPortalB } from '@/data/dummyPortalB';
 import Footer from '@/Components/Footer';
 
-const PortalBerita = () => {
+const PortalBerita = ({ pengumuman = { data: [] } }) => {
   return (
     <>
     <Navbar />
@@ -30,15 +29,23 @@ const PortalBerita = () => {
           <p className='drop-shadow-md'>Informasi Pengumuman</p>
         </div>
           <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-16 lg:pt-32 justify-items-center max-w-[1400px] mx-auto">
-            {dummyPortalP.map((item) => (
-              <ItemPengumuman
-                  key={item.id}
-                  title={item.title}
-                  description={item.description}
-                  date={item.date}
-                  buttonText={item.buttonText}
-              />
-            ))}
+            {pengumuman?.data?.length > 0 ? (
+              pengumuman.data.map((item) => (
+                <ItemPengumuman
+                    key={item.id}
+                    id={item.id}
+                    slug={item.slug}
+                    title={item.judul}
+                    description={item.deskripsi}
+                    date={item.tanggal_publish}
+                    buttonText="Selengkapnya"
+                />
+              ))
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-500 text-lg">Belum ada pengumuman</p>
+              </div>
+            )}
           </div>
         <div className='max-w-[1400px] mx-auto mt-28 bg-[#D9EAF5] text-3xl text-center lg:text-left lg:text-[44px] py-6 px-16 font-bold text-[#0272BA] rounded-lg'>
           <p className='drop-shadow-md'>Informasi Berita</p>
