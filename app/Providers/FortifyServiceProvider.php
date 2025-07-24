@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Illuminate\Validation\ValidationException;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -48,8 +49,29 @@ class FortifyServiceProvider extends ServiceProvider
             ]);
         });
 
+        Fortify::redirects('login', function () {
+            if (auth()->user() && auth()->user()->isAdmin()) {
+                return '/admin/dashboard';
+            }
+            return '/dashboard';
+        });
+
         RateLimiter::for('login', function (Request $request) {
             return Limit::perMinute(5)->by($request->input(Fortify::username()) . $request->ip());
         });
+
+        // Custom login response
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                if (auth()->user()->isAdmin()) {
+                    return redirect('/admin/dashboard');
+                }
+                return redirect('/dashboard');
+            }
+        });
     }
 }
+
+
+
