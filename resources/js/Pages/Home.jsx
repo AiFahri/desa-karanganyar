@@ -12,8 +12,6 @@ import HeaderPotensi from "@/Components/Home/HeaderPotensi";
 import PotensiSection from "@/Components/Home/PotensiSection";
 import BumDesa from "@/Components/Home/BumDesa";
 
-
-
 const Home = () => {
     return (
         <>

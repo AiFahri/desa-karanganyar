@@ -10,7 +10,7 @@ const Card = ({
 
 
   return (
-    <div className="group relative cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
+    <div className="group relative min-w-[200px] w-full cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
       <img src={shadowCard} className="absolute z-0 scale-[1.7] h-full"/>
       <div
         className="relative bg-white rounded-2xl hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-[#A09280] w-full max-w-[400px] mx-auto max-h-[600px]"
@@ -25,13 +25,13 @@ const Card = ({
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
             <div className="p-4 text-white pb-12">
-              <p className="text-sm leading-relaxed font-sans">{description}</p>
+              <p className="text-sm lg:text-base leading-relaxed font-sans">{description}</p>
             </div>
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-1/4 flex items-center justify-center px-4 bg-[#95CFF4] rounded-t-2xl">
-          <h3 className="font-bold text-3xl text-black font-display text-center leading-tight transition-colors duration-300">
+          <h3 className="font-bold text-xl lg:text-3xl text-black font-display text-center leading-tight transition-colors duration-300 group-hover:text-[#0272BA]">
             {title}
           </h3>
         </div>

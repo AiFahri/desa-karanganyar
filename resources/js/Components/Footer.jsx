@@ -91,25 +91,27 @@ const Footer = () => {
                     </div>
 
                     {/* Kontak Section */}
-                    <div className="text-center max-w-fit">
-                        <h3 className="text-lg font-semibold mb-6">Kontak yang dapat dihubungi</h3>
-                        
-                        <div className="space-y-4 text-sm opacity-90 max-w-full">
-                            <div className="flex items-start justify-start">
-                                <Phone className="w-4 h-4 mr-3" />
-                                <span>0000000000</span>
-                            </div>
+                    <div className="w-full flex flex-col items-center md:items-start text-center md:text-left">
+                    <h3 className="text-lg font-semibold mb-6">Kontak yang dapat dihubungi</h3>
 
-                            <div className="flex items-start justify-start">
-                                <Mail className="w-4 h-4 mr-3" />
-                                <span>karanganyar@gmail.com</span>
-                            </div>
+                    <div className="space-y-4 text-sm opacity-90">
+                        <div className="flex items-center md:items-start justify-center md:justify-start">
+                        <Phone className="w-4 h-4 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>0000000000</span>
+                        </div>
+
+                        <div className="flex items-center md:items-start justify-center md:justify-start">
+                        <Mail className="w-4 h-4 mr-3 mt-0.5 flex-shrink-0" />
+                        <span>karanganyar@gmail.com</span>
                         </div>
                     </div>
+                    </div>
+
+
                 </div>
 
                 {/* Social Media Icons */}
-                <div className="flex justify-center space-x-4 mb-8">
+                <div className="flex justify-center space-x-4 my-[18px]">
                     <a 
                         href="#" 
                         className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"

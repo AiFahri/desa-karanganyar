@@ -28,6 +28,24 @@ Route::get('/portal', function () {
     return Inertia::render('PortalBerita');
 });
 
+Route::get('/AdminDashboard', function () {
+    return Inertia::render('AdminDashboard');
+});
+
+Route::get('/subpeng', function () {
+    return Inertia::render('SubPengumuman');
+});
+
+
+
+Route::get('/AdminPengajuanLayanan', function () {
+    return Inertia::render('AdminPengajuanLayanan');
+});
+Route::get('/AdminPortalBerita', function () {
+    return Inertia::render('AdminPortalBerita');
+});
+
+
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

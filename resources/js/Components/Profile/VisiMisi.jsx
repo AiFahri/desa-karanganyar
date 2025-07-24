@@ -2,112 +2,92 @@ import React from 'react';
 
 const VisiMisi = () => {
   return (
-        
-    <div className="min-h-screen bg-gradient-to-br from-sky-300 via-sky-400 to-sky-500 p-8 flex items-center justify-center">
-      <div className="max-w-4xl w-full space-y-8">
-        
+    <div
+      className="min-h-screen p-4 md:p-8 flex items-center justify-center"
+      style={{
+        background: "linear-gradient(180deg, #FDFCFC 0%,#4CA0D7 50%, #4CA0D7  75%, #FDFCFC 100%)",
+      }}
+    >
+      <div className="w-full max-w-4xl space-y-8">
+
         {/* Visi Section */}
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="bg-white text-[#0272BA] text-center py-4">
-            <h2 className="text-[44px] font-bold">Visi</h2>
+        <div className="overflow-hidden flex flex-col items-center">
+          <div
+            className="w-full lg:w-[600px] h-[100px] text-[#0272BA] text-center justify-center py-4 border border-gray-300"
+            style={{
+              borderRadius: "20px",
+              background: "#FDFCFC"
+            }}
+          >
+            <h2 className="text-[32px] md:text-[44px] font-bold">Visi</h2>
           </div>
-          
-          <div className="p-6">
-            <h3 className="text-[24px] font-bold text-black mb-4 text-start">
-              DESA KARANCANYAR "BERHATI EMAS"
+
+          <div
+            className="w-full p-4 md:p-6"
+            style={{
+              borderRadius: "20px",
+              background: "rgba(253, 252, 252, 0.60)",
+              boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)"
+            }}
+          >
+            <h3 className="text-[20px] md:text-[24px] text-black mb-4 text-start">
+              DESA KARANCANYAR "<strong>BERHATI EMAS</strong>"
             </h3>
-            
-            <p className="text-[24px] text-black leading-relaxed text-justify">
+
+            <p className="text-[16px] md:text-[24px] text-black leading-relaxed text-justify">
               Terwujudnya Desa Karanganyar yang Bersih, Harmonis, Akuntabel (dapat dipertanggungjawabkan), Transparan, Inovatif, Egaliter (sama/sederajat), Mandiri, Agamis, dan Sejahtera.
             </p>
           </div>
         </div>
 
         {/* Misi Section */}
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-          <div className="bg-gradient-to-r from-blue-500 to-blue-600 text-white text-center py-4">
-            <h2 className="text-2xl font-bold">Misi</h2>
+        <div className="overflow-hidden flex flex-col items-center">
+          <div
+            className="w-full lg:w-[600px] h-[100px] text-[#0272BA] text-center justify-center py-4 border border-gray-300"
+            style={{
+              borderRadius: "20px",
+              background: "#FDFCFC"
+            }}
+          >
+            <h2 className="text-[32px] md:text-[44px] font-bold">Misi</h2>
           </div>
-          
-          <div className="p-6">
-            <ol className="space-y-4 text-gray-700 leading-relaxed">
-              <li className="flex">
-                <span className="text-[24px] font-bold text-blue-600 mr-3 mt-1">1.</span>
-                <span className="text-justify">
-                  Mewujudkan pemerintahan yang senantiasa mengayomi, melindungi, dan 
-                  melayani dengan jujur dan amanah.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">2.</span>
-                <span className="text-justify">
-                  Meningkatkan sinergitas pemerintah desa dengan kelembagaan desa lainnya.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">3.</span>
-                <span className="text-justify">
-                  Mempertanggungjawabkan secara hasil kerja pemerintahan desa kepada seluruh 
-                  warga masyarakat desa dan Negara Kesatuan Republik Indonesia secara tegas, 
-                  jujur, dan prosedural.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">4.</span>
-                <span className="text-justify">
-                  Meningkatkan pembangunan yang merata dalam berbagai bidang, baik fisik 
-                  maupun nonfisik.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">5.</span>
-                <span className="text-justify">
-                  Mengembangkan ide-ide baru yang kreatif dalam berbagai seni budaya, dan 
-                  mewujudkan kawasan penyangga pariwisata yang tertata.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">6.</span>
-                <span className="text-justify">
-                  Meningkatkan mutu kebersihan lingkungan permukiman, lingkungan 
-                  pendidikan, dan pelayanan kesehatan.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">7.</span>
-                <span className="text-justify">
-                  Mengembangkan forum komunikasi dengan masyarakat secara terbuka.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">8.</span>
-                <span className="text-justify">
-                  Meningkatkan kualitas keimanan dan ketakwaan kepada Tuhan Yang Maha 
-                  Esa.
-                </span>
-              </li>
-              
-              <li className="flex">
-                <span className="font-bold text-blue-600 mr-3 mt-1">9.</span>
-                <span className="text-justify">
-                  Meningkatkan kemampuan pengelolaan keuangan dan aset desa.
-                </span>
-              </li>
-            </ol>
-          </div>
+
+          <div
+        className="w-full p-4 md:p-6"
+        style={{
+          borderRadius: "20px",
+          background: "rgba(253, 252, 252, 0.60)",
+          boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)"
+        }}
+      >
+  <ol className="space-y-4 text-black leading-relaxed">
+    {[
+      "Mewujudkan pemerintahan yang senantiasa mengayomi, melindungi, dan melayani dengan jujur dan amanah.",
+      "Meningkatkan sinergitas pemerintah desa dengan kelembagaan desa lainnya.",
+      "Mempertanggungjawabkan secara hasil kerja pemerintahan desa kepada seluruh warga masyarakat desa dan Negara Kesatuan Republik Indonesia secara tegas, jujur, dan prosedural.",
+      "Meningkatkan pembangunan yang merata dalam berbagai bidang, baik fisik maupun nonfisik.",
+      "Mengembangkan ide-ide baru yang kreatif dalam berbagai seni budaya, dan mewujudkan kawasan penyangga pariwisata yang tertata.",
+      "Meningkatkan mutu kebersihan lingkungan permukiman, lingkungan pendidikan, dan pelayanan kesehatan.",
+      "Mengembangkan forum komunikasi dengan masyarakat secara terbuka.",
+      "Meningkatkan kualitas keimanan dan ketakwaan kepada Tuhan Yang Maha Esa.",
+      "Meningkatkan kemampuan pengelolaan keuangan dan aset desa."
+    ].map((item, index) => (
+      <li key={index} className="flex items-start">
+        <span className="text-[16px] md:text-[24px] mr-2 flex-shrink-0">
+          {index + 1}.
+        </span>
+        <span className="text-justify text-[16px] md:text-[24px] flex-1">
+          {item}
+        </span>
+      </li>
+    ))}
+  </ol>
+</div>
         </div>
-        
+
       </div>
     </div>
-  
-  )
-}
+  );
+};
 
 export default VisiMisi;

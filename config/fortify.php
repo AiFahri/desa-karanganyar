@@ -2,6 +2,8 @@
 
 use Laravel\Fortify\Features;
 
+
+
 return [
 
     /*
