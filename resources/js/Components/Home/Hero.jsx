@@ -6,6 +6,7 @@ import fotoInf1 from "../../../assets/Home/img/fotoInf1.png";
 import fotoInf2 from "../../../assets/Home/img/fotoInf2.png";
 import fotoInf3 from "../../../assets/Home/img/fotoInf3.png";
 import { motion } from "motion/react";
+import HorizontalInfiniteGallery from "./HorizontalInfiniteGallery";
 
 const items = [
     { content: <img src={fotoInf1} /> },
@@ -56,6 +57,17 @@ const Hero = () => {
                     </div>
                     <div className="hidden lg:flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-60">
                         <InfiniteScroll
+                            items={items}
+                            isTilted={false}
+                            tiltDirection="left"
+                            autoplay={true}
+                            autoplaySpeed={0.6}
+                            autoplayDirection="down"
+                            pauseOnHover={false}
+                        />
+                    </div>
+                    <div className="lg:hidden flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-0">
+                        <HorizontalInfiniteGallery
                             items={items}
                             isTilted={false}
                             tiltDirection="left"

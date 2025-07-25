@@ -22,10 +22,10 @@ const BumDesa = ({ id, className = "", headerTitle, stats = karanganyarStats }) 
             className={`relative pb-20 bg-gradient-to-br from-stone-50 to-stone-50${className}`}
         >
             <div className="relative z-10 container mx-auto px-4">
-                <p className="text-[44px] pb-5 font-sans text-[#0272BA] font-semibold text-center">
+                <p className="text-3xl md:text-[44px] pb-5 font-sans text-[#0272BA] font-semibold text-center">
                     {headerTitle}
                 </p>
-                <p className="text-2xl mb-12 font-sans text-black font-medium text-center">
+                <p className="text-lg md:text-2xl mb-12 font-sans text-black font-medium text-center">
                     Lihat perkembangan jumlah penarikan sampah yang dikelola
                     BUMDes Karanganyar setiap tahunnya untuk mendukung
                     kebersihan dan kenyamanan lingkungan desa
@@ -33,7 +33,7 @@ const BumDesa = ({ id, className = "", headerTitle, stats = karanganyarStats }) 
                 <div className="flex flex-col gap-y-16 items-center justify-around w-full max-w-[1100px] max-h-[900px] mx-auto">
                     <div className="w-full lg:w-3/5">
                         <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
-                            <div className="bg-blue-600 p-5 text-white">
+                            <div className="bg-transparent p-5 text-black">
                             <h2 className="text-2xl font-bold mt-2">{stats.title}</h2>
                             <p className="text-sm opacity-90">Desa {stats.desa}, Kecamatan {stats.district}, Kabupaten {stats.regency}</p>
                             </div>
