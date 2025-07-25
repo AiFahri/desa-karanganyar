@@ -67,20 +67,29 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
         return Inertia::render('AdminDashboard');
     })->name('dashboard');
     
-    // Route pengumuman admin yang benar
-    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class);
+    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class)->parameters([
+        'pengumuman' => 'pengumuman:slug'
+    ]);
+    
+    Route::resource('berita', App\Http\Controllers\Admin\BeritaController::class)->parameters([
+        'berita' => 'berita:slug'
+    ]);
 });
 
-// Tambahkan redirect untuk backward compatibility
 Route::get('/AdminPengumuman', function () {
     return redirect('/admin/pengumuman');
 })->middleware(['auth', 'is_admin']);
 
-// Route publik untuk portal berita
-Route::get('/portal', [App\Http\Controllers\PengumumanController::class, 'index'])->name('portal.index');
+Route::get('/AdminPortalBerita', function () {
+    return redirect('/admin/berita');
+})->middleware(['auth', 'is_admin']);
+
+Route::get('/portal', [App\Http\Controllers\BeritaController::class, 'index'])->name('portal.index');
 
 // Route publik untuk melihat pengumuman
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::get('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\PengumumanController::class, 'show'])->name('pengumuman.show');
+
+Route::get('/berita/{berita:slug}', [App\Http\Controllers\BeritaController::class, 'show'])->name('berita.show');
 
 require __DIR__.'/auth.php';
