@@ -49,7 +49,7 @@ const Hero = () => {
                                   "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
                               }}
                               transition={{ duration: 0.3, easing: "easeIn" }}
-                              className="max-w-fit text-xs md:text-xl lg:rounded-[48px] rounded-3xl font-semibold px-5 pt-3 lg:px-10 lg:py-6 mt-3 lg:mt-6 lg:mb-[72px] mb-10 text-center text-white font-sans opacity-100 transition-all duration-500">
+                              className="max-w-fit text-xs md:text-xl lg:rounded-[48px] rounded-3xl font-semibold px-5 py-2 lg:px-10 lg:py-6 mt-3 lg:mt-6 lg:mb-[72px] mb-10 text-center text-white font-sans opacity-100 transition-all duration-500">
                                 Yuk Jelajahi
                             </motion.div>
                         </Link>

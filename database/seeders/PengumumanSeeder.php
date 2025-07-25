@@ -10,7 +10,7 @@ class PengumumanSeeder extends Seeder
 {
     public function run()
     {
-        $admin = User::where('email', 'admin@karanganyar.desa.id')->first();
+        $admin = User::where('email', 'admin@karanganyar.id')->first();
 
         $pengumumanData = [
             [
