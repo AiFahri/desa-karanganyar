@@ -16,7 +16,7 @@ class AdminUserSeeder extends Seeder
             'email' => 'admin@karanganyar.id',
             'nik' => '1234567890123456',
             'no_hp' => '081234567890',
-            'password' => Hash::make('123123123'),
+            'password' => Hash::make('admin123'),
             'email_verified_at' => now(),
         ]);
 
