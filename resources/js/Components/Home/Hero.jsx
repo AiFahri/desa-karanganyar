@@ -6,6 +6,7 @@ import fotoInf1 from "../../../assets/Home/img/fotoInf1.png";
 import fotoInf2 from "../../../assets/Home/img/fotoInf2.png";
 import fotoInf3 from "../../../assets/Home/img/fotoInf3.png";
 import { motion } from "motion/react";
+import HorizontalInfiniteGallery from "./HorizontalInfiniteGallery";
 
 const items = [
     { content: <img src={fotoInf1} /> },
@@ -49,13 +50,24 @@ const Hero = () => {
                                   "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
                               }}
                               transition={{ duration: 0.3, easing: "easeIn" }}
-                              className="max-w-fit text-xs md:text-xl lg:rounded-[48px] rounded-3xl font-semibold px-5 pt-3 lg:px-10 lg:py-6 mt-3 lg:mt-6 lg:mb-[72px] mb-10 text-center text-white font-sans opacity-100 transition-all duration-500">
+                              className="max-w-fit text-xs md:text-xl lg:rounded-[48px] rounded-3xl font-semibold px-5 py-2 lg:px-10 lg:py-6 mt-3 lg:mt-6 lg:mb-[72px] mb-10 text-center text-white font-sans opacity-100 transition-all duration-500">
                                 Yuk Jelajahi
                             </motion.div>
                         </Link>
                     </div>
                     <div className="hidden lg:flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-60">
                         <InfiniteScroll
+                            items={items}
+                            isTilted={false}
+                            tiltDirection="left"
+                            autoplay={true}
+                            autoplaySpeed={0.6}
+                            autoplayDirection="down"
+                            pauseOnHover={false}
+                        />
+                    </div>
+                    <div className="lg:hidden flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-0">
+                        <HorizontalInfiniteGallery
                             items={items}
                             isTilted={false}
                             tiltDirection="left"

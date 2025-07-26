@@ -24,6 +24,10 @@ Route::get('/layanan/buat-surat', function () {
     return Inertia::render('SubLayananBuatSurat');
 });
 
+Route::get('/layanan/status-surat', function () {
+    return Inertia::render('SubLayananStatusSurat');
+});
+
 Route::get('/profil', function () {
     return Inertia::render('ProfilDesa');
 });
