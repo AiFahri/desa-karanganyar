@@ -11,6 +11,13 @@ const AdminDashboard = () => {
     setSidebarOpen(!sidebarOpen);
   };
 
+  const cardData = [
+    { label: 'Total Surat', icon: mailIcon },
+    { label: 'Total Pengguna', icon: TotalPenggunaIcon },
+    { label: 'Total Berita', icon: TotalPenggunaIcon },
+    { label: 'Total Pengumuman', icon: TotalPenggunaIcon },
+  ];
+
   return (
     <div className="min-h-screen bg-[#EBE6E6] font-sans flex flex-col">
       {/* Navbar */}
@@ -24,26 +31,24 @@ const AdminDashboard = () => {
         <main className="flex-1 p-6">
           {/* Cards */}
           <section className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            {["Total Surat", "Total Pengguna", "Total Berita", "Total Pengumuman"].map(
-              (label, index) => (
-                <div
-                  key={index}
-                  className="p-4 rounded shadow text-white flex flex-col items-center gap-4"
-                  style={{
-                    background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)',
-                  }}
-                >
-                  <div className='grid grid-cols-2 justify-between flex-shrink-0 w-full items-center overflow-hidden flex-wrap'>
-                    <img src={mailIcon} className='w-[20%]'></img>
-                    <p className="text-2xl justify-self-start">{label}</p>
-                  </div>
-
-                  <div className=''>
-                    <p className="font-bold">X</p>
-                  </div>
+            {cardData.map((card, index) => (
+              <div
+                key={index}
+                className="p-4 rounded-xl shadow text-white flex flex-col items-center gap-4 mx-10"
+                style={{
+                  background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)'
+                }}
+              >
+                <div className='flex flex-row justify-around flex-shrink-0 w-full px-2 items-center'>
+                  <img src={card.icon} alt={card.label} className='w-10 h-10' />
+                  <p className="text-sm font-medium">{card.label}</p>
                 </div>
-              )
-            )}
+
+                <div>
+                  <p className="font-bold text-xl">X</p>
+                </div>
+              </div>
+            ))}
           </section>
 
           {/* Table */}
