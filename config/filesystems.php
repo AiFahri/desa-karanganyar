@@ -29,7 +29,6 @@ return [
     */
 
     'disks' => [
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),
@@ -56,10 +55,49 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),  
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+            'throw' => true,
+            'report' => true,
+            'options' => [
+                'http' => [
+                    'verify' => false, // Disable SSL verification for IDCloudHost
+                ]
+            ],
+        ],
+
+        's3_idcloudhost' => [
+            'driver' => 's3_idcloudhost',
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('AWS_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),  
+            'use_path_style_endpoint' => true,
+            'throw' => false,
+            'report' => false,
+            'visibility' => 'public', // Default visibility
+            'options' => [
+                'http' => [
+                    'verify' => false,
+                    'timeout' => 60,
+                    'connect_timeout' => 60,
+                ],
+                'ACL' => 'public-read', // Default ACL
+            ],
+        ],
+
+        'karanganyar_s3' => [
+            'driver' => 's3',
+            'key' => env('KARANGANYAR_S3_KEY'),
+            'secret' => env('KARANGANYAR_S3_SECRET'),
+            'region' => env('KARANGANYAR_S3_REGION', 'us-east-1'),
+            'bucket' => env('KARANGANYAR_S3_BUCKET', 'karanganyar'),
+            'url' => env('KARANGANYAR_S3_URL', 'https://is3.cloudhost.id/karanganyar'),
+            'endpoint' => env('KARANGANYAR_S3_ENDPOINT', 'https://is3.cloudhost.id'),
+            'use_path_style_endpoint' => true,
             'throw' => false,
             'report' => false,
         ],
-
     ],
 
     /*
@@ -78,3 +116,16 @@ return [
     ],
 
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
