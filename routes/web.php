@@ -56,8 +56,16 @@ Route::get('/AdminPortalBerita', function () {
 
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('EditProfile');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/riwayat-pengajuan', function () {
+    return Inertia::render('RiwayatPengajuan');
+})->middleware(['auth', 'verified'])->name('riwayat-pengajuan');
+
+Route::get('/lupa-password', function () {
+    return Inertia::render('LupaPassword');
+})->middleware(['auth', 'verified'])->name('lupa-password');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
