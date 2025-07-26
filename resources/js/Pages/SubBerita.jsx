@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
-// import { FaArrowLeft, FaUser } from 'react-icons/fa';
+import { Link } from '@inertiajs/react';
 
 // Icon components (using inline SVG for portability)
 const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
@@ -31,83 +31,67 @@ const MapPinIcon = ({ className = "w-5 h-5" }) => (
 
 
 // Main component
-export default function SubBerita() {
+export default function SubBerita({ berita }) {
   return (
-    // Using a common background color to mimic the full-page effect
     <div>
       <Navbar />
-    <div className="bg-white font-sans antialiased min-h-screen pt-[76px]">
-      
-      {/* Header Section */}
-      <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
-        <div className="max-w-[100vw] mx-auto">
-          <button className="flex items-center space-x-2 text-white font-bold text-lg hover:opacity-80 transition-opacity">
-            <ArrowLeftIcon className="w-8 h-8" />
-            <span  className='text-3xl font-sans'>Kembali</span>
-          </button>
-        </div>
-      </header>
-
-      {/* Main Content Area */}
-      <main className="p-4 sm:p-6 md:p-8">
-        <div className="max-w-[66vw] max-h-[66vh] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-          <div className="p-6 sm:p-8">
-            
-            {/* Post Title */}
-            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-              Acara Pengambilan Sembako untuk Warga Dusun Pancuran!
-            </h1>
-
-            {/* Post Meta Information */}
-            <div className="flex flex-col sm:flex-row sm:items-center text-sm text-[#0272BA] mb-6 space-y-2 sm:space-y-0 sm:space-x-6">
-              <span className="font-semibold text-[#0272BA] text-2xl">10 Juli 2025</span>
-              <div className="flex items-center space-x-2">
-                <UserIcon className="w-5 h-5 text-[#0272BA] fill-[#0272BA]" />
-                <span className='text-2xl font-semibold'>Admin Desa Karanganyar</span>
-              </div>
-            </div>
-
-            {/* Featured Image */}
-            <div className="my-6">
-                <img 
-                    className="w-1/3 h-auto object-cover rounded-lg shadow-md" 
-                    src="https://placehold.co/800x450/3b82f6/ffffff?text=Ilustrasi+Sembako" 
-                    alt="Ilustrasi pembagian sembako" 
-                    onError={(e) => { e.target.onerror = null; e.target.src='https://placehold.co/800x450/cccccc/ffffff?text=Image+Not+Found'; }}
-                />
-            </div>
-
-            {/* Main Body Content */}
-            <p className="text-gray-700 leading-relaxed mb-6">
-              Pemerintah Desa Karanganyar mengundang seluruh warga Dusun Pancuran untuk hadir dalam kegiatan pembagian sembako sebagai bentuk kepedulian dan dukungan bagi warga.
-            </p>
-
-            {/* Highlighted Details Box */}
-            <div className="bg-gray-50 border-l-4 border-blue-500 p-4 rounded-r-lg mb-6 space-y-3">
-              <div className="flex items-start">
-                <CalendarIcon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
-                <p className="ml-3 text-gray-800">
-                  <span className="font-semibold">Waktu:</span> Sabtu, 10 Juli 2025, pukul 08.00 - 11.00 WIB
-                </p>
-              </div>
-              <div className="flex items-start">
-                <MapPinIcon className="w-5 h-5 text-blue-600 flex-shrink-0 mt-1" />
-                <p className="ml-3 text-gray-800">
-                  <span className="font-semibold">Tempat:</span> Balai Dusun Pancuran, Desa Karanganyar
-                </p>
-              </div>
-            </div>
-
-            {/* Concluding Paragraph */}
-            <p className="text-gray-700 leading-relaxed">
-              Pastikan Anda membawa identitas diri (KTP atau KK) dan datang sesuai jadwal yang telah ditentukan. Mari bersama-sama menjaga ketertiban demi kelancaran acara ini.
-            </p>
-
+      <div className="bg-white font-sans antialiased min-h-screen pt-[76px]">
+        
+        <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
+          <div className="max-w-[100vw] mx-auto">
+            <Link href="/portal" className="flex items-center space-x-2 text-white font-bold text-lg hover:opacity-80 transition-opacity">
+              <ArrowLeftIcon className="w-8 h-8" />
+              <span className='text-3xl font-sans'>Kembali</span>
+            </Link>
           </div>
-        </div>
-      </main>
-    </div>
+        </header>
+
+        <main className="p-4 sm:p-6 md:p-8">
+          <div className="max-w-[66vw] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+            <div className="p-6 sm:p-8">
+              
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
+                {berita.judul}
+              </h1>
+
+              <div className="flex flex-col sm:flex-row sm:items-center text-sm text-[#0272BA] mb-6 space-y-2 sm:space-y-0 sm:space-x-6">
+                <span className="font-semibold text-[#0272BA] text-2xl">
+                  {new Date(berita.tanggal_publish).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                  })}
+                </span>
+                <div className="flex items-center space-x-2">
+                  <UserIcon className="w-5 h-5 text-[#0272BA] fill-[#0272BA]" />
+                  <span className='text-2xl font-semibold'>{berita.published_by || 'Admin Desa Karanganyar'}</span>
+                </div>
+              </div>
+
+              {berita.gambar && (
+                <div className="my-6">
+                  <img 
+                      className="w-1/3 h-auto object-cover rounded-lg shadow-md" 
+                      src={`https://is3.cloudhost.id/karanganyar/${berita.gambar}`}
+                      alt={berita.judul}
+                      onError={(e) => { 
+                        e.target.onerror = null; 
+                        e.target.src='https://placehold.co/800x450/cccccc/ffffff?text=Image+Not+Found'; 
+                      }}
+                  />
+                </div>
+              )}
+
+              <div className="text-gray-700 leading-relaxed whitespace-pre-line">
+                {berita.deskripsi}
+              </div>
+
+            </div>
+          </div>
+        </main>
+      </div>
       <Footer />
     </div>
   );
 }
+
