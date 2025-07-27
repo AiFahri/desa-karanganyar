@@ -5,25 +5,15 @@ import PetaRBI from '@/Components/Profile/PetaRBi'
 import VisiMisi from '@/Components/Profile/VisiMisi'
 import PopulationStats from '@/Components/Profile/StatsPenduduk'
 import Perangkat from '@/Components/Profile/Perangkat'
+import StatsWilayah from '@/Components/Profile/StatsWilayah'
 
-const karanganyarStats = {
-  villageName: "Karanganyar",
-  district: "Poncokusumo",
-  regency: "Malang",
-  month: "Mei",
-  year: 2025,
-  totalPopulation: 7989,
-  male: 4072,
-  female: 3917,
-  households: 2472,
-};
-
-const ProfilDesa = () => {
+const ProfilDesa = ({ statistikPenduduk, statistikWilayah }) => {
   return (
     <>
       <Navbar />
       <PetaRBI />
-      <PopulationStats stats={karanganyarStats} />
+      <StatsWilayah stats={statistikWilayah} />
+      <PopulationStats stats={statistikPenduduk} />
       <VisiMisi />
       <Perangkat />
       <Footer />

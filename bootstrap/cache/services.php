@@ -37,7 +37,8 @@
     33 => 'App\\Providers\\AuthServiceProvider',
     34 => 'App\\Providers\\RouteServiceProvider',
     35 => 'App\\Providers\\FortifyServiceProvider',
-    36 => 'App\\Providers\\AppServiceProvider',
+    36 => 'App\\Providers\\S3ServiceProvider',
+    37 => 'App\\Providers\\AppServiceProvider',
   ),
   'eager' => 
   array (
@@ -63,7 +64,8 @@
     19 => 'App\\Providers\\AuthServiceProvider',
     20 => 'App\\Providers\\RouteServiceProvider',
     21 => 'App\\Providers\\FortifyServiceProvider',
-    22 => 'App\\Providers\\AppServiceProvider',
+    22 => 'App\\Providers\\S3ServiceProvider',
+    23 => 'App\\Providers\\AppServiceProvider',
   ),
   'deferred' => 
   array (

@@ -1,6 +1,7 @@
 import React from "react";
 import Card from "../Card";
 import { dummyPotensi } from "../../data/dummyPotensi";
+import PotensiSecMobile from "./PotensiSecMobile";
 
 const PotensiSection = ({ id, className = "", headerTitle }) => {
     return (
@@ -13,7 +14,7 @@ const PotensiSection = ({ id, className = "", headerTitle }) => {
                   {headerTitle}
                 </p>
 
-                <div className="z-40 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-x-24 lg:gap-y-24 justify-items-center max-w-6xl mx-auto">
+                <div className="hidden z-40 md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-x-24 lg:gap-y-24 justify-items-center max-w-6xl mx-auto">
                     {dummyPotensi.map((item) => (
                         <Card
                             key={item.id}
@@ -23,6 +24,8 @@ const PotensiSection = ({ id, className = "", headerTitle }) => {
                         />
                     ))}
                 </div>
+
+                <PotensiSecMobile />
 
                 {/* <div className="flex justify-center mt-16">
           <div className="flex items-center space-x-4 opacity-30">

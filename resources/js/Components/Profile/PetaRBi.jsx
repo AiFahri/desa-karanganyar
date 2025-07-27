@@ -7,7 +7,7 @@ const PetaRBI = ({}) => {
   return (
     <div
       className="bg-[#FDFCFC] min-h-0 md:min-h-96 lg:min-h-screen flex items-center justify-center min-w-screen relative p-4 md:p-6 lg:p-0 pt-20 md:pt-24"
-      
+      x
     >
       <div className='relative w-full max-w-sm md:max-w-2xl lg:max-w-[70vw] mx-auto'>
         {/* Blur dekoratif kini hanya muncul di layar besar */}
