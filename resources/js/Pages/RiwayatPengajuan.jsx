@@ -83,7 +83,7 @@ const submissionHistory = [
   },
   {
     id: 4,
-    purpose: 'Surat Keterangan Belum Menikah',
+    purpose: 'Surat Kematian',
     date: '1 Juni 2025',
     time: '12.45',
     status: 'Ditolak',
@@ -115,10 +115,10 @@ const RiwayatPengajuan = () => {
           <table className="min-w-full hidden md:table">
             <thead className="bg-gray-100">
               <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider rounded-l-lg">Tujuan Pengajuan Surat</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Tanggal Pengajuan Surat</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">Waktu Pengajuan Surat</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider rounded-r-lg">Status</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider rounded-l-lg">Tujuan Pengajuan Surat</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider">Tanggal Pengajuan Surat</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider">Waktu Pengajuan Surat</th>
+                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider rounded-r-lg">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-200">

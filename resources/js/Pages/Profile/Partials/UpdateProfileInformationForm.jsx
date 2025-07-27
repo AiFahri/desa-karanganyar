@@ -49,14 +49,26 @@ export default function UpdateProfileInformation({
             password_confirmation: '',
         });
 
-    const submit = (e) => {
-        e.preventDefault();
+        const [localError, setLocalError] = useState('');
 
-        patch(route('profile.update'), {
-            preserveScroll: true,
-            onSuccess: () => reset('password', 'password_confirmation'),
-        });
-    };
+
+    const submit = (e) => {
+    e.preventDefault();
+
+    // Cek apakah password dan konfirmasi cocok
+    if (data.password !== data.password_confirmation) {
+        setLocalError('Password dan konfirmasi password tidak cocok.');
+        return;
+    }
+
+    setLocalError(''); // Hapus error jika sebelumnya ada
+
+    patch(route('profile.update'), {
+        preserveScroll: true,
+        onSuccess: () => reset('password', 'password_confirmation'),
+    });
+};
+
 
     return (
         <section className={className}>
@@ -134,17 +146,18 @@ export default function UpdateProfileInformation({
                 </div>
 
                 <div>
-                    <InputLabel htmlFor="password_confirmation" value="Konfirmasi Password" />
-                    <TextInput
-                        id="password_confirmation"
-                        type="password"
-                        className="mt-1 block w-full"
-                        value={data.password_confirmation}
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        autoComplete="new-password"
-                    />
-                    <InputError className="mt-2" message={errors.password_confirmation} />
-                </div>
+    <InputLabel htmlFor="password_confirmation" value="Konfirmasi Password" />
+    <TextInput
+        id="password_confirmation"
+        type="password"
+        className="mt-1 block w-full"
+        value={data.password_confirmation}
+        onChange={(e) => setData('password_confirmation', e.target.value)}
+        autoComplete="new-password"
+    />
+    <InputError className="mt-2" message={errors.password_confirmation || localError} />
+</div>
+
 
                 {mustVerifyEmail && user.email_verified_at === null && (
                     <div>
