@@ -123,6 +123,11 @@ Route::get('/AdminPortalBerita', function () {
 
 Route::get('/portal', [App\Http\Controllers\BeritaController::class, 'index'])->name('portal.index');
 
+// Route sub-umkm
+Route::get('/sub-umkm', function () {
+    return Inertia::render('SubPotensi');
+});
+
 // Route publik untuk melihat pengumuman
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::get('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\PengumumanController::class, 'show'])->name('pengumuman.show');
