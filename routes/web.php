@@ -110,6 +110,8 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     // Statistik Penduduk
     Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('statistik-penduduk.index');
     Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('statistik-penduduk.update');
+
+    Route::resource('umkm', Admin\UmkmController::class)->except(['show', 'create', 'edit']);
 });
 
 Route::get('/AdminPengumuman', function () {
@@ -146,6 +148,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('admin.statistik-penduduk.index');
     Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('admin.statistik-penduduk.update');
 });
+
 
 
 
