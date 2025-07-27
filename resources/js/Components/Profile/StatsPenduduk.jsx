@@ -52,12 +52,11 @@ const StatItem = ({ icon, value, label, bgColor }) => (
 
 // --- Main Component ---
 export const PopulationStats = ({ stats }) => {
-
   const chartData = [
-    { name: 'Pria', Jumlah: stats.male },
-    { name: 'Wanita', Jumlah: stats.female },
-    { name: 'Kepala Keluarga', Jumlah: stats.households },
-    { name: 'Jumlah Penduduk', Jumlah: stats.totalPopulation },
+    { name: 'Pria', Jumlah: stats.jumlah_pria || stats.male || 0 },
+    { name: 'Wanita', Jumlah: stats.jumlah_wanita || stats.female || 0 },
+    { name: 'Kepala Keluarga', Jumlah: stats.jumlah_kepala_keluarga || stats.households || 0 },
+    { name: 'Jumlah Penduduk', Jumlah: stats.jumlah_penduduk || stats.totalPopulation || 0 },
   ];
 
   return (
@@ -67,10 +66,10 @@ export const PopulationStats = ({ stats }) => {
         {/* Header Section */}
         <div className="text-center mb-10">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
-            Informasi Statistik Penduduk Desa {stats.villageName}
+            Informasi Statistik Penduduk Desa {stats.villageName || 'Karanganyar'}
           </h1>
           <p className="mt-4 text-base sm:text-lg text-gray-600 max-w-3xl mx-auto">
-            Grafik berikut menunjukkan data jumlah kepala keluarga, penduduk laki-laki, perempuan, dan total penduduk di Desa {stats.villageName}, Kecamatan {stats.district} selama bulan {stats.month} {stats.year}.
+            Grafik berikut menunjukkan data jumlah kepala keluarga, penduduk laki-laki, perempuan, dan total penduduk di Desa {stats.villageName || 'Karanganyar'}, Kecamatan {stats.district || 'Poncokusumo'} selama bulan {stats.month || 'Mei'} {stats.year || '2025'}.
           </p>
         </div>
 
@@ -82,8 +81,8 @@ export const PopulationStats = ({ stats }) => {
             <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
               <div className="bg-blue-600 p-5 text-white">
                 <span className="bg-blue-500 text-xs font-semibold px-3 py-1 rounded-full">Statistik Penduduk</span>
-                <h2 className="text-2xl font-bold mt-2">Desa {stats.villageName}</h2>
-                <p className="text-sm opacity-90">Kecamatan {stats.district}, Kabupaten {stats.regency}</p>
+                <h2 className="text-2xl font-bold mt-2">Desa {stats.villageName || 'Karanganyar'}</h2>
+                <p className="text-sm opacity-90">Kecamatan {stats.district || 'Poncokusumo'}, Kabupaten {stats.regency || 'Malang'}</p>
               </div>
               <div className="p-4 h-96">
                 <ResponsiveContainer width="100%" height="100%">
@@ -111,25 +110,25 @@ export const PopulationStats = ({ stats }) => {
              <div className="grid grid-cols-2 gap-x-8 gap-y-12 pt-8">
                 <StatItem 
                     icon={<FamilyIcon />}
-                    value={stats.totalPopulation}
+                    value={stats.jumlah_penduduk || stats.totalPopulation || 0}
                     label="Jumlah Penduduk"
                     bgColor="bg-purple-100"
                 />
                 <StatItem 
                     icon={<MaleIcon />}
-                    value={stats.male}
+                    value={stats.jumlah_pria || stats.male || 0}
                     label="Pria"
                     bgColor="bg-green-100"
                 />
                 <StatItem 
                     icon={<HouseholdIcon />}
-                    value={stats.households}
+                    value={stats.jumlah_kepala_keluarga || stats.households || 0}
                     label="Kepala Keluarga"
                     bgColor="bg-teal-100"
                 />
                 <StatItem 
                     icon={<FemaleIcon />}
-                    value={stats.female}
+                    value={stats.jumlah_wanita || stats.female || 0}
                     label="Wanita"
                     bgColor="bg-orange-100"
                 />
