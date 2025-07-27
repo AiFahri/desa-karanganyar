@@ -12,8 +12,10 @@ const SidebarAdmin = () => {
   const menuItems = [
     { id: 'Dashboard', label: 'Dashboard', icon: HomeIcon, route: '/admin/dashboard' },
     { id: 'Pengajuan', label: 'Pengajuan Layanan', icon: PengajuanIcon, route: '/AdminPengajuanLayanan' },
-    { id: 'Portal', label: 'Portal Berita', icon: PortalIcon, route: '/AdminPortalBerita' },
+    { id: 'Portal', label: 'Portal Berita', icon: PortalIcon, route: '/admin/berita' },
     { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/admin/pengumuman' },
+    { id: 'StatistikWilayah', label: 'Statistik Wilayah', icon: HomeIcon, route: '/admin/statistik-wilayah' },
+    { id: 'StatistikPenduduk', label: 'Statistik Penduduk', icon: HomeIcon, route: '/admin/statistik-penduduk' },
   ];
 
   return (
@@ -54,4 +56,6 @@ const SidebarAdmin = () => {
 };
 
 export default SidebarAdmin;
+
+
 

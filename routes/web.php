@@ -6,10 +6,16 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Home');
+    $statistikWilayah = App\Models\StatistikWilayah::getOrCreate();
+    return Inertia::render('Home', [
+        'statistikWilayah' => $statistikWilayah
+    ]);
 });
 Route::get('/home', function () {
-    return Inertia::render('Home');
+    $statistikWilayah = App\Models\StatistikWilayah::getOrCreate();
+    return Inertia::render('Home', [
+        'statistikWilayah' => $statistikWilayah
+    ]);
 });
 
 Route::get('/register-page', function () {
@@ -29,7 +35,13 @@ Route::get('/layanan/status-surat', function () {
 });
 
 Route::get('/profil', function () {
-    return Inertia::render('ProfilDesa');
+    $statistikPenduduk = App\Models\StatistikPenduduk::getOrCreate();
+    $statistikWilayah = App\Models\StatistikWilayah::getOrCreate();
+    
+    return Inertia::render('ProfilDesa', [
+        'statistikPenduduk' => $statistikPenduduk,
+        'statistikWilayah' => $statistikWilayah
+    ]);
 });
 
 Route::get('/portal', function () {
@@ -83,20 +95,60 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
         return Inertia::render('AdminDashboard');
     })->name('dashboard');
     
-    // Route pengumuman admin yang benar
-    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class);
+    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class)->parameters([
+        'pengumuman' => 'pengumuman:slug'
+    ]);
+    
+    Route::resource('berita', App\Http\Controllers\Admin\BeritaController::class)->parameters([
+        'berita' => 'berita:slug'
+    ]);
+    
+    // Statistik Wilayah
+    Route::get('/statistik-wilayah', [App\Http\Controllers\Admin\StatistikWilayahController::class, 'index'])->name('statistik-wilayah.index');
+    Route::put('/statistik-wilayah', [App\Http\Controllers\Admin\StatistikWilayahController::class, 'update'])->name('statistik-wilayah.update');
+    
+    // Statistik Penduduk
+    Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('statistik-penduduk.index');
+    Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('statistik-penduduk.update');
 });
 
-// Tambahkan redirect untuk backward compatibility
 Route::get('/AdminPengumuman', function () {
     return redirect('/admin/pengumuman');
 })->middleware(['auth', 'is_admin']);
 
-// Route publik untuk portal berita
-Route::get('/portal', [App\Http\Controllers\PengumumanController::class, 'index'])->name('portal.index');
+Route::get('/AdminPortalBerita', function () {
+    return redirect('/admin/berita');
+})->middleware(['auth', 'is_admin']);
+
+
+Route::get('/portal', [App\Http\Controllers\BeritaController::class, 'index'])->name('portal.index');
 
 // Route publik untuk melihat pengumuman
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::get('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\PengumumanController::class, 'show'])->name('pengumuman.show');
 
+Route::get('/berita/{berita:slug}', [App\Http\Controllers\BeritaController::class, 'show'])->name('berita.show');
+
 require __DIR__.'/auth.php';
+
+// Public Statistik Routes
+Route::get('/statistik', [App\Http\Controllers\Public\StatistikController::class, 'index'])->name('statistik.index');
+Route::get('/api/statistik/wilayah', [App\Http\Controllers\Public\StatistikController::class, 'wilayah'])->name('api.statistik.wilayah');
+Route::get('/api/statistik/penduduk', [App\Http\Controllers\Public\StatistikController::class, 'penduduk'])->name('api.statistik.penduduk');
+
+// Admin Statistik Routes
+Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
+    // Statistik Wilayah
+    Route::get('/statistik-wilayah', [App\Http\Controllers\Admin\StatistikWilayahController::class, 'index'])->name('admin.statistik-wilayah.index');
+    Route::put('/statistik-wilayah', [App\Http\Controllers\Admin\StatistikWilayahController::class, 'update'])->name('admin.statistik-wilayah.update');
+    
+    // Statistik Penduduk
+    Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('admin.statistik-penduduk.index');
+    Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('admin.statistik-penduduk.update');
+});
+
+
+
+
+
+

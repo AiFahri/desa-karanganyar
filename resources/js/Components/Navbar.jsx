@@ -68,7 +68,6 @@ const Navbar = () => {
                         {/* Auth Buttons / User Dropdown */}
                         {user ? (
                             <Dropdown>
-                                {/* ... Dropdown code remains the same ... */}
                                 <Dropdown.Trigger>
                                         <button className="px-3 py-2 rounded-md text-sm font-medium">
                                             <svg
@@ -152,9 +151,13 @@ const Navbar = () => {
                         {/* Auth buttons for mobile */}
                         <div className="border-t border-gray-600 my-4"></div>
                         {user ? (
-                           <div className="px-2">
-                             <Dropdown.Link href={route("profile.edit")}>Edit Profile</Dropdown.Link>
-                             <Dropdown.Link href={route("logout")} method="post" as="button">Logout</Dropdown.Link>
+                           <div className="px-2 space-y-2">
+                             <Link href={route("profile.edit")} className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md">
+                                Profile
+                             </Link>
+                             <Link href={route("logout")} method="post" as="button" className="block w-full text-left px-3 py-2 text-white hover:bg-gray-700 rounded-md">
+                                Log Out
+                             </Link>
                            </div>
                         ) : (
                             <div className="flex items-center justify-center gap-x-4 pt-4">
@@ -170,7 +173,11 @@ const Navbar = () => {
                 </div>
             )}
         </nav>
+
     );
 };
 
 export default Navbar;
+
+
+
