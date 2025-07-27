@@ -1,6 +1,7 @@
 import Footer from '@/Components/Footer'
 import React from 'react'
 import { Link } from '@inertiajs/react'
+import Navbar from '@/Components/Navbar';
 
 // Checkmark Icon SVG
 const CheckIcon = () => (
@@ -92,7 +93,8 @@ const submissionHistory = [
 const RiwayatPengajuan = () => {
   return (
     <div>
-      <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
+      <Navbar />
+      <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 mt-[76px] shadow-md sticky top-0 z-10 max-h-28">
         <div className="max-w-[100vw] mx-auto">
           <Link href="/portal" className="flex items-center space-x-2 text-white font-bold text-lg hover:opacity-80 transition-opacity">
             <ArrowLeftIcon className="w-8 h-8" />

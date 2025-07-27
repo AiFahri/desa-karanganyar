@@ -44,6 +44,10 @@ Route::get('/subpeng', function () {
     return Inertia::render('SubPengumuman');
 });
 
+Route::get('/ProfileDetail', function () {
+    return Inertia::render('ProfileDetail');
+});
+
 
 
 Route::get('/AdminPengajuanLayanan', function () {
