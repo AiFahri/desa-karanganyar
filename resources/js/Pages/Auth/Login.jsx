@@ -129,7 +129,7 @@ export default function Login({ status, canResetPassword }) {
                             )}
 
                             <PrimaryButton
-                                className="ms-4 px-6 py-2"
+                                className="ms-4 px-6 py-2 text-blue-600 bg-darkBlue"
                                 disabled={processing}
                             >
                                 Masuk
