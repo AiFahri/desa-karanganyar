@@ -6,28 +6,27 @@ import CardViewDesa from "@/Components/Home/CardViewDesa";
 import PetaRBI from "@/Components/Home/PetaRBi";
 import bgCardView from "../../assets/Home/img/bgCardView.png";
 import logoCardView from "../../assets/Home/img/logoCardView.png"; 
-import bgPetaView from '../../assets/Home/img/bgPetaView.png';     // Ganti dengan path gambar background kamu
+import bgPetaView from '../../assets/Home/img/bgPetaView.png';
 import BuatLayanan from "@/Components/Home/BuatLayanan";
 import HeaderPotensi from "@/Components/Home/HeaderPotensi";
 import PotensiSection from "@/Components/Home/PotensiSection";
 import BumDesa from "@/Components/Home/BumDesa";
 
-const Home = () => {
+const Home = ({ statistikWilayah }) => {
     return (
         <>
             <Navbar />
             <Hero />
             <CardViewDesa background={bgCardView} logo={logoCardView}/>
-            <PetaRBI backgroundIMG={bgPetaView} />
+            <PetaRBI backgroundIMG={bgPetaView} statsWilayah={statistikWilayah} />
             <BuatLayanan />
             <HeaderPotensi />
             <PotensiSection id={"potensiGan1"} headerTitle={"Potensi Alam"}/>
             <PotensiSection id={"potensiGan2"} headerTitle={"Potensi UMKM"}/>
             <BumDesa id={"bumDesa"} headerTitle={"BUM Desa"}/>
-            {/* <h1 className="text-red-400">Halo brok</h1> */}
-            {/* <div className="min-h-[1920px] bg-black block">asd</div> */}
             <Footer />
         </>
     );
 };
 export default Home;
+
