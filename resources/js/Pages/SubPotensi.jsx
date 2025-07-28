@@ -23,7 +23,7 @@ const dataPotensi = [
 
 // Komponen untuk bagian header dengan tombol kembali
 const PageHeader = () => (
-  <header className="w-full mt-[76px] bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
+  <header className="w-full mt-[76px] bg-gradient-to-b from-[#0272BA] to-[#95CFF4] py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
     <div className="max-w-[100vw] mx-auto">
       <Link 
         href="/portal" 
@@ -94,7 +94,7 @@ const SocialMediaSection = ({ tiktok, facebook, instagram, className = "" }) => 
         <div className="w-4 h-4 bg-blue-500 rounded-full mr-2"></div>
         <a 
           className="text-gray-700 hover:text-blue-600 transition-colors" 
-          href={`https://www.tiktok.com/@${tiktok}`}
+          href={`https://www.tiktok.com/${tiktok}`}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -129,10 +129,10 @@ const SocialMediaSection = ({ tiktok, facebook, instagram, className = "" }) => 
 
 // Komponen untuk menu UMKM dan kontak (kiri bawah)
 const MenuAndContactSection = ({ item }) => (
-  <div className="p-6 bg-white border-t md:border-t-0 md:border-r border-gray-200">
+  <div className="p-6 bg-white ">
     <h2 className="text-xl font-bold text-black mb-4">Menu UMKM</h2>
     
-    <div className="space-y-4 mb-6">
+    <div className="space-y-4 mb-6 ">
       <MenuItem title={item.menu_umkm} />
       <MenuItem 
         title="Pack Sedang" 
@@ -161,7 +161,7 @@ const MenuAndContactSection = ({ item }) => (
 
 // Komponen untuk kontak dan media sosial (mobile only)
 const MobileContactSection = ({ item }) => (
-  <div className="p-6 bg-[#FFFFFF] border-t border-gray-200 md:hidden">
+  <div className="p-6 bg-[#FFFFFF]  md:hidden">
     <ContactSection phoneNumber={item.notelp} />
     <SocialMediaSection 
       tiktok={item.tiktok}
@@ -182,7 +182,7 @@ const SubPotensi = ({ item }) => {
       <PageHeader />
       <BlurDecorations />
       
-      <div className="min-h-screen bg-gwhite p-4">
+      <div className="min-h-screen bg-white p-4">
         {/* Main Container */}
         <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
           {/* Grid Layout - 2x2 */}
