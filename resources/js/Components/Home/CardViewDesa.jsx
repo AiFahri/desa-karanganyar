@@ -5,20 +5,13 @@ const DesaKaranganyar = ({ background, logo }) => {
     // CONTAINER UTAMA: Menggunakan padding yang lebih sesuai untuk tampilan mobile dan desktop.
     <div
       className="h-full lg:min-h-screen max-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 mt-0"
-      style={{
-          backgroundImage: `url(${background})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          // backgroundAttachment: 'fixed', // Optional: for a parallax effect
-      }}
+     
     >
-      <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%] block "></div>
-      <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[0%] block "></div>
+      <div className="absolute inse-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]  block "></div>
+      <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 block "></div>
       {/* JENDELA KONTEN: Lebar disesuaikan untuk berbagai ukuran layar. Dihilangkan batasan tinggi (max-h) agar konten bisa pas. */}
       <div className="w-full max-w-[1400px] bg-transparent lg:bg-white lg:rounded-2xl lg:shadow-2xl overflow-hidden mt-0 lg:mt-0">
-        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0  block"></div>
-        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0  block"></div>
-        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0  block"></div>
+
         
         {/* Browser Bar */}
         <div className="hidden lg:flex h-10 bg-blue-500 rounded-t-lg items-center px-4">

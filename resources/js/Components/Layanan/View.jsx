@@ -1,7 +1,10 @@
 import React from "react";
-import { circInOut, easeInOut, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "@inertiajs/react";
 import BuatSurat from "./BuatSurat";
+import col from "./../../../assets/LayananMasyarakat/Col.png";
+import layanan1 from "./../../../assets/LayananMasyarakat/Layanan1.png";
+import albums from "./../../../assets/LayananMasyarakat/albums.svg";
 
 const View = () => {
     return (
@@ -14,7 +17,7 @@ const View = () => {
                 <div className="container mx-auto px-4 sm:px-6">
                     {" "}
                     {/* Menambahkan padding horizontal untuk mobile */}
-                    <div className="flex justify-center items-center min-h-auto my-8 md:my-16">
+                    <div className="flex justify-center items-center min-h-auto md:pt-[70px] pt-[33px] ">
                         <Link className="" href="/layanan">
                             <motion.div
                                 initial={{
@@ -27,7 +30,7 @@ const View = () => {
                                 }}
                                 transition={{ duration: 0.3, easing: "easeIn" }}
                                 // Ukuran font dan padding dibuat responsif
-                                className="text-xl sm:text-3xl lg:text-[50px] rounded-full font-bold px-8 sm:px-12 lg:px-[75px] py-3 sm:py-4 lg:py-[21px] mt-4 mb-8 text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
+                                className="text-xl md:text-[50px] text-[16px] rounded-full font-bold px-8 sm:px-12 lg:px-[80px] py-3 sm:py-4 lg:py-[30px] text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
                             >
                                 Layanan Masyarakat
                             </motion.div>
@@ -69,14 +72,14 @@ const View = () => {
                                     repeat: Infinity,
                                     ease: "linear",
                                 }}
-                                src="/LayananMasyarakat/col (1).png"
+                                src={col}
                                 alt="Dekorasi layanan"
                                 className="absolute inset-0 w-full h-full object-contain z-0 pointer-events-none"
                             />
 
                             {/* Gambar utama */}
                             <img
-                                src="/LayananMasyarakat/Layanan1.png"
+                                src={layanan1}
                                 alt="Gambar layanan"
                                 className="relative z-10 w-[70%] h-auto object-contain"
                             />
@@ -91,7 +94,7 @@ const View = () => {
                                 {/* Ikon */}
                                 <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
                                     <img
-                                        src="/LayananMasyarakat/albums.svg"
+                                        src={albums}
                                         alt="Speed Icon"
                                         className="w-6 h-6 sm:w-10 sm:h-10 items-center"
                                     />
@@ -115,7 +118,7 @@ const View = () => {
                                 {/* Ikon */}
                                 <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-[#EAB308] flex items-center justify-center flex-shrink-0">
                                     <img
-                                        src="/LayananMasyarakat/albums.svg"
+                                        src={albums}
                                         alt="Speed Icon"
                                         className="w-6 h-6 sm:w-10 sm:h-10 items-center"
                                     />
@@ -124,10 +127,14 @@ const View = () => {
                                 {/* Teks */}
                                 <div className="flex flex-col justify-center flex-grow lg:items-center">
                                     <h3 className="text-lg sm:text-2xl font-semibold text-black mb-1 sm:mb-2">
-                                       Mudah
+                                        Mudah
                                     </h3>
                                     <p className="text-sm sm:text-base text-black leading-relaxed text-justify">
-                                        Formulir dan alur pengajuan dirancang sederhana dan ramah pengguna, sehingga siapa pun dapat mengurus surat dengan mudah, bahkan bagi yang baru pertama kali mencoba.
+                                        Formulir dan alur pengajuan dirancang
+                                        sederhana dan ramah pengguna, sehingga
+                                        siapa pun dapat mengurus surat dengan
+                                        mudah, bahkan bagi yang baru pertama
+                                        kali mencoba.
                                     </p>
                                 </div>
                             </div>
@@ -136,7 +143,7 @@ const View = () => {
                                 {/* Ikon */}
                                 <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-[#2563EB] flex items-center justify-center flex-shrink-0">
                                     <img
-                                        src="/LayananMasyarakat/albums.svg"
+                                        src={albums}
                                         alt="Speed Icon"
                                         className="w-6 h-6 sm:w-10 sm:h-10 items-center"
                                     />
@@ -148,7 +155,11 @@ const View = () => {
                                         Hemat Waktu
                                     </h3>
                                     <p className="text-sm sm:text-base text-black leading-relaxed text-justify">
-                                        Tanpa perlu datang langsung ke kantor desa, Anda dapat mengajukan surat hanya dalam beberapa langkah. Waktu Anda pun dapat dimanfaatkan untuk kegiatan lain yang lebih penting.
+                                        Tanpa perlu datang langsung ke kantor
+                                        desa, Anda dapat mengajukan surat hanya
+                                        dalam beberapa langkah. Waktu Anda pun
+                                        dapat dimanfaatkan untuk kegiatan lain
+                                        yang lebih penting.
                                     </p>
                                 </div>
                             </div>{" "}

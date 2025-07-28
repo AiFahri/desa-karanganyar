@@ -62,11 +62,11 @@ export default function SubPengumuman({ pengumuman = {} }) {
     <div>
       <Navbar />
       <div className='pt-[76px]'>
-        <TombolKembali backTo="/" />
+        <TombolKembali backTo="/portal" />
       </div>
       <div className="bg-white font-sans antialiased min-h-screen pt-[76px]">
         <main className="p-4 sm:p-6 md:p-8">
-          <div className="max-w-[66vw] max-h-[66vh] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
+          <div className="max-w-[85vw] md:max-w-[66vw] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
             <div className="p-6 sm:p-8">
               
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">

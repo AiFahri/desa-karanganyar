@@ -11,13 +11,13 @@ const TombolKembali = ({backTo}) => {
   return (
     <div>
       {/* Gradien background & tombol kembali */}
-      <div className="flex top-0 left-0 w-full h-[120px] z-0 bg-gradient-to-b from-[#0272BA] to-[#95CFF4]">
-        <div className="absolute mt-6 ml-6">
+      <div className="flex top-0 left-0 w-full md:h-[120px] h-[35px] z-0 bg-gradient-to-b from-[#0272BA] to-[#95CFF4]">
+        <div className="absolute md:mt-6 mt-[-3px] md:ml-6 ml-[21px]">
           <Link
             href={backTo}
-            className="inline-flex items-center gap-[28px] px-6 py-3 font-bold text-[32px] text-white"
+            className="inline-flex items-center md:gap-[28px] gap-[6px] px-6 py-3 font-bold md:text-[32px] text-[14px] text-white"
           >
-            <ArrowLeftIcon className="w-[50px] h-[50px]" />
+            <ArrowLeftIcon className="md:w-[50px] w-[16px] md:h-[50px] h-[16px]" />
             Kembali
           </Link>
         </div>

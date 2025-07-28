@@ -14,7 +14,7 @@ const PetaRBI = ({}) => {
         <div className="absolute inset-0 w-[15%] h-[30%] rounded-full bg-[#95CFF4] blur-[50px] flex-shrink-0 left-[100%] hidden lg:block"></div>
         <div className="absolute inset-0 w-[20%] h-[30%] rounded-full bg-[#95CFF4] blur-[50px] flex-shrink-0 left-[-20%] top-[100%] hidden lg:block"></div>
         <div className='flex flex-col justify-center items-center'>
-          <div className="flex justify-center items-center w-full pt-[70px]">
+          <div className="flex justify-center items-center w-full md:pt-[70px] pt-[26px]">
             <Link className="block" href="/profil">
               <motion.div
                 initial={{
@@ -26,7 +26,7 @@ const PetaRBI = ({}) => {
                     "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
                 }}
                 transition={{ duration: 0.3, easing: "easeIn" }}
-                className="text-sm md:text-lg lg:text-[50px] rounded-full font-bold px-4 py-2 md:px-8 md:py-3 lg:px-[75px] lg:py-[21px] text-center min-w-fit text-white font-sans opacity-100 transition-all duration-500 relative z-10">
+                className="text-sm md:text-[50px] text-[16px] rounded-full font-bold px-4 py-2 md:px-8 md:py-3 lg:px-[75px] lg:py-[21px] text-center min-w-fit text-white font-sans opacity-100 transition-all duration-500 relative z-10">
                   Profil Desa
               </motion.div>
             </Link>

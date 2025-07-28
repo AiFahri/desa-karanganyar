@@ -13,13 +13,13 @@ const VisiMisi = () => {
         {/* Visi Section */}
         <div className="overflow-hidden flex flex-col items-center">
           <div
-            className="w-full lg:w-[600px] h-[100px] text-[#0272BA] text-center justify-center py-4 border border-gray-300"
+            className=" md:w-[600px] md:h-[100px] w-[250px] h-[44px] text-[#0272BA] text-center justify-center  border border-gray-300"
             style={{
-              borderRadius: "20px",
+              borderRadius: "15px 15px 0 0",
               background: "#FDFCFC"
             }}
           >
-            <h2 className="text-[32px] md:text-[44px] font-bold">Visi</h2>
+            <h2 className="md:text-[44px] text-[24px] font-bold">Visi</h2>
           </div>
 
           <div
@@ -30,11 +30,11 @@ const VisiMisi = () => {
               boxShadow: "0px 0px 4px 0px rgba(0, 0, 0, 0.25)"
             }}
           >
-            <h3 className="text-[20px] md:text-[24px] text-black mb-4 text-start">
+            <h3 className=" md:text-[24px] text-[12px] text-black mb-4 text-start">
               DESA KARANCANYAR "<strong>BERHATI EMAS</strong>"
             </h3>
 
-            <p className="text-[16px] md:text-[24px] text-black leading-relaxed text-justify">
+            <p className="md:text-[24px] text-[12px]  text-black leading-relaxed text-justify">
               Terwujudnya Desa Karanganyar yang Bersih, Harmonis, Akuntabel (dapat dipertanggungjawabkan), Transparan, Inovatif, Egaliter (sama/sederajat), Mandiri, Agamis, dan Sejahtera.
             </p>
           </div>
@@ -43,13 +43,13 @@ const VisiMisi = () => {
         {/* Misi Section */}
         <div className="overflow-hidden flex flex-col items-center">
           <div
-            className="w-full lg:w-[600px] h-[100px] text-[#0272BA] text-center justify-center py-4 border border-gray-300"
+            className="md:w-[600px] md:h-[100px] w-[250px] h-[44px] text-[#0272BA] text-center justify-center  border border-gray-300"
             style={{
-              borderRadius: "20px",
+              borderRadius: "15px 15px 0 0",
               background: "#FDFCFC"
             }}
           >
-            <h2 className="text-[32px] md:text-[44px] font-bold">Misi</h2>
+            <h2 className=" md:text-[44px] text-[24px] font-bold">Misi</h2>
           </div>
 
           <div
@@ -73,10 +73,10 @@ const VisiMisi = () => {
       "Meningkatkan kemampuan pengelolaan keuangan dan aset desa."
     ].map((item, index) => (
       <li key={index} className="flex items-start">
-        <span className="text-[16px] md:text-[24px] mr-2 flex-shrink-0">
+        <span className="md:text-[24px] text-[12px]  mr-2 flex-shrink-0">
           {index + 1}.
         </span>
-        <span className="text-justify text-[16px] md:text-[24px] flex-1">
+        <span className="text-justify md:text-[24px] text-[12px] flex-1">
           {item}
         </span>
       </li>
