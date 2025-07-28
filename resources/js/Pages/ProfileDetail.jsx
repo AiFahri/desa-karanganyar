@@ -1,6 +1,7 @@
 import React from 'react';
 import Footer from '@/Components/Footer';
 import Navbar from '@/Components/Navbar';
+import TombolKembali from '@/Components/TombolKembali';
 // import { ArrowLeftIcon, EyeOffIcon } from '@heroicons/react/outline'; 
 // import { useNavigate } from 'react-router-dom'; 
 
@@ -40,12 +41,9 @@ const ProfileDetail = () => {
     <div className="min-h-screen bg-[#EBE6E6] font-sans flex flex-col pt-[76px]">
 
       {/* Header */}
-      <header className="w-full bg-gradient-to-b from-blue-700 to-blue-300 py-6 px-8 shadow-md sticky top-0 z-10">
-        <div className="flex items-center space-x-2 text-white font-bold text-lg cursor-pointer">
-          <ArrowLeftIcon className="w-6 h-6" />
-          <span className="text-xl">Kembali</span>
-        </div>
-      </header>
+      <div className='pt-[76px]'>
+        <TombolKembali backTo="/" />
+      </div>
 
       {/* Content */}
       <main className="flex-1 flex justify-center items-center py-10">
