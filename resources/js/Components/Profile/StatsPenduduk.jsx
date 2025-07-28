@@ -22,7 +22,7 @@ const FamilyIcon = () => (
     <img
         src={penduduk}
         alt="Gambar layanan"
-        className="w-full relative z-10 max-w-full h-auto object-contain"
+        className=" relative z-10 max-w-full object-contain w-full h-auto"
     />
 );
 
@@ -52,16 +52,20 @@ const HouseholdIcon = () => (
 
 // --- Reusable Stat Item Component ---
 const StatItem = ({ icon, value, label, bgColor }) => (
-    <div className="flex flex-col items-center text-center">
+    <div className="flex flex-row gap-x-2 md:flex-col items-center text-center">
         <div
-            className={`w-24 h-24 rounded-full flex items-center justify-center shadow-md ${bgColor}`}
+            className={`md:w-[80px] w-[35px] md:h-[80px] h-[35px] rounded-full flex items-center justify-center shadow-md ${bgColor}`}
         >
             {icon}
         </div>
-        <p className="text-2xl font-bold mt-3 text-gray-800">
-            {value.toLocaleString("id-ID")}
-        </p>
-        <p className="text-sm font-semibold text-gray-600">{label}</p>
+        <div className="flex flex-col">
+            <p className="md:text-[24px] text-[14px] font-semibold mt-3 text-black md:self-center self-start">
+                {value.toLocaleString("id-ID")}
+            </p>
+            <p className="md:text-[14px] text-[12px] font-semibold text-black">
+                {label}
+            </p>
+        </div>
     </div>
 );
 
@@ -217,24 +221,5 @@ export const PopulationStats = ({ stats }) => {
         </div>
     );
 };
-
-// --- Example Usage ---
-
-// export default function App() {
-//   // You can fetch this data from an API or define it statically
-//   const karanganyarStats = {
-//     villageName: "Karanganyar",
-//     district: "Poncokusumo",
-//     regency: "Malang",
-//     month: "Mei",
-//     year: 2025,
-//     totalPopulation: 7989,
-//     male: 4072,
-//     female: 3917,
-//     households: 2472,
-//   };
-
-//   return <PopulationStats stats={karanganyarStats} />;
-// }
 
 export default PopulationStats;

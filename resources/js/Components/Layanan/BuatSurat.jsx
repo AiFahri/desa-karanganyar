@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@inertiajs/react";
 import { ArrowLeft } from "lucide-react";
+import TombolKembali from "../TombolKembali";
 
 const BuatSurat = () => {
     const [formData, setFormData] = useState({
@@ -65,19 +66,7 @@ const BuatSurat = () => {
                 <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] left-[90%] top-[18%] hidden lg:block z-[2]"></div>
                 <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] top-[90%] hidden lg:block z-0"></div>
 
-                {/* Gradien background di belakang konten */}
-                <div className="flex top-0 left-0 w-full h-[120px] z-0 bg-gradient-to-b from-[#0272BA] to-[#95CFF4]">
-                    {/* Tombol kembali */}
-                    <div className="absolute mt-6 ml-6">
-                        <Link
-                            href="/layanan"
-                            className="inline-flex items-center gap-[28px] px-6 py-3 font-bold text-[32px] text-white"
-                        >
-                            <ArrowLeft className="w-[50px] h-[50px]" />
-                            Kembali
-                        </Link>
-                    </div>
-                </div>
+                <TombolKembali backTo="/layanan" />
 
                 {/* Container Form */}
                 <div className="relative z-10 flex justify-center items-start pt-8 px-4">
