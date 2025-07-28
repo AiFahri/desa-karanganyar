@@ -5,6 +5,7 @@ import HomeIcon from '../../assets/Home/icons/HomeIcon.png';
 import PengajuanIcon from '../../assets/Home/icons/PengajuanLayananIconn.png';
 import PortalIcon from '../../assets/Home/icons/PortalBeritaIconn.png';
 import PengumumanIcon from '../../assets/Home/icons/PengumumanIcon.png';
+import UMKMIcon from '../../assets/Home/icons/UMKMIcon.png';
 
 const SidebarAdmin = () => {
   const { url } = usePage(); // ← Ini mengambil route saat ini, misalnya '/AdminPortalBerita'
@@ -14,6 +15,7 @@ const SidebarAdmin = () => {
     { id: 'Pengajuan', label: 'Pengajuan Layanan', icon: PengajuanIcon, route: '/AdminPengajuanLayanan' },
     { id: 'Portal', label: 'Portal Berita', icon: PortalIcon, route: '/AdminPortalBerita' },
     { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/AdminPengumuman' },
+    { id: 'UMKM', label: 'Potensi UMKM', icon: UMKMIcon, route: '/AdminPotensiUMKM' },
   ];
 
   return (
