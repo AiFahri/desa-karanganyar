@@ -66,7 +66,9 @@ Route::get('/AdminPengajuanLayanan', function () {
 Route::get('/AdminPortalBerita', function () {
     return Inertia::render('AdminPortalBerita');
 });
-
+Route::get('/AdminPotensiUMKM', function () {
+    return Inertia::render('AdminPotensiUMKM');
+});
 
 
 Route::get('/dashboard', function () {
