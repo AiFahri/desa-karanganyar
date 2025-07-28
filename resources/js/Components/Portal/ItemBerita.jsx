@@ -30,7 +30,7 @@ const ItemBerita = ({
       </div>
 
       {/* CONTENT CONTAINER: Stacks text and button. flex-grow allows it to fill space. */}
-      <div className="flex flex-col flex-grow gap-6 lg:justify-between h-full">
+      <div className="flex flex-col gap-6 lg:justify-between h-full w-full">
         {/* Text Block */}
         <div>
           <h2 className="text-xl font-semibold mb-1">{title}</h2>
@@ -55,7 +55,7 @@ const ItemBerita = ({
             transition={{ duration: 0.3, easing: "easeIn" }}
             // Full-width on mobile, auto-width on desktop.
             // justify-between replaces the old fixed margin for the icon.
-            className="cursor-pointer self-end text-white font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow w-full lg:w-auto lg:max-w-xs"
+            className="cursor-pointer self-end justify-self-end text-white font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow w-full lg:max-w-[260px]"
           >
             {buttonText}
             

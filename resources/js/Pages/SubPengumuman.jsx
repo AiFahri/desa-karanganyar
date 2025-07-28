@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
+import TombolKembali from '@/Components/TombolKembali';
 
 const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
@@ -60,17 +61,10 @@ export default function SubPengumuman({ pengumuman = {} }) {
   return (
     <div>
       <Navbar />
+      <div className='pt-[76px]'>
+        <TombolKembali backTo="/" />
+      </div>
       <div className="bg-white font-sans antialiased min-h-screen pt-[76px]">
-        
-        <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
-          <div className="max-w-[100vw] mx-auto">
-            <Link href="/portal" className="flex items-center space-x-2 text-white font-bold text-lg hover:opacity-80 transition-opacity">
-              <ArrowLeftIcon className="w-8 h-8" />
-              <span className='text-3xl font-sans'>Kembali</span>
-            </Link>
-          </div>
-        </header>
-
         <main className="p-4 sm:p-6 md:p-8">
           <div className="max-w-[66vw] max-h-[66vh] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
             <div className="p-6 sm:p-8">

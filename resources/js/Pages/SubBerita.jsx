@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '@/Components/Navbar';
 import Footer from '@/Components/Footer';
 import { Link } from '@inertiajs/react';
+import TombolKembali from '@/Components/TombolKembali';
 
 // Icon components (using inline SVG for portability)
 const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
@@ -35,6 +36,9 @@ export default function SubBerita({ berita }) {
   return (
     <div>
       <Navbar />
+      <div className='pt-[76px]'>
+        <TombolKembali backTo="/" />
+      </div>
       <div className="bg-white font-sans antialiased min-h-screen pt-[76px]">
         
         <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">

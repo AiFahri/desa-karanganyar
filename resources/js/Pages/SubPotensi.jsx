@@ -1,9 +1,10 @@
-import Navbar from "@/Components/Navbar";
-import Footer from "@/Components/Footer";
-import React from "react";
-import { Link } from "@inertiajs/react";
-import { ArrowLeftIcon } from "lucide-react";
-import Card from "@/Components/Card";
+import Navbar from '@/Components/Navbar'
+import Footer from '@/Components/Footer'
+import React from 'react'
+import { Link } from '@inertiajs/react';
+import { ArrowLeftIcon } from 'lucide-react';
+import Card from '@/Components/Card';
+import TombolKembali from '@/Components/TombolKembali';
 
 // Data sample - idealnya ini akan diterima sebagai props atau dari API
 const dataPotensi = [
@@ -196,28 +197,31 @@ const SubPotensi = ({ item }) => {
     // Menggunakan data dari props atau fallback ke data sample
     const currentItem = item || dataPotensi[0];
 
-    return (
-        <>
-            <Navbar />
-            <PageHeader />
-            <BlurDecorations />
-
-            <div className="min-h-screen bg-white p-4">
-                {/* Main Container */}
-                <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
-                    {/* Grid Layout - 2x2 */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                        {/* Top Left - Product Image & Description */}
-                        <Card
-                            key={currentItem.id}
-                            title={currentItem.title}
-                            description={currentItem.description}
-                            image={currentItem.image}
-                        />
-                        <ProductInfo item={currentItem} />
-                    </div>
-                    <div className="flex-flex-col items-center w-full">
-                        {/* Top Right - Product Info */}
+  return (
+    <>
+      <Navbar />
+      <div className='pt-[76px]'>
+        <TombolKembali backTo="/" />
+      </div>
+      <BlurDecorations />
+      
+      <div className="min-h-screen bg-white p-4">
+        {/* Main Container */}
+        <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
+          {/* Grid Layout - 2x2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+            
+            {/* Top Left - Product Image & Description */}
+            <Card
+              key={currentItem.id}
+              title={currentItem.title}
+              description={currentItem.description}
+              image={currentItem.image}
+            />
+            <ProductInfo item={currentItem} />
+          </div>
+          <div className='flex-flex-col items-center w-full'>  
+            {/* Top Right - Product Info */}
 
                         {/* Bottom Left - Menu UMKM & Contact */}
                         <MenuAndContactSection item={currentItem} />
