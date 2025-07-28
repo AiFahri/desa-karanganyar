@@ -46,7 +46,7 @@ const Hero = () => {
                 />
                 <div className="flex flex-col lg:flex-row justify-between items-center px-5 lg:px-[11.35vw] z-10 lg:align-middle overflow-hidden">
                     <div
-                        className="flex flex-col w-full max-w-[640px] max-h-[400px] px-12 mt-[15%] md:mt-[20%] mb-[0px] z-20 rounded-2xl backdrop-blur self-start"
+                        className="flex flex-col w-full max-w-[640px] max-h-[400px] px-12 mt-[15%] md:mt-[17%] mb-[0px] z-20 rounded-2xl backdrop-blur self-start"
                         style={{
                             background:
                                 "linear-gradient(174deg, rgba(2, 114, 186, 0.20) 6.38%, rgba(2, 114, 186, 0.20) 62.72%, rgba(0, 0, 0, 0.00) 95.47%)",

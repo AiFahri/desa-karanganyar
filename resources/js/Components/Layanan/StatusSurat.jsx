@@ -2,22 +2,13 @@ import React from 'react'
 import { Link } from '@inertiajs/react'
 import { ArrowLeft } from 'lucide-react'
 import { motion } from 'framer-motion'
+import TombolKembali from '../TombolKembali'
 
 const StatusSurat = () => {
   return (
     <section className="relative min-h-screen bg-white pt-[76px] overflow-hidden">
       {/* Gradien background & tombol kembali */}
-      <div className="flex top-0 left-0 w-full h-[120px] z-0 bg-gradient-to-b from-[#0272BA] to-[#95CFF4]">
-        <div className="absolute mt-6 ml-6">
-          <Link
-            href="/layanan"
-            className="inline-flex items-center gap-[28px] px-6 py-3 font-bold text-[32px] text-white"
-          >
-            <ArrowLeft className="w-[50px] h-[50px]" />
-            Kembali
-          </Link>
-        </div>
-      </div>
+      <TombolKembali backTo="/layanan" />
 
       {/* Konten utama */}
       <div className="relative z-10 flex justify-center items-start pt-8 px-4">

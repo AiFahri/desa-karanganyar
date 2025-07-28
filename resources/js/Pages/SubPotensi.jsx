@@ -4,6 +4,7 @@ import React from 'react'
 import { Link } from '@inertiajs/react';
 import { ArrowLeftIcon } from 'lucide-react';
 import Card from '@/Components/Card';
+import TombolKembali from '@/Components/TombolKembali';
 
 // Data sample - idealnya ini akan diterima sebagai props atau dari API
 const dataPotensi = [
@@ -179,7 +180,9 @@ const SubPotensi = ({ item }) => {
   return (
     <>
       <Navbar />
-      <PageHeader />
+      <div className='pt-[76px]'>
+        <TombolKembali backTo="/" />
+      </div>
       <BlurDecorations />
       
       <div className="min-h-screen bg-white p-4">
