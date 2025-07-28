@@ -26,9 +26,7 @@ Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
 });
 
-Route::get('/layanan/buat-surat', function () {
-    return Inertia::render('SubLayananBuatSurat');
-});
+Route::get('/layanan/buat-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'create'])->name('layanan.buat-surat');
 
 Route::get('/layanan/status-surat', function () {
     return Inertia::render('SubLayananStatusSurat');
@@ -148,6 +146,23 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('admin.statistik-penduduk.index');
     Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('admin.statistik-penduduk.update');
 });
+
+// User routes (authenticated)
+Route::middleware('auth')->group(function () {
+    Route::get('/pengajuan-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'create'])->name('pengajuan-surat');
+    Route::post('/pengajuan-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'store']);
+    Route::get('/riwayat-pengajuan', [App\Http\Controllers\User\PengajuanSuratController::class, 'index'])->name('riwayat-pengajuan');
+});
+
+// Admin routes
+Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
+    Route::resource('pengajuan-surat', App\Http\Controllers\Admin\PengajuanSuratController::class)->only(['index', 'show', 'update']);
+    Route::post('pengajuan-surat/{pengajuanSurat}/upload-surat', [App\Http\Controllers\Admin\PengajuanSuratController::class, 'uploadSuratJadi'])->name('admin.pengajuan-surat.upload-surat');
+});
+
+
+
+
 
 
 
