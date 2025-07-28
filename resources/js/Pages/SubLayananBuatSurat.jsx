@@ -1,21 +1,21 @@
-import React from 'react'
-import { circInOut, easeInOut, motion } from "framer-motion";
-import { Link } from '@inertiajs/react'
-import Navbar from '@/Components/Navbar'
-import Footer from '@/Components/Footer'
-import View from '@/Components/Layanan/View'
-import BuatSurat from '@/Components/Layanan/BuatSurat';
+import React from "react";
+import { motion } from "framer-motion";
+import Navbar from "@/Components/Navbar";
+import BuatSurat from "@/Components/Layanan/BuatSurat";
 
-const SubLayananBuatSurat = () => {
-  return (
+const SubLayananBuatSurat = ({ suratJenis }) => {
+    const suratJenisCount = suratJenis?.length;
+    console.log('=== DEBUG SubLayananBuatSurat ===');
+    console.log('Props received:', { suratJenis });
+    console.log('suratJenis type:', typeof suratJenis);
+    console.log('suratJenis length:', suratJenisCount);
+    console.log('======================');
+    return (
         <>
             <Navbar />
-            <BuatSurat />
-            
+            <BuatSurat suratJenis={suratJenis} />
         </>
-  )
-}
+    );
+};
 
-export default SubLayananBuatSurat
-            
-      
+export default SubLayananBuatSurat;
