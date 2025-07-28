@@ -1,4 +1,5 @@
 import React from 'react';
+import PerangkatDesa from "./../../../assets/ProfilDesa/PerangkatDesa.png";
 
 const Perangkat = () => {
   return (
@@ -30,7 +31,7 @@ const Perangkat = () => {
       <div className="flex items-center justify-center pt-4 md:pt-6 lg:pt-[14px] w-full max-w-sm md:max-w-2xl lg:max-w-[1221px] mx-auto">
         <div className="w-full h-48 md:h-80 lg:h-[568px] flex items-center justify-center">
           <img 
-            src="/ProfilDesa/PerangkatDesa.png" 
+            src={PerangkatDesa}
             alt="Gambar layanan" 
             className="relative z-10 max-w-full h-auto object-contain"
           />

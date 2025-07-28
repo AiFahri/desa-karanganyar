@@ -25,9 +25,9 @@ const StatsWilayah = ({ stats }) => {
   ];
 
   return (
-    <div className="w-full bg-white py-8">
+    <div className="w-full bg-white py-4">
       <div className="max-w-6xl mx-auto px-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
           {statsData.map((item, index) => (
             <div key={index} className="text-center bg-gray-50 rounded-lg p-6 shadow-sm">
               <h3 className={`text-sm font-medium ${item.color} mb-2`}>
