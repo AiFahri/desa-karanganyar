@@ -40,7 +40,7 @@ const BuatSurat = ({ suratJenis }) => {
     post('/pengajuan-surat', {
       forceFormData: true,
       onSuccess: () => {
-        // Form akan redirect otomatis ke riwayat-pengajuan
+        console.log('Pengajuan surat berhasil dikirim!');
       }
     })
   }
@@ -50,10 +50,10 @@ const BuatSurat = ({ suratJenis }) => {
 
   return (
     <>
-      <section className="relative min-h-screen w-full bg-white pt-[76px] overflow-hidden">
+      <section className="relative min-h-screen w-full bg-white pt-[76px] overflow-visible">
         {/* Blur dekoratif */}
-        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] left-[90%] top-[18%] hidden lg:block z-[2]"></div>
-        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] top-[90%] hidden lg:block z-0"></div>
+        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] left-[90%] top-[18%] hidden lg:block z-[0]"></div>
+        <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] top-[90%] hidden lg:block z-[-1]"></div>
         
         {/* Gradien background */}
         <div className="flex top-0 left-0 w-full h-[120px] z-0 bg-gradient-to-b from-[#0272BA] to-[#95CFF4]">
@@ -74,7 +74,7 @@ const BuatSurat = ({ suratJenis }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8"
+            className="w-full max-w-4xl bg-white rounded-lg shadow-lg p-8 mb-16 mt-8"
           >
             <h1 className="text-[50px] font-bold text-center text-black mb-8">
               Pengajuan Surat Keterangan
@@ -220,7 +220,7 @@ const BuatSurat = ({ suratJenis }) => {
                           className="hidden"
                         />
                         <div className={`px-6 py-3 rounded-lg flex items-center gap-2 text-white transition-colors ${
-                          errors.foto_ktp ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
+                          errors.foto_ktp ? 'bg-red-500 hover:bg-red-600' : 'bg-darkBlue hover:bg-blue-600'
                         }`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -252,7 +252,7 @@ const BuatSurat = ({ suratJenis }) => {
                           className="hidden"
                         />
                         <div className={`px-6 py-3 rounded-lg flex items-center gap-2 text-white transition-colors ${
-                          errors.foto_kk ? 'bg-red-500 hover:bg-red-600' : 'bg-blue-500 hover:bg-blue-600'
+                          errors.foto_kk ? 'bg-red-500 hover:bg-red-600' : 'bg-darkBlue hover:bg-blue-600'
                         }`}>
                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>

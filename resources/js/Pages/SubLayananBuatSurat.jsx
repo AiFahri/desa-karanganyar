@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import Navbar from "@/Components/Navbar";
 import BuatSurat from "@/Components/Layanan/BuatSurat";
+import Footer from "@/Components/Footer";
 
 const SubLayananBuatSurat = ({ suratJenis }) => {
     const suratJenisCount = suratJenis?.length;
@@ -14,6 +15,7 @@ const SubLayananBuatSurat = ({ suratJenis }) => {
         <>
             <Navbar />
             <BuatSurat suratJenis={suratJenis} />
+            <Footer />
         </>
     );
 };

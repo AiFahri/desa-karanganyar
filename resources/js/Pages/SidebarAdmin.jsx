@@ -17,12 +17,12 @@ const SidebarAdmin = () => {
     { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/admin/pengumuman' },
     { id: 'StatistikWilayah', label: 'Statistik Wilayah', icon: HomeIcon, route: '/admin/statistik-wilayah' },
     { id: 'StatistikPenduduk', label: 'Statistik Penduduk', icon: HomeIcon, route: '/admin/statistik-penduduk' },
-    { id: 'UMKM', label: 'Potensi UMKM', icon: UMKMIcon, route: '/AdminPotensiUMKM' },
+    { id: 'UMKM', label: 'Potensi UMKM', icon:UMKMIcon, route: '/AdminPotensiUMKM' },
   ];
 
   return (
     <aside
-      className="w-64 text-white p-4 transition-all duration-300 font-semibold"
+      className="w-64 text-white p-4 transition-all -300 font-semibold"
       style={{
         background: 'linear-gradient(270deg, #0272BA 0%, #95CFF4 92.37%)',
       }}
