@@ -124,10 +124,14 @@ const View = () => {
                                 {/* Teks */}
                                 <div className="flex flex-col justify-center flex-grow lg:items-center">
                                     <h3 className="text-lg sm:text-2xl font-semibold text-black mb-1 sm:mb-2">
-                                       Mudah
+                                        Mudah
                                     </h3>
                                     <p className="text-sm sm:text-base text-black leading-relaxed text-justify">
-                                        Formulir dan alur pengajuan dirancang sederhana dan ramah pengguna, sehingga siapa pun dapat mengurus surat dengan mudah, bahkan bagi yang baru pertama kali mencoba.
+                                        Formulir dan alur pengajuan dirancang
+                                        sederhana dan ramah pengguna, sehingga
+                                        siapa pun dapat mengurus surat dengan
+                                        mudah, bahkan bagi yang baru pertama
+                                        kali mencoba.
                                     </p>
                                 </div>
                             </div>
@@ -148,7 +152,11 @@ const View = () => {
                                         Hemat Waktu
                                     </h3>
                                     <p className="text-sm sm:text-base text-black leading-relaxed text-justify">
-                                        Tanpa perlu datang langsung ke kantor desa, Anda dapat mengajukan surat hanya dalam beberapa langkah. Waktu Anda pun dapat dimanfaatkan untuk kegiatan lain yang lebih penting.
+                                        Tanpa perlu datang langsung ke kantor
+                                        desa, Anda dapat mengajukan surat hanya
+                                        dalam beberapa langkah. Waktu Anda pun
+                                        dapat dimanfaatkan untuk kegiatan lain
+                                        yang lebih penting.
                                     </p>
                                 </div>
                             </div>{" "}
