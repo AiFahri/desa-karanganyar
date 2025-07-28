@@ -9,7 +9,7 @@ export default function HorizontalInfiniteGallery({
   maxWidth = "100%",
   negativeMargin = "-5vw",
   items = [],
-  itemMinWidth = 20,
+  itemMinWidth = 22,
   autoplay = false,
   autoplaySpeed = 0.2,
   autoplayDirection = "right",
@@ -121,7 +121,7 @@ export default function HorizontalInfiniteGallery({
 
   return (
     <div
-      className="relative flex items-center justify-center w-full overflow-hidden overscroll-auto border-transparent max-w-full"
+      className="relative flex items-center justify-center w-full overflow-hidden overscroll-auto border-transparent max-w-full rounded-xl"
       ref={wrapperRef}
       style={{ maxWidth }}
     >
