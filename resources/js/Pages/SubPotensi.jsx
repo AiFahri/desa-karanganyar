@@ -13,9 +13,6 @@ const dataPotensi = [
         image: "https://picsum.photos/360/415",
         title: "Cimol Baper",
         description: "Cimolnya Baper Rek",
-        tiktok: "cimolbaper",
-        facebook: "cimolbaper",
-        instagram: "cimolbaper",
         notelp: "+62 123-456-7890", // Menambahkan nomor telepon yang hilang
         deskripsi_lengkap:
             "Cimol Baper adalah produk UMKM unggulan yang menawarkan cita rasa autentik dengan kualitas terbaik. Dibuat dengan bahan-bahan pilihan dan resep turun temurun yang telah terbukti kelezatannya. Setiap gigitan memberikan pengalaman kuliner yang tak terlupakan.",
@@ -57,16 +54,17 @@ const ProductInfo = ({ item }) => (
 );
 
 // Komponen untuk menu item UMKM
-const MenuItem = ({ title, price, description }) => (
+const MenuItem = ( item ) => (
     <div className="flex items-start">
+        {}
         <span className="w-3 h-3 bg-red-500 rounded-full mt-1.5 mr-3 flex-shrink-0"></span>
         <div>
             <p className="font-semibold text-gray-800">
-                {title}
-                {price && ` - ${price}`}
+                {item.title}
+                {item.price && ` - ${item.price}`}
             </p>
-            {description && (
-                <p className="text-sm text-gray-600">{description}</p>
+            {item.description && (
+                <p className="text-sm text-gray-600">{item.description}</p>
             )}
         </div>
     </div>
@@ -112,11 +110,12 @@ const SocialMediaSection = ({ mediaSosial, className = "" }) => (
                         <div className="w-4 h-4 bg-gray-400 rounded-full mr-2"></div>
                         <a
                             className="text-gray-700 hover:text-blue-600 transition-colors"
-                            href={media.link}
+                            href={media}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {media.platform ? `${media.platform}: ` : ''}{media.link}
+    {/*                         {media.platform ? `${media.platform}: ` : ''}{media.link} */}
+                            {media}
                         </a>
                     </div>
                 ))}
@@ -146,11 +145,9 @@ const MenuAndContactSection = ({ item }) => (
 // Komponen untuk kontak dan media sosial (mobile only)
 const MobileContactSection = ({ item }) => (
     <div className="p-6 bg-[#FFFFFF]  md:hidden">
-        <ContactSection phoneNumber={item.notelp} />
+        <ContactSection phoneNumber={item.kontak_pemesanan} />
         <SocialMediaSection
-            tiktok={item.tiktok}
-            facebook={item.facebook}
-            instagram={item.instagram}
+            mediaSosial={item.media_sosial}
         />
     </div>
 );

@@ -5,6 +5,9 @@ import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import pic1 from "../../../assets/Login/pic1.jpg"
+import pic2 from "../../../assets/Login/pic2.jpg"
+import pic3 from "../../../assets/Login/pic3.jpg"
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -39,29 +42,29 @@ export default function Register() {
             <div className="flex flex-col lg:flex-row w-full max-w-6xl bg-white shadow-xl rounded-lg overflow-hidden">
                 <div className="hidden lg:flex lg:w-1/2 p-8 bg-gradient-to-br from-blue-100 to-white flex-col items-center justify-center space-y-6">
                     <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
-                        {/* <img
-                            src="/images/login3.jpg"
+                        <img
+                            src={pic1}
                             alt="Gambar Kegiatan Warga 1"
                             className="w-full h-full object-cover rounded-lg"
-                        /> */}{" "}
-                        Gambar Kegiatan Warga 1
+                        />
+                        {/* Gambar Kegiatan Warga 1 */}
                     </div>
                     <div className="grid grid-cols-2 gap-4 w-full">
                         <div className="h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
-                            {/* <img
-                                src="/images/login2.jpg"
+                            <img
+                                src={pic3}
                                 alt="Gambar Kegiatan Warga 1"
                                 className="w-full h-full object-cover rounded-lg"
-                            /> */}
-                            Gambar Kegiatan Warga 2
+                            />
+                            {/* Gambar Kegiatan Warga 2 */}
                         </div>
                         <div className="h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
-                            {/* <img
-                                src="/images/login1.jpg"
+                            <img
+                                src={pic2}
                                 alt="Gambar Kegiatan Warga 1"
                                 className="w-full h-full object-cover rounded-lg"
-                            /> */}
-                            Gambar Kegiatan Warga 3
+                            />
+                            {/* Gambar Kegiatan Warga 3 */}
                         </div>
                     </div>
                 </div>

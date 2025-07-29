@@ -59,7 +59,7 @@ Route::get('/AdminPotensiUMKM', function () {
 
 
 Route::get('/dashboard', function () {
-    return Inertia::render('EditProfile');
+    return Inertia::render('Profile/Edit');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/riwayat-pengajuan', function () {
@@ -67,7 +67,7 @@ Route::get('/riwayat-pengajuan', function () {
 })->middleware(['auth', 'verified'])->name('riwayat-pengajuan');
 
 Route::get('/lupa-password', function () {
-    return Inertia::render('LupaPassword');
+    return Inertia::render('Auth/ForgotPassword');
 })->middleware(['auth', 'verified'])->name('lupa-password');
 
 Route::middleware('auth')->group(function () {
