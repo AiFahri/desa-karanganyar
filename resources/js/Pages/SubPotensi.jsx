@@ -127,11 +127,23 @@ const SocialMediaSection = ({
 
 const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
     // Ubah ke array yang aman
-    const safeMenuUMKM = Array.isArray(menuUMKM)
-        ? menuUMKM
-        : typeof menuUMKM === "string" && menuUMKM.length > 0
-        ? [menuUMKM]
-        : [];
+    let safeMenuUMKM = [];
+
+if (Array.isArray(menuUMKM)) {
+    safeMenuUMKM = menuUMKM;
+} else if (typeof menuUMKM === "string") {
+    try {
+        const parsed = JSON.parse(menuUMKM);
+        if (Array.isArray(parsed)) {
+            safeMenuUMKM = parsed;
+        } else {
+            safeMenuUMKM = [menuUMKM];
+        }
+    } catch (e) {
+        safeMenuUMKM = [menuUMKM];
+    }
+}
+
 
     return (
         <div className={className}>
