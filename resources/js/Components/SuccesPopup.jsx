@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "@inertiajs/react";
-import popup from "./../../../assets/LayananMasyarakat/popup.png";
+import popupp from "../../assets/LayananMasyarakat/popup.png";
 
 export default function SuccessPopup() {
     const [isVisible, setIsVisible] = useState(false);
@@ -155,8 +155,8 @@ export default function SuccessPopup() {
                             ×
                         </button>
 
-                        <img 
-                            src={popup}
+                        <img
+                            src={popupp}
                             alt="Success Icon"
                             className="w-full h-full object-contain"
                         />
