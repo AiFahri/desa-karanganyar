@@ -209,7 +209,7 @@ export default function Register() {
                             </Link>
 
                             <PrimaryButton
-                                className="ms-4 px-6 py-2"
+                                className="ms-4 px-6 py-2 bg-darkBlue"
                                 disabled={processing}
                             >
                                 Daftar

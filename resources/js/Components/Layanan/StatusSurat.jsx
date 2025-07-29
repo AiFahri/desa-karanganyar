@@ -4,7 +4,23 @@ import { ArrowLeft } from 'lucide-react'
 import { motion } from 'framer-motion'
 import TombolKembali from '../TombolKembali'
 
-const StatusSurat = () => {
+const StatusSurat = ({ pengajuan }) => {
+  const getStatusColor = (status) => {
+    switch(status) {
+      case 'selesai': return 'text-green-500 border-green-400';
+      case 'ditolak': return 'text-red-500 border-red-400';
+      default: return 'text-blue-500 border-blue-400';
+    }
+  };
+
+  const getStatusText = (status) => {
+    switch(status) {
+      case 'selesai': return 'Selesai';
+      case 'ditolak': return 'Ditolak';
+      default: return 'Sedang Diproses';
+    }
+  };
+
   return (
     <section className="relative min-h-screen bg-white pt-[76px] overflow-hidden">
       {/* Gradien background & tombol kembali */}
@@ -24,39 +40,61 @@ const StatusSurat = () => {
           </h1>
           <hr className="pb-[40px] border-t border-[#00000066]" />
 
-
-          {/* Informasi status */}
-          <div className="space-y-6 ">
-            <div>
-              <label className="block mb-2 font-semibold md:text-[18x] text-[14px]">Tujuan Pengajuan Surat</label>
-              <div className="border border-gray-300 rounded-lg md:text-[14px] text-[12px] px-4 py-3 bg-gray-50">
-                Surat Keterangan Domisili
+          {pengajuan ? (
+            <div className="space-y-6">
+              <div>
+                <label className="block mb-2 font-semibold md:text-[18px] text-[14px]">Tujuan Pengajuan Surat</label>
+                <div className="border border-gray-300 rounded-lg md:text-[14px] text-[12px] px-4 py-3 bg-gray-50">
+                  {pengajuan.surat_jenis?.nama_jenis}
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label className="block mb-2 md:text-[18x] text-[14px] font-semibold">Tanggal Pengajuan Surat</label>
-              <div className="border border-gray-300 md:text-[14px] text-[12px] rounded-lg px-4 py-3 bg-gray-50">
-                10 Juli 2025
+              <div>
+                <label className="block mb-2 md:text-[18px] text-[14px] font-semibold">Tanggal Pengajuan Surat</label>
+                <div className="border border-gray-300 md:text-[14px] text-[12px] rounded-lg px-4 py-3 bg-gray-50">
+                  {new Date(pengajuan.created_at).toLocaleDateString('id-ID')}
+                </div>
               </div>
-            </div>
 
-            <div>
-              <label className="block mb-2 md:text-[18x] text-[14px] font-semibold">Waktu Pengajuan</label>
-              <div className="border border-gray-300 md:text-[14px] text-[12px] rounded-lg px-4 py-3 bg-gray-50">
-                09.30
+              <div>
+                <label className="block mb-2 md:text-[18px] text-[14px] font-semibold">Waktu Pengajuan</label>
+                <div className="border border-gray-300 md:text-[14px] text-[12px] rounded-lg px-4 py-3 bg-gray-50">
+                  {new Date(pengajuan.created_at).toLocaleTimeString('id-ID')}
+                </div>
               </div>
+
+              <div>
+                <label className="block mb-2 md:text-[18px] text-[14px] font-semibold">Status</label>
+                <div className="border border-gray-300 md:text-[14px] text-[12px] rounded-lg px-4 py-3 bg-gray-50">
+                  {getStatusText(pengajuan.status)}
+                </div>
+              </div>
+
+              {pengajuan.catatan_admin && (
+                <div>
+                  <label className="block mb-2 md:text-[18px] text-[14px] font-semibold">Catatan Admin</label>
+                  <div className="border border-gray-300 md:text-[14px] text-[12px] rounded-lg px-4 py-3 bg-gray-50">
+                    {pengajuan.catatan_admin}
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
+          ) : (
+            <div className="text-center py-8">
+              <p className="text-gray-500">Belum ada pengajuan surat</p>
+            </div>
+          )}
 
           {/* Tombol selesai */}
           <div className="flex justify-center mt-10">
-            <button className=" md:text-[18x] text-[14px] flex items-center gap-2 px-6 py-3 border border-green-400 text-green-500 rounded-lg font-semibold hover:bg-green-50 transition">
+            <button className={`md:text-[18px] text-[14px] flex items-center gap-2 px-6 py-3 border rounded-lg font-semibold transition ${
+              pengajuan ? getStatusColor(pengajuan.status) : 'border-gray-400 text-gray-500'
+            }`}>
               <svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
                 <path d="M10.5 20C16.0228 20 20.5 15.5228 20.5 10C20.5 4.47715 16.0228 0 10.5 0C4.97715 0 0.5 4.47715 0.5 10C0.5 15.5228 4.97715 20 10.5 20Z" fill="#22C55E" fill-opacity="0.5"/>
-                <path d="M6.125 8.75L9.7425 12.3675C9.77766 12.4026 9.82531 12.4223 9.875 12.4223C9.92469 12.4223 9.97234 12.4026 10.0075 12.3675L19.875 2.5" stroke="#1BAF52" stroke-width="1.25"/>
+                <path d="M6.125 8.75L9.7425 12.3675C9.77766 12.4026 9.82531 12.4223 9.875 12.4223C9.92469 12.4223 9.97234 12.4026 10.0075 12.3675L19.875 2.5" stroke="#1BAF52" strokeWidth="1.25"/>
               </svg>
-              Selesai
+              {pengajuan ? getStatusText(pengajuan.status) : 'Belum Ada Data'}
             </button>
           </div>
         </motion.div>
@@ -66,3 +104,4 @@ const StatusSurat = () => {
 }
 
 export default StatusSurat
+
