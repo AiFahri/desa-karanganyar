@@ -1,10 +1,10 @@
-import Navbar from '@/Components/Navbar'
-import Footer from '@/Components/Footer'
-import React from 'react'
-import { Link } from '@inertiajs/react';
-import { ArrowLeftIcon } from 'lucide-react';
-import Card from '@/Components/Card';
-import TombolKembali from '@/Components/TombolKembali';
+import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
+import React from "react";
+import { Link } from "@inertiajs/react";
+import { ArrowLeftIcon } from "lucide-react";
+import Card from "@/Components/Card";
+import TombolKembali from "@/Components/TombolKembali";
 
 // Data sample - idealnya ini akan diterima sebagai props atau dari API
 const dataPotensi = [
@@ -16,7 +16,7 @@ const dataPotensi = [
         notelp: "+62 123-456-7890", // Menambahkan nomor telepon yang hilang
         deskripsi_lengkap:
             "Cimol Baper adalah produk UMKM unggulan yang menawarkan cita rasa autentik dengan kualitas terbaik. Dibuat dengan bahan-bahan pilihan dan resep turun temurun yang telah terbukti kelezatannya. Setiap gigitan memberikan pengalaman kuliner yang tak terlupakan.",
-        menu_umkm: "Cimol",
+        menu_umkm: ["Cimol"],
     },
 ];
 
@@ -46,26 +46,11 @@ const BlurDecorations = () => (
 // Komponen untuk informasi produk di bagian kanan atas
 const ProductInfo = ({ item }) => (
     <div className="p-6 bg-[#FFFFFF]">
-        <h1 className="text-2xl font-bold text-black mb-4">{item.merk_dagang}</h1>
+        <h1 className="text-2xl font-bold text-black mb-4">
+            {item.merk_dagang}
+        </h1>
         <div className="text-sm text-justify flex text-black font-semibold leading-relaxed mb-4 w-full flex-wrap">
             {item.deskripsi_lengkap}
-        </div>
-    </div>
-);
-
-// Komponen untuk menu item UMKM
-const MenuItem = ( item ) => (
-    <div className="flex items-start">
-        {}
-        <span className="w-3 h-3 bg-red-500 rounded-full mt-1.5 mr-3 flex-shrink-0"></span>
-        <div>
-            <p className="font-semibold text-gray-800">
-                {item.title}
-                {item.price && ` - ${item.price}`}
-            </p>
-            {item.description && (
-                <p className="text-sm text-gray-600">{item.description}</p>
-            )}
         </div>
     </div>
 );
@@ -100,45 +85,100 @@ const ContactSection = ({ phoneNumber, className = "" }) => (
 );
 
 // Komponen untuk media sosial
-const SocialMediaSection = ({ mediaSosial, className = "" }) => (
-        <div className={className}>
-            <h3 className="text-lg font-bold text-gray-800 mb-3">Media Sosial</h3>
-            <div className="space-y-2">
-                {mediaSosial && mediaSosial.map((media, index) => (
-                    <div key={index} className="flex items-center">
-                        {/* You can add a generic icon here if desired, or leave it without one */}
-                        <div className="w-4 h-4 bg-gray-400 rounded-full mr-2"></div>
-                        <a
-                            className="text-gray-700 hover:text-blue-600 transition-colors"
-                            href={media}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-    {/*                         {media.platform ? `${media.platform}: ` : ''}{media.link} */}
-                            {media}
-                        </a>
-                    </div>
-                ))}
-            </div>
-        </div>
+const SocialMediaSection = ({
+    mediaSosial,
+    className = "",
+    heading,
+    warnaBullet,
+}) => (
+    <div className={className}>
+               {" "}
+        <h3 className="text-lg font-bold text-gray-800 mb-3">{heading}</h3>     
+         {" "}
+        <div className="space-y-2">
+                       {" "}
+            {mediaSosial &&
+                mediaSosial.map((media, index) => (
+                    <div key={index} className="flex items-center">
+                                           {" "}
+                        {/* You can add a generic icon here if desired, or leave it without one */}
+                                           {" "}
+                        <div
+                            className={`w-4 h-4 rounded-full mr-2 ${warnaBullet}`}
+                        ></div>
+                                           {" "}
+                        <a
+                            className="text-gray-700 hover:text-blue-600 transition-colors"
+                            href={media}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {/*                         {media.platform ? `${media.platform}: ` : ''}{media.link} */}
+                                                    {media}                   {" "}
+                        </a>
+                                       {" "}
+                    </div>
+                ))}
+                   {" "}
+        </div>
+           {" "}
+    </div>
+);
+
+const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
+    // Ubah ke array yang aman
+    const safeMenuUMKM = Array.isArray(menuUMKM)
+        ? menuUMKM
+        : typeof menuUMKM === "string" && menuUMKM.length > 0
+        ? [menuUMKM]
+        : [];
+
+    return (
+        <div className={className}>
+            <h3 className="text-lg font-bold text-gray-800 mb-3">{heading}</h3>
+            <div className="space-y-2">
+                {safeMenuUMKM.map((menu, index) => (
+                    <div key={index} className="flex items-start">
+                        <div
+                            className={`w-3 h-3 rounded-full mt-1.5 mr-3 flex-shrink-0 ${warnaBullet}`}
+                        ></div>
+                        <div>
+                            <p className="font-semibold text-gray-800">
+                                {menu}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
     );
+};
+
+
 // Komponen untuk menu UMKM dan kontak (kiri bawah)
 const MenuAndContactSection = ({ item }) => (
-    <div className="p-6 bg-white ">
-        <h2 className="text-xl font-bold text-black mb-4">Menu UMKM</h2>
-
-        <div className="space-y-4 mb-6 ">
-            <MenuItem title={item.menu_umkm} />
-        </div>
+    <div className="p-6 bg-white">
+        {/* Gunakan MenuSection yang baru */}
+        <MenuSection
+            menuUMKM={item.menu_umkm}
+            heading="Menu UMKM"
+            warnaBullet="bg-red-500"
+            className="mb-6"
+        />
 
         {/* Contact - Desktop only */}
-        <ContactSection phoneNumber={item.kontak_pemesanan} className="hidden md:block" />
+        <ContactSection
+            phoneNumber={item.kontak_pemesanan}
+            className="hidden md:block"
+        />
 
         {/* Social Media - Desktop only */}
         <SocialMediaSection
-            mediaSosial={item.media_sosial}
-            className="hidden md:block"
-        />
+            mediaSosial={item.media_sosial}
+            heading="Media Sosial"
+            warnaBullet="bg-blue-500"
+            className="hidden md:block"
+        />
     </div>
 );
 
@@ -146,42 +186,46 @@ const MenuAndContactSection = ({ item }) => (
 const MobileContactSection = ({ item }) => (
     <div className="p-6 bg-[#FFFFFF]  md:hidden">
         <ContactSection phoneNumber={item.kontak_pemesanan} />
-        <SocialMediaSection
-            mediaSosial={item.media_sosial}
-        />
+        <SocialMediaSection mediaSosial={item.media_sosial} />
     </div>
 );
 
 // Komponen utama
-const SubPotensi = ({ item, umkm}) => {
+const SubPotensi = ({ item, umkm }) => {
     // Menggunakan data dari props atau fallback ke data sample
     const currentItem = umkm || dataPotensi[0];
-    console.log(currentItem)
-  return (
-    <>
-      <Navbar />
-      <div className='pt-[76px]'>
-        <TombolKembali backTo="/" />
-      </div>
-      <BlurDecorations />
-      
-      <div className="min-h-screen bg-white p-4">
-        {/* Main Container */}
-        <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
-          {/* Grid Layout - 2x2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-            
-            {/* Top Left - Product Image & Description */}
-            <Card
-              key={currentItem.id}
-              title={currentItem.title || currentItem.merk_dagang}
-              description={currentItem.deskripsi_singkat || currentItem.description}
-              image={currentItem.gambar_path ?  `https://is3.cloudhost.id/karanganyar/${currentItem.gambar_path}` : currentItem.image}
-            />
-            <ProductInfo item={currentItem} />
-          </div>
-          <div className='flex-flex-col items-center w-full'>  
-            {/* Top Right - Product Info */}
+    console.log(currentItem);
+    return (
+        <>
+            <Navbar />
+            <div className="pt-[76px]">
+                <TombolKembali backTo="/" />
+            </div>
+            <BlurDecorations />
+
+            <div className="min-h-screen bg-white p-4">
+                {/* Main Container */}
+                <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
+                    {/* Grid Layout - 2x2 */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                        {/* Top Left - Product Image & Description */}
+                        <Card
+                            key={currentItem.id}
+                            title={currentItem.title || currentItem.merk_dagang}
+                            description={
+                                currentItem.deskripsi_singkat ||
+                                currentItem.description
+                            }
+                            image={
+                                currentItem.gambar_path
+                                    ? `https://is3.cloudhost.id/karanganyar/${currentItem.gambar_path}`
+                                    : currentItem.image
+                            }
+                        />
+                        <ProductInfo item={currentItem} />
+                    </div>
+                    <div className="flex-flex-col items-center w-full">
+                        {/* Top Right - Product Info */}
 
                         {/* Bottom Left - Menu UMKM & Contact */}
                         <MenuAndContactSection item={currentItem} />
