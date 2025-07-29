@@ -49,8 +49,8 @@ const BlurDecorations = () => (
 // Komponen untuk informasi produk di bagian kanan atas
 const ProductInfo = ({ item }) => (
     <div className="p-6 bg-[#FFFFFF]">
-        <h1 className="text-2xl font-bold text-black mb-4">{item.title}</h1>
-        <div className="text-sm flex text-black font-semibold leading-relaxed mb-4 w-full flex-wrap">
+        <h1 className="text-2xl font-bold text-black mb-4">{item.merk_dagang}</h1>
+        <div className="text-sm text-justify flex text-black font-semibold leading-relaxed mb-4 w-full flex-wrap">
             {item.deskripsi_lengkap}
         </div>
     </div>
@@ -102,52 +102,27 @@ const ContactSection = ({ phoneNumber, className = "" }) => (
 );
 
 // Komponen untuk media sosial
-const SocialMediaSection = ({
-    tiktok,
-    facebook,
-    instagram,
-    className = "",
-}) => (
-    <div className={className}>
-        <h3 className="text-lg font-bold text-gray-800 mb-3">Media Sosial</h3>
-        <div className="space-y-2">
-            <div className="flex items-center">
-                <div className="w-4 h-4 bg-blue-500 rounded-full mr-2"></div>
-                <a
-                    className="text-gray-700 hover:text-blue-600 transition-colors"
-                    href={`https://www.tiktok.com/${tiktok}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Tiktok: @{tiktok}
-                </a>
-            </div>
-            <div className="flex items-center">
-                <div className="w-4 h-4 bg-blue-600 rounded-full mr-2"></div>
-                <a
-                    className="text-gray-700 hover:text-blue-600 transition-colors"
-                    href={`https://www.facebook.com/${facebook}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Facebook: {facebook}
-                </a>
-            </div>
-            <div className="flex items-center">
-                <div className="w-4 h-4 bg-pink-500 rounded-full mr-2"></div>
-                <a
-                    className="text-gray-700 hover:text-pink-600 transition-colors"
-                    href={`https://www.instagram.com/${instagram}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Instagram: @{instagram}
-                </a>
-            </div>
-        </div>
-    </div>
-);
-
+const SocialMediaSection = ({ mediaSosial, className = "" }) => (
+        <div className={className}>
+            <h3 className="text-lg font-bold text-gray-800 mb-3">Media Sosial</h3>
+            <div className="space-y-2">
+                {mediaSosial && mediaSosial.map((media, index) => (
+                    <div key={index} className="flex items-center">
+                        {/* You can add a generic icon here if desired, or leave it without one */}
+                        <div className="w-4 h-4 bg-gray-400 rounded-full mr-2"></div>
+                        <a
+                            className="text-gray-700 hover:text-blue-600 transition-colors"
+                            href={media.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {media.platform ? `${media.platform}: ` : ''}{media.link}
+                        </a>
+                    </div>
+                ))}
+            </div>
+        </div>
+    );
 // Komponen untuk menu UMKM dan kontak (kiri bawah)
 const MenuAndContactSection = ({ item }) => (
     <div className="p-6 bg-white ">
@@ -155,28 +130,16 @@ const MenuAndContactSection = ({ item }) => (
 
         <div className="space-y-4 mb-6 ">
             <MenuItem title={item.menu_umkm} />
-            <MenuItem
-                title="Pack Sedang"
-                price="Rp 7.000"
-                description="Cocok untuk makan siang atau bekal praktis dengan isi yang mengenyangkan."
-            />
-            <MenuItem
-                title="Pack Besar"
-                price="Rp 9.000"
-                description="Lengkap dan puas! Pilihan ideal untuk hidangan keluarga atau acara spesial."
-            />
         </div>
 
         {/* Contact - Desktop only */}
-        <ContactSection phoneNumber={item.notelp} className="hidden md:block" />
+        <ContactSection phoneNumber={item.kontak_pemesanan} className="hidden md:block" />
 
         {/* Social Media - Desktop only */}
         <SocialMediaSection
-            tiktok={item.tiktok}
-            facebook={item.facebook}
-            instagram={item.instagram}
-            className="hidden md:block"
-        />
+            mediaSosial={item.media_sosial}
+            className="hidden md:block"
+        />
     </div>
 );
 
@@ -193,10 +156,10 @@ const MobileContactSection = ({ item }) => (
 );
 
 // Komponen utama
-const SubPotensi = ({ item }) => {
+const SubPotensi = ({ item, umkm}) => {
     // Menggunakan data dari props atau fallback ke data sample
-    const currentItem = item || dataPotensi[0];
-
+    const currentItem = umkm || dataPotensi[0];
+    console.log(currentItem)
   return (
     <>
       <Navbar />
@@ -214,9 +177,9 @@ const SubPotensi = ({ item }) => {
             {/* Top Left - Product Image & Description */}
             <Card
               key={currentItem.id}
-              title={currentItem.title}
-              description={currentItem.description}
-              image={currentItem.image}
+              title={currentItem.title || currentItem.merk_dagang}
+              description={currentItem.deskripsi_singkat || currentItem.description}
+              image={currentItem.gambar_path ?  `https://is3.cloudhost.id/karanganyar/${currentItem.gambar_path}` : currentItem.image}
             />
             <ProductInfo item={currentItem} />
           </div>
