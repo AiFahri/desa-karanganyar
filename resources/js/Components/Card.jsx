@@ -1,15 +1,10 @@
 import React from "react";
 import bottomCard from "../../assets/Home/img/bottomCard.png";
 import shadowCard from "../../assets/Home/img/shadowCard.png"
+import { Link } from "@inertiajs/react";
 
-const Card = ({
-  title,
-  description,
-  image
-}) => {
-
-
-  return (
+const Card = ({ title, description, image, slug }) => {
+  const cardContent = (
     <div className="group relative min-w-[120px] w-full cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
       <img src={shadowCard} className="absolute z-0 scale-[1.7] h-full"/>
       <div
@@ -48,6 +43,12 @@ const Card = ({
       </div>
     </div>
   );
-};
+  return slug ? (
+    <Link href={`/sub-umkm/${slug}`}>
+        {cardContent}
+    </Link>
+) : (
+    cardContent
+);};
 
 export default Card;
