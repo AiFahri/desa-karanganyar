@@ -39,7 +39,7 @@ class UmkmController extends Controller
         
         // Filter empty media sosial links
         if (isset($data['media_sosial'])) {
-            $data['media_sosial'] = array_filter($data['media_sosial'], function($link) {
+            $data['media_sosial'] = array_filter(array: $data['media_sosial'], callback: function($link) {
                 return !empty(trim($link));
             });
             $data['media_sosial'] = array_values($data['media_sosial']); // Re-index array
@@ -62,7 +62,6 @@ class UmkmController extends Controller
         }
 
         if (isset($data['menu_umkm'])) {
-    $data['menu_umkm'] = json_encode($data['menu_umkm']);
 }
 
         unset($data['gambar']);
