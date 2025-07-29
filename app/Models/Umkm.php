@@ -26,6 +26,7 @@ class Umkm extends Model
 
     protected $casts = [
         'media_sosial' => 'array',
+        'menu_umkm' => 'array',
     ];
 
     public function publisher()
