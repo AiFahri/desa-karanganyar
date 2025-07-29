@@ -74,7 +74,7 @@ const PotensiSecMobile = () => {
               <Card
                 key={item.id}
                 title={item.title}
-                description={item.description}
+                description={item.deskripsi_singkat}
                 image={item.image}
               />
             ))}

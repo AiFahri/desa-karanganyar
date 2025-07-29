@@ -11,6 +11,7 @@ return new class extends Migration
         Schema::create('umkm', function (Blueprint $table) {
             $table->id();
             $table->string('merk_dagang')->unique();
+            $table->string('slug')->unique();
             $table->string('deskripsi_singkat');
             $table->text('deskripsi_lengkap');
             $table->text('menu_umkm');

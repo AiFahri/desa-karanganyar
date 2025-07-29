@@ -15,27 +15,41 @@ class PengajuanSuratController extends Controller
 {
     public function index(Request $request)
     {
-        $query = PengajuanSurat::with(['user', 'suratJenis']);
+        $query = PengajuanSurat::with(['suratJenis', 'user'])
+            ->latest();
+
+        // Filter by search
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('nama_lengkap', 'like', "%{$search}%")
+                  ->orWhere('nik_pemohon', 'like', "%{$search}%")
+                  ->orWhereHas('suratJenis', function($sq) use ($search) {
+                      $sq->where('nama_jenis', 'like', "%{$search}%");
+                  });
+            });
+        }
 
         // Filter by status
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
 
-        // Search by name or NIK
-        if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function($q) use ($search) {
-                $q->where('nama_lengkap', 'like', "%{$search}%")
-                  ->orWhere('nik_pemohon', 'like', "%{$search}%");
-            });
-        }
+        $pengajuanSurat = $query->paginate(10)->withQueryString();
+        
+        // Append accessor attributes
+        $pengajuanSurat->getCollection()->transform(function ($item) {
+            return $item->append(['foto_ktp_url', 'foto_kk_url', 'surat_jadi_url']);
+        });
+        
+        // Append accessor attributes
+        $pengajuanSurat->getCollection()->transform(function ($item) {
+            return $item->append(['foto_ktp_url', 'foto_kk_url', 'surat_jadi_url']);
+        });
 
-        $pengajuanSurat = $query->latest()->paginate(15);
-
-        return Inertia::render('AdminPengajuanSurat', [
+        return Inertia::render('AdminPengajuanLayanan', [
             'pengajuanSurat' => $pengajuanSurat,
-            'filters' => $request->only(['status', 'search'])
+            'filters' => $request->only(['search', 'status'])
         ]);
     }
 
@@ -121,9 +135,12 @@ class PengajuanSuratController extends Controller
         } catch (\Exception $e) {
             Log::error('Upload Surat Jadi Error', [
                 'message' => $e->getMessage(),
-                'pengajuan_id' => $pengajuanSurat->id
+ 
+               'pengajuan_id' => $pengajuanSurat->id
             ]);
             return redirect()->back()->withErrors(['file_surat' => 'Error upload: ' . $e->getMessage()]);
         }
     }
 }
+
+

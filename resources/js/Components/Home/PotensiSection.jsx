@@ -3,7 +3,10 @@ import Card from "../Card";
 import { dummyPotensi } from "../../data/dummyPotensi";
 import PotensiSecMobile from "./PotensiSecMobile";
 
-const PotensiSection = ({ id, className = "", headerTitle }) => {
+const PotensiSection = ({ id, className = "", headerTitle, umkmData }) => {
+    // Gunakan data UMKM jika ada, fallback ke dummy untuk Potensi Alam
+    const dataToShow = umkmData && id === "potensiGan2" ? umkmData : dummyPotensi;
+    console.log(umkmData);
     return (
         <section
             id={id}
@@ -15,28 +18,22 @@ const PotensiSection = ({ id, className = "", headerTitle }) => {
                 </p>
 
                 <div className="hidden z-40 md:grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-x-24 lg:gap-y-24 justify-items-center max-w-6xl mx-auto">
-                    {dummyPotensi.map((item) => (
+                    {dataToShow?.map((item) => (
                         <Card
                             key={item.id}
-                            title={item.title}
-                            description={item.description}
-                            image={item.image}
+                            title={item.merk_dagang || item.title}
+                            description={item.deskripsi_singkat}
+                            image={item.gambar_path ? `https://is3.cloudhost.id/karanganyar/${item.gambar_path}` : item.image}
+                            slug={item.slug}
                         />
                     ))}
                 </div>
 
-                <PotensiSecMobile />
-
-                {/* <div className="flex justify-center mt-16">
-          <div className="flex items-center space-x-4 opacity-30">
-            <div className="w-16 h-0.5 bg-amber-600"></div>
-            <div className="w-2 h-2 bg-amber-600 rounded-full"></div>
-            <div className="w-16 h-0.5 bg-amber-600"></div>
-          </div>
-        </div> */}
+                <PotensiSecMobile umkmData={umkmData} id={id} />
             </div>
         </section>
     );
 };
 
 export default PotensiSection;
+

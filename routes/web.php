@@ -5,18 +5,9 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', function () {
-    $statistikWilayah = App\Models\StatistikWilayah::getOrCreate();
-    return Inertia::render('Home', [
-        'statistikWilayah' => $statistikWilayah
-    ]);
-});
-Route::get('/home', function () {
-    $statistikWilayah = App\Models\StatistikWilayah::getOrCreate();
-    return Inertia::render('Home', [
-        'statistikWilayah' => $statistikWilayah
-    ]);
-});
+Route::get('/', [App\Http\Controllers\UmkmController::class, 'index']);
+Route::get('/home', [App\Http\Controllers\UmkmController::class, 'index']);
+Route::get('/sub-umkm/{slug}', [App\Http\Controllers\UmkmController::class, 'show'])->name('umkm.show');
 
 Route::get('/register-page', function () {
     return Inertia::render('Auth/Register');
@@ -28,9 +19,7 @@ Route::get('/layanan', function () {
 
 Route::get('/layanan/buat-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'create'])->name('layanan.buat-surat');
 
-Route::get('/layanan/status-surat', function () {
-    return Inertia::render('SubLayananStatusSurat');
-});
+Route::get('/layanan/status-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'status']);
 
 Route::get('/profil', function () {
     $statistikPenduduk = App\Models\StatistikPenduduk::getOrCreate();
@@ -58,8 +47,6 @@ Route::get('/ProfileDetail', function () {
     return Inertia::render('ProfileDetail');
 });
 
-
-
 Route::get('/AdminPengajuanLayanan', function () {
     return Inertia::render('AdminPengajuanLayanan');
 });
@@ -72,7 +59,7 @@ Route::get('/AdminPotensiUMKM', function () {
 
 
 Route::get('/dashboard', function () {
-    return Inertia::render('EditProfile');
+    return Inertia::render('Profile/Edit');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/riwayat-pengajuan', function () {
@@ -80,7 +67,7 @@ Route::get('/riwayat-pengajuan', function () {
 })->middleware(['auth', 'verified'])->name('riwayat-pengajuan');
 
 Route::get('/lupa-password', function () {
-    return Inertia::render('LupaPassword');
+    return Inertia::render('Auth/ForgotPassword');
 })->middleware(['auth', 'verified'])->name('lupa-password');
 
 Route::middleware('auth')->group(function () {
@@ -111,7 +98,7 @@ Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(
     Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('statistik-penduduk.index');
     Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('statistik-penduduk.update');
 
-    Route::resource('umkm', Admin\UmkmController::class)->except(['show', 'create', 'edit']);
+    Route::resource('umkm', App\Http\Controllers\Admin\UmkmController::class)->except(['show', 'create', 'edit']);
 });
 
 Route::get('/AdminPengumuman', function () {
@@ -133,7 +120,6 @@ Route::get('/sub-umkm', function () {
 // Route publik untuk melihat pengumuman
 Route::get('/pengumuman', [App\Http\Controllers\PengumumanController::class, 'index'])->name('pengumuman.index');
 Route::get('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\PengumumanController::class, 'show'])->name('pengumuman.show');
-
 Route::get('/berita/{berita:slug}', [App\Http\Controllers\BeritaController::class, 'show'])->name('berita.show');
 
 require __DIR__.'/auth.php';
@@ -165,7 +151,47 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->group(function () {
     Route::resource('pengajuan-surat', App\Http\Controllers\Admin\PengajuanSuratController::class)->only(['index', 'show', 'update']);
     Route::post('pengajuan-surat/{pengajuanSurat}/upload-surat', [App\Http\Controllers\Admin\PengajuanSuratController::class, 'uploadSuratJadi'])->name('admin.pengajuan-surat.upload-surat');
+    
+    Route::resource('umkm', App\Http\Controllers\Admin\UmkmController::class)->except(['show', 'create', 'edit']);
 });
+
+Route::get('/admin/pengajuan-surat', [App\Http\Controllers\Admin\PengajuanSuratController::class, 'index'])->name('admin.pengajuan-surat');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/layanan/status-surat', [App\Http\Controllers\User\StatusSuratController::class, 'index'])->name('layanan.status-surat');
+    Route::resource('pengajuan-surat', App\Http\Controllers\User\PengajuanSuratController::class)->only(['store']);
+});
+
+// Admin file access route
+Route::middleware(['auth', 'admin.file'])->group(function () {
+    Route::get('/admin/files/layanan_surat/{filename}', function ($filename) {
+        $path = 'layanan_surat/' . $filename;
+        
+        if (!Storage::disk('s3_idcloudhost')->exists($path)) {
+            abort(404);
+        }
+        
+        $file = Storage::disk('s3_idcloudhost')->get($path);
+        $mimeType = Storage::disk('s3_idcloudhost')->mimeType($path);
+        
+        return response($file, 200)->header('Content-Type', $mimeType);
+    })->name('admin.files.layanan_surat');
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
