@@ -5,7 +5,7 @@ import HomeIcon from '../../assets/Home/icons/HomeIcon.png';
 import PengajuanIcon from '../../assets/Home/icons/PengajuanLayananIconn.png';
 import PortalIcon from '../../assets/Home/icons/PortalBeritaIconn.png';
 import PengumumanIcon from '../../assets/Home/icons/PengumumanIcon.png';
-import UMKMIcon from '../../assets/Home/icons/UMKMIcon.png';
+import UMKMIconn from '../../assets/Home/icons/UMKMIconn.png';
 
 const SidebarAdmin = () => {
   const { url } = usePage();
@@ -17,7 +17,7 @@ const SidebarAdmin = () => {
     { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/admin/pengumuman' },
     { id: 'StatistikWilayah', label: 'Statistik Wilayah', icon: HomeIcon, route: '/admin/statistik-wilayah' },
     { id: 'StatistikPenduduk', label: 'Statistik Penduduk', icon: HomeIcon, route: '/admin/statistik-penduduk' },
-    { id: 'UMKM', label: 'Potensi UMKM', icon: UMKMIcon, route: '/AdminPotensiUMKM' },
+    { id: 'UMKM', label: 'Potensi UMKM', icon: UMKMIconn, route: '/AdminPotensiUMKM' },
   ];
 
   return (
