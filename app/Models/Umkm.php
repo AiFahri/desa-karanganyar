@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Umkm extends Model
 {
@@ -13,6 +14,7 @@ class Umkm extends Model
 
     protected $fillable = [
         'merk_dagang',
+        'slug',
         'deskripsi_singkat', 
         'deskripsi_lengkap',
         'menu_umkm',
@@ -36,5 +38,16 @@ class Umkm extends Model
         return $this->gambar_path ? 
             'https://is3.cloudhost.id/karanganyar/' . $this->gambar_path : 
             null;
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        
+        static::creating(function ($umkm) {
+            if (empty($umkm->slug)) {
+                $umkm->slug = Str::slug($umkm->merk_dagang);
+            }
+        });
     }
 }
