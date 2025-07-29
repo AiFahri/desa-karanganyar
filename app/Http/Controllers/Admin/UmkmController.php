@@ -3,135 +3,126 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUmkmRequest;
 use App\Models\Umkm;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class UmkmController extends Controller
 {
     public function index()
     {
-        $umkm = Umkm::with('publisher')
-            ->latest()
-            ->paginate(10);
-
-        return Inertia::render('AdminUmkm', [
+        $umkm = Umkm::latest()->paginate(10);
+        
+        return Inertia::render('AdminPotensiUMKM', [
             'umkm' => $umkm
         ]);
     }
 
-    public function store(StoreUmkmRequest $request)
+    public function store(Request $request)
     {
-        $data = $request->validated();
-        
-        // Handle file upload
-        if ($request->hasFile('gambar')) {
-            try {
-                $file = $request->file('gambar');
-                $filename = time() . '_' . str_replace(' ', '_', $data['merk_dagang']) . '.' . $file->getClientOriginalExtension();
-                $path = 'produk/' . $filename;
-                
-                Log::info('Starting UMKM image upload', [
-                    'filename' => $filename,
-                    'path' => $path,
-                    'merk_dagang' => $data['merk_dagang']
-                ]);
-                
-                $disk = Storage::disk('s3_idcloudhost');
-                $result = $disk->put($path, file_get_contents($file->getRealPath()), [
-                    'visibility' => 'public',
-                    'ACL' => 'public-read'
-                ]);
-                
-                if ($result) {
-                    $data['gambar_path'] = $path;
-                    Log::info('UMKM image uploaded successfully', ['path' => $path]);
-                } else {
-                    return redirect()->back()->withErrors(['gambar' => 'Gagal upload gambar ke server']);
-                }
-                
-            } catch (\Exception $e) {
-                Log::error('UMKM Image Upload Exception', [
-                    'message' => $e->getMessage(),
-                    'trace' => $e->getTraceAsString()
-                ]);
-                return redirect()->back()->withErrors(['gambar' => 'Error upload: ' . $e->getMessage()]);
-            }
-        }
-
-        unset($data['gambar']);
-        
-        Umkm::create([
-            ...$data,
-            'published_by' => auth()->id(),
+        $request->validate([
+            'merk_dagang' => 'required|string|max:255',
+            'deskripsi_singkat' => 'required|string',
+            'deskripsi_lengkap' => 'required|string',
+            'menu_umkm' => 'nullable|string',
+            'media_sosial' => 'nullable|array',
+            'media_sosial.*' => 'nullable|url',
+            'kontak_pemesanan' => 'nullable|string|max:50',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ]);
 
-        return redirect()->back()->with('success', 'Data UMKM berhasil ditambahkan.');
-    }
-
-    public function update(StoreUmkmRequest $request, Umkm $umkm)
-    {
-        $data = $request->validated();
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->merk_dagang);
+        $data['published_by'] = auth()->id();
         
-        // Handle file upload
+        // Filter empty media sosial links
+        if (isset($data['media_sosial'])) {
+            $data['media_sosial'] = array_filter($data['media_sosial'], function($link) {
+                return !empty(trim($link));
+            });
+            $data['media_sosial'] = array_values($data['media_sosial']); // Re-index array
+        }
+
+        // Handle image upload
         if ($request->hasFile('gambar')) {
-            try {
-                if ($umkm->gambar_path) {
-                    Storage::disk('s3_idcloudhost')->delete($umkm->gambar_path);
-                    Log::info('Old UMKM image deleted', ['path' => $umkm->gambar_path]);
-                }
-                
-                $file = $request->file('gambar');
-                $filename = time() . '_' . str_replace(' ', '_', $data['merk_dagang']) . '.' . $file->getClientOriginalExtension();
-                $path = 'produk/' . $filename;
-                
-                $disk = Storage::disk('s3_idcloudhost');
-                $result = $disk->put($path, file_get_contents($file->getRealPath()), [
-                    'visibility' => 'public',
-                    'ACL' => 'public-read'
-                ]);
-                
-                if ($result) {
-                    $data['gambar_path'] = $path;
-                    Log::info('New UMKM image uploaded', ['path' => $path]);
-                } else {
-                    return redirect()->back()->withErrors(['gambar' => 'Gagal upload gambar baru']);
-                }
-                
-            } catch (\Exception $e) {
-                Log::error('UMKM Update Image Exception', [
-                    'message' => $e->getMessage(),
-                    'trace' => $e->getTraceAsString()
-                ]);
-                return redirect()->back()->withErrors(['gambar' => 'Error upload: ' . $e->getMessage()]);
+            $file = $request->file('gambar');
+            $filename = 'umkm-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = 'umkm/' . $filename;
+            
+            $disk = Storage::disk('s3_idcloudhost');
+            $result = $disk->put($path, file_get_contents($file->getRealPath()), [
+                'visibility' => 'public'
+            ]);
+            
+            if ($result) {
+                $data['gambar_path'] = $path;
             }
         }
 
         unset($data['gambar']);
-        
-        $umkm->update($data);
+        Umkm::create($data);
 
-        return redirect()->back()->with('success', 'Data UMKM berhasil diperbarui.');
+        return redirect()->back()->with('success', 'UMKM berhasil ditambahkan');
     }
 
-    public function destroy(Umkm $umkm)
+    public function update(Request $request, $slug)
     {
-        try {
-            // Delete image from S3
+        $umkm = Umkm::where('slug', $slug)->firstOrFail();
+        
+        $request->validate([
+            'merk_dagang' => 'required|string|max:255',
+            'deskripsi_singkat' => 'required|string',
+            'deskripsi_lengkap' => 'required|string',
+            'menu_umkm' => 'nullable|string|max:255',
+            'kontak_pemesanan' => 'nullable|string|max:50',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
+        ]);
+
+        $data = $request->all();
+        $data['slug'] = Str::slug($request->merk_dagang);
+
+        // Handle image upload
+        if ($request->hasFile('gambar')) {
+            // Delete old image
             if ($umkm->gambar_path) {
                 Storage::disk('s3_idcloudhost')->delete($umkm->gambar_path);
-                Log::info('UMKM image deleted from S3', ['path' => $umkm->gambar_path]);
             }
+
+            $file = $request->file('gambar');
+            $filename = 'umkm-' . time() . '.' . $file->getClientOriginalExtension();
+            $path = 'umkm/' . $filename;
             
-            $umkm->delete();
+            $disk = Storage::disk('s3_idcloudhost');
+            $result = $disk->put($path, file_get_contents($file->getRealPath()), [
+                'visibility' => 'public'
+            ]);
             
-            return redirect()->back()->with('success', 'Data UMKM berhasil dihapus.');
-            
-        } catch (\Exception $e) {
-            Log::error('UMKM Delete Error', ['message' => $e->getMessage()]);
-            return redirect()->back()->withErrors(['error' => 'Error hapus UMKM: ' . $e->getMessage()]);
+            if ($result) {
+                $data['gambar_path'] = $path;
+            }
         }
+
+        unset($data['gambar']);
+        $umkm->update($data);
+
+        return redirect()->back()->with('success', 'UMKM berhasil diperbarui');
+    }
+
+    public function destroy($slug)
+    {
+        $umkm = Umkm::where('slug', $slug)->firstOrFail();
+        
+        // Delete image
+        if ($umkm->gambar_path) {
+            Storage::disk('s3_idcloudhost')->delete($umkm->gambar_path);
+        }
+        
+        $umkm->delete();
+
+        return redirect()->back()->with('success', 'UMKM berhasil dihapus');
     }
 }
+
+
