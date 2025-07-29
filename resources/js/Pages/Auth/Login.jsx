@@ -8,7 +8,6 @@ import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
 import pic1 from "../../../assets/Login/pic1.jpg"
 import pic2 from "../../../assets/Login/pic2.jpg"
-import pic3 from "../../../assets/Login/pic3.jpg"
 
 
 export default function Login({ status, canResetPassword }) {
@@ -48,8 +47,9 @@ export default function Login({ status, canResetPassword }) {
                 <div className="hidden lg:flex lg:w-1/2 p-8 bg-gradient-to-br from-blue-100 to-white flex-col items-center justify-center space-y-6">
                     <img src={pic1} className="w-full h-64 object-cover bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md" />
                     <div className="grid grid-cols-2 gap-4 w-full">
-                        <img src={pic3} className="w-full h-32 object-cover bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
-                        </img>
+                        <div className="w-full h-32 object-cover bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
+                            Gambar Kegiatan Warga 2
+                        </div>
                         <img src={pic2} className="w-full h-32 object-cover bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
                         </img>
                     </div>

@@ -1,7 +1,7 @@
 import Footer from '@/Components/Footer';
 import Navbar from '@/Components/Navbar';
 import React, { useState } from 'react';
-import { Link, usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
 
 const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
@@ -68,7 +68,6 @@ const EyeOffIcon = () => (
 
 // Main Profile Form Component
 function ForgotPasswordForm() {
-  const user = usePage().props.auth.user;
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -88,8 +87,8 @@ function ForgotPasswordForm() {
             <UserAvatarIcon />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">{user.name}</h1>
-            <p className="text-gray-500">{user.email}</p>
+            <h1 className="text-2xl font-bold text-gray-800">Alexa Rawles</h1>
+            <p className="text-gray-500">alexarawles@gmail.com</p>
           </div>
         </div>
 
@@ -104,7 +103,7 @@ function ForgotPasswordForm() {
               type="text"
               id="nik"
               name="nik"
-              defaultValue={user.nik}
+              defaultValue="3576021301990002"
               readOnly
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
             />
@@ -119,7 +118,7 @@ function ForgotPasswordForm() {
               type="email"
               id="email"
               name="email"
-              defaultValue={user.email}
+              defaultValue="alexarawles@gmail.com"
               readOnly
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
             />
@@ -134,7 +133,7 @@ function ForgotPasswordForm() {
               type="tel"
               id="phone"
               name="phone"
-              defaultValue={user.no_hp}
+              defaultValue="+6281234567890"
               readOnly
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
             />

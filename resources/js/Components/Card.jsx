@@ -5,10 +5,10 @@ import { Link } from "@inertiajs/react";
 
 const Card = ({ title, description, image, slug }) => {
   const cardContent = (
-    <div className="relative min-w-[120px] w-full cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
+    <div className="group relative min-w-[120px] w-full cursor-pointer mb-8 sm:mb-10 md:mb-12 overflow-visible">
       <img src={shadowCard} className="absolute z-0 scale-[1.7] h-full"/>
       <div
-        className="group relative scale-75 lg:scale-100 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-[#A09280] w-[80%] lg:max-w-[400px] mx-auto lg:max-h-[600px] max-w-[300px] max-h-[450px]"
+        className="relative scale-75 lg:scale-100 bg-white rounded-2xl hover:shadow-xl transition-all duration-300 overflow-hidden border-2 border-[#A09280] w-[80%] lg:max-w-[400px] mx-auto lg:max-h-[600px] max-w-[300px] max-h-[450px]"
         style={{ aspectRatio: "2/3" }}
       >
         <div className="relative h-5/6 overflow-hidden">

@@ -268,10 +268,10 @@ const View = () => {
 
                         <div className="space-y-4 md:space-y-6">
                             <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                4. SKCK
+                                4. Surat SKCK
                             </p>
                             <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                5. SKCN
+                                5. Surat SKCN
                             </p>
                             <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
                                 6. Surat Keterangan Kerja

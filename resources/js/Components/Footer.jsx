@@ -135,10 +135,22 @@ const Footer = () => {
                 {/* Footer Bottom */}
                 <div className="border-t border-white/20 pt-6 text-center">
                     <div className="text-sm opacity-80 mb-3">
-                        Made With Love By MMD FILKOM UB 42 2025
+                        Copyright ©2024 Pemerintah Desa Karanganyar. All rights reserved
                     </div>
                     
                     <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm opacity-80">
+                        <Link 
+                            href="#" 
+                            className="hover:opacity-100 transition-opacity duration-300"
+                        >
+                            Privacy Policy
+                        </Link>
+                        <Link 
+                            href="#" 
+                            className="hover:opacity-100 transition-opacity duration-300"
+                        >
+                            Terms & Conditions
+                        </Link>
                     </div>
                 </div>
             </div>

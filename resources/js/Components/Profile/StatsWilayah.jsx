@@ -14,7 +14,7 @@ const StatsWilayah = ({ stats }) => {
     },
     {
       label: 'Jumlah Penduduk',
-      value: `${(stats?.jumlah_penduduk || 7929).toLocaleString('id-ID')} jiwa`,
+      value: `${(stats?.jumlah_penduduk || 8244).toLocaleString('id-ID')} jiwa`,
       color: 'text-[#0272BA] font-semibold'
     },
     {
