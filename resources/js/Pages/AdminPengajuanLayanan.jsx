@@ -130,9 +130,11 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                   <tr>
                     <th className="p-2 border">ID</th>
                     <th className="p-2 border">NAMA</th>
+                    <th className="p-2 border">EMAIL</th>
+                    <th className="p-2 border">NO HP</th>
                     <th className="p-2 border">NIK</th>
                     <th className="p-2 border">JENIS SURAT</th>
-                    <th className="p-2 border">TANGGAL PENGAJUAN</th>
+                    <th className="p-2 border">TANGGAL</th>
                     <th className="p-2 border">STATUS</th>
                     <th className="p-2 border">FOTO KTP</th>
                     <th className="p-2 border">FOTO KK</th>
@@ -142,14 +144,11 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                 <tbody>
                   {pengajuanSurat?.data?.length > 0 ? (
                     pengajuanSurat.data.map((pengajuan, index) => (
-                      <tr
-                        key={pengajuan.id}
-                        style={{
-                          backgroundColor: index % 2 === 0 ? '#FFFFFF80' : '#95CFF4',
-                        }}
-                      >
+                      <tr key={pengajuan.id}>
                         <td className="p-2 border text-center">{pengajuan.id}</td>
                         <td className="p-2 border">{pengajuan.nama_lengkap}</td>
+                        <td className="p-2 border">{pengajuan.user?.email || '-'}</td>
+                        <td className="p-2 border">{pengajuan.user?.no_hp || '-'}</td>
                         <td className="p-2 border">{pengajuan.nik_pemohon}</td>
                         <td className="p-2 border">{pengajuan.surat_jenis?.nama_jenis}</td>
                         <td className="p-2 border text-center">
@@ -160,28 +159,24 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                         </td>
                         <td className="p-2 border text-center">
                           {pengajuan.foto_ktp_url ? (
-                            <a
-                              href={pengajuan.foto_ktp_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <button
+                              onClick={() => window.open(pengajuan.foto_ktp_url, '_blank')}
                               className="px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700 transition-colors"
                             >
                               Lihat KTP
-                            </a>
+                            </button>
                           ) : (
                             <span className="text-gray-500 text-xs">-</span>
                           )}
                         </td>
                         <td className="p-2 border text-center">
                           {pengajuan.foto_kk_url ? (
-                            <a
-                              href={pengajuan.foto_kk_url}
-                              target="_blank"
-                              rel="noopener noreferrer"
+                            <button
+                              onClick={() => window.open(pengajuan.foto_kk_url, '_blank')}
                               className="px-2 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700 transition-colors"
                             >
                               Lihat KK
-                            </a>
+                            </button>
                           ) : (
                             <span className="text-gray-500 text-xs">-</span>
                           )}
@@ -198,7 +193,7 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="9" className="p-4 text-center text-gray-500">
+                      <td colSpan="11" className="p-4 text-center text-gray-500">
                         Tidak ada data pengajuan surat
                       </td>
                     </tr>
@@ -211,18 +206,30 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
             {pengajuanSurat?.links && (
               <div className="mt-4 flex justify-center">
                 <div className="flex space-x-1">
-                  {pengajuanSurat.links.map((link, index) => (
-                    <Link
-                      key={index}
-                      href={link.url}
-                      className={`px-3 py-2 text-sm rounded ${
-                        link.active
-                          ? 'bg-white text-blue-600 font-semibold'
-                          : 'bg-blue-500 text-white hover:bg-blue-400'
-                      } ${!link.url ? 'opacity-50 cursor-not-allowed' : ''}`}
-                      dangerouslySetInnerHTML={{ __html: link.label }}
-                    />
-                  ))}
+                  {pengajuanSurat.links.map((link, index) => {
+                    if (!link.url) {
+                      return (
+                        <span
+                          key={index}
+                          className="px-3 py-2 text-sm rounded opacity-50 cursor-not-allowed bg-blue-500 text-white"
+                          dangerouslySetInnerHTML={{ __html: link.label }}
+                        />
+                      );
+                    }
+                    
+                    return (
+                      <a
+                        key={index}
+                        href={link.url}
+                        className={`px-3 py-2 text-sm rounded ${
+                          link.active
+                            ? 'bg-white text-blue-600 font-semibold'
+                            : 'bg-blue-500 text-white hover:bg-blue-400'
+                        }`}
+                        dangerouslySetInnerHTML={{ __html: link.label }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             )}
@@ -248,61 +255,78 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-4">
-                  <h3 className="font-semibold text-lg border-b pb-2">Informasi Pengajuan</h3>
-                  <div>
-                    <label className="font-medium text-gray-700">Nama Lengkap:</label>
-                    <p className="text-gray-900">{selectedPengajuan.nama_lengkap}</p>
-                  </div>
-                  <div>
-                    <label className="font-medium text-gray-700">NIK:</label>
-                    <p className="text-gray-900">{selectedPengajuan.nik_pemohon}</p>
-                  </div>
-                  <div>
-                    <label className="font-medium text-gray-700">No. KK:</label>
-                    <p className="text-gray-900">{selectedPengajuan.no_kk_pemohon}</p>
-                  </div>
-                  <div>
-                    <label className="font-medium text-gray-700">Jenis Surat:</label>
-                    <p className="text-gray-900">{selectedPengajuan.surat_jenis?.nama_jenis}</p>
-                  </div>
-                  <div>
-                    <label className="font-medium text-gray-700">Tanggal Pengajuan:</label>
-                    <p className="text-gray-900">{new Date(selectedPengajuan.created_at).toLocaleString('id-ID')}</p>
-                  </div>
-                  <div>
-                    <label className="font-medium text-gray-700">Status:</label>
-                    <div className="mt-1">{getStatusBadge(selectedPengajuan.status)}</div>
+                  <h3 className="font-semibold text-lg border-b pb-2">Informasi Pemohon</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="font-medium text-gray-700">Nama Lengkap:</label>
+                      <p className="text-gray-900">{selectedPengajuan.nama_lengkap}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">NIK:</label>
+                      <p className="text-gray-900">{selectedPengajuan.nik_pemohon}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">Email:</label>
+                      <p className="text-gray-900">{selectedPengajuan.user?.email || '-'}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">No HP:</label>
+                      <p className="text-gray-900">{selectedPengajuan.user?.no_hp || '-'}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">No KK:</label>
+                      <p className="text-gray-900">{selectedPengajuan.no_kk_pemohon}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">Jenis Surat:</label>
+                      <p className="text-gray-900">{selectedPengajuan.surat_jenis?.nama_jenis}</p>
+                    </div>
                   </div>
                 </div>
 
                 <div className="space-y-4">
                   <h3 className="font-semibold text-lg border-b pb-2">Dokumen</h3>
-                  <div>
-                    <label className="font-medium text-gray-700">Foto KTP:</label>
-                    {selectedPengajuan.foto_ktp_url && (
-                      <a
-                        href={selectedPengajuan.foto_ktp_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block mt-1 text-blue-600 hover:text-blue-800"
-                      >
-                        Lihat Foto KTP
-                      </a>
-                    )}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="font-medium text-gray-700">Foto KTP:</label>
+                      {selectedPengajuan.foto_ktp_url ? (
+                        <div className="mt-2">
+                          <img 
+                            src={selectedPengajuan.foto_ktp_url} 
+                            alt="KTP" 
+                            className="w-full max-w-xs h-auto border rounded cursor-pointer"
+                            onClick={() => window.open(selectedPengajuan.foto_ktp_url, '_blank')}
+                            onError={(e) => {
+                              e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KTP+Not+Found';
+                            }}
+                          />
+                          <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                        </div>
+                      ) : (
+                        <p className="text-gray-500 mt-1">Tidak ada foto KTP</p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">Foto KK:</label>
+                      {selectedPengajuan.foto_kk_url ? (
+                        <div className="mt-2">
+                          <img 
+                            src={selectedPengajuan.foto_kk_url} 
+                            alt="KK" 
+                            className="w-full max-w-xs h-auto border rounded cursor-pointer"
+                            onClick={() => window.open(selectedPengajuan.foto_kk_url, '_blank')}
+                            onError={(e) => {
+                              e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KK+Not+Found';
+                            }}
+                          />
+                          <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                        </div>
+                      ) : (
+                        <p className="text-gray-500 mt-1">Tidak ada foto KK</p>
+                      )}
+                    </div>
                   </div>
-                  <div>
-                    <label className="font-medium text-gray-700">Foto KK:</label>
-                    {selectedPengajuan.foto_kk_url && (
-                      <a
-                        href={selectedPengajuan.foto_kk_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block mt-1 text-blue-600 hover:text-blue-800"
-                      >
-                        Lihat Foto KK
-                      </a>
-                    )}
-                  </div>
+                  
                   {selectedPengajuan.surat_jadi_url && (
                     <div>
                       <label className="font-medium text-gray-700">Surat Jadi:</label>
@@ -423,5 +447,11 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
 };
 
 export default AdminPengajuanLayanan;
+
+
+
+
+
+
 
 
