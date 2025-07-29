@@ -41,7 +41,8 @@ class PengajuanSuratController extends Controller
                 
                 $disk = Storage::disk('s3_idcloudhost');
                 $result = $disk->put($ktpPath, file_get_contents($ktpFile->getRealPath()), [
-                    'visibility' => 'private'
+                    'visibility' => 'public', // Change to public for admin access
+                    'ACL' => 'public-read'
                 ]);
                 
                 if ($result) {
@@ -59,7 +60,8 @@ class PengajuanSuratController extends Controller
                 
                 $disk = Storage::disk('s3_idcloudhost');
                 $result = $disk->put($kkPath, file_get_contents($kkFile->getRealPath()), [
-                    'visibility' => 'private'
+                    'visibility' => 'public', // Change to public for admin access
+                    'ACL' => 'public-read'
                 ]);
                 
                 if ($result) {
@@ -88,7 +90,8 @@ class PengajuanSuratController extends Controller
                 'surat_jenis' => $pengajuan->suratJenis->nama_jenis
             ]);
 
-            return redirect()->route('riwayat-pengajuan')->with('success', 'Pengajuan surat berhasil dikirim. Anda akan mendapat notifikasi email ketika surat selesai diproses.');
+            // Redirect to status page with success message
+            return redirect('/layanan/status-surat')->with('success', 'Pengajuan surat berhasil dikirim');
 
         } catch (\Exception $e) {
             Log::error('Pengajuan Surat Error', [
@@ -104,11 +107,30 @@ class PengajuanSuratController extends Controller
         $pengajuanSurat = PengajuanSurat::with('suratJenis')
             ->where('user_id', auth()->id())
             ->latest()
-            ->paginate(10);
+            ->get();
 
-        return Inertia::render('RiwayatPengajuan', [
+        return inertia('RiwayatPengajuan', [
             'pengajuanSurat' => $pengajuanSurat
         ]);
     }
+
+    public function status()
+    {
+        $latestPengajuan = PengajuanSurat::with('suratJenis')
+            ->where('user_id', auth()->id())
+            ->latest()
+            ->first();
+
+        return inertia('SubLayananStatusSurat', [
+            'pengajuan' => $latestPengajuan
+        ]);
+    }
 }
+
+
+
+
+
+
+
 
