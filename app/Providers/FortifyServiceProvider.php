@@ -28,6 +28,20 @@ class FortifyServiceProvider extends ServiceProvider
             return Inertia::render('Auth/Login', [
                 'canResetPassword' => Route::has('password.request'),
                 'status' => session('status'),
+                'redirect' => request('redirect'),
+            ]);
+        });
+
+        Fortify::requestPasswordResetLinkView(function () {
+            return Inertia::render('Auth/ForgotPassword', [
+                'status' => session('status'),
+            ]);
+        });
+
+        Fortify::resetPasswordView(function (Request $request) {
+            return Inertia::render('Auth/ResetPassword', [
+                'email' => $request->email,
+                'token' => $request->route('token'),
             ]);
         });
 
@@ -53,25 +67,38 @@ class FortifyServiceProvider extends ServiceProvider
             if (auth()->user() && auth()->user()->isAdmin()) {
                 return '/admin/dashboard';
             }
-            return '/dashboard';
+            return '/';
         });
 
         RateLimiter::for('login', function (Request $request) {
             return Limit::perMinute(5)->by($request->input(Fortify::username()) . $request->ip());
         });
 
-        // Custom login response
+        // Custom login response dengan redirect handling
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request)
             {
+                $intended = $request->session()->get('url.intended');
+                $redirect = $request->input('redirect');
+                
                 if (auth()->user()->isAdmin()) {
                     return redirect('/admin/dashboard');
                 }
-                return redirect('/dashboard');
+                
+                // Prioritas: intended URL > redirect parameter > default dashboard
+                if ($intended) {
+                    return redirect($intended);
+                } elseif ($redirect) {
+                    return redirect($redirect);
+                }
+                
+                return redirect('/');
             }
         });
     }
 }
+
+
 
 
 
