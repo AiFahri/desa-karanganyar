@@ -205,7 +205,7 @@ const AdminPotensiUMKM = ({ umkm }) => {
 
                                     <div>
                                         <label className="text-[18px] font-semibold mb-2 block">
-                                            Deskripsi Singkat
+                                            Keterangan
                                         </label>
                                         <textarea
                                             value={data.deskripsi_singkat}
