@@ -87,7 +87,7 @@ const PortalBerita = ({
                         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[0%] top-[200%]"></div>
                         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%] top-[300%]"></div>
 
-                        <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-4 lg:pt-32 justify-items-center max-w-[1400px] h-full max-h-full mx-auto mb-44">
+                        <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-4 lg:pt-32 justify-items-center max-w-[70vw] w-full h-full max-h-full mx-auto mb-44">
                             {berita?.data?.length > 0 ? (
                                 berita.data.map((item) => (
                                     <ItemBerita

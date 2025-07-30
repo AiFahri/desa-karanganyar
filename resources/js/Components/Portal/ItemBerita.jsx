@@ -14,7 +14,7 @@ const ItemBerita = ({
 }) => {
     return (
         <Animation delay={0.2}>
-            <div className="font-sans border border-gray-200 w-full rounded-lg bg-white my-4 flex flex-col lg:flex-row gap-6 lg:gap-10 p-6 lg:p-12 lg:items-center">
+            <div className="font-sans border border-gray-200 min-w-full rounded-lg bg-white my-4 flex flex-col lg:flex-row gap-6 lg:gap-10 p-6 lg:p-12 lg:items-center">
                 
                 <div className="w-full lg:w-1/3 flex-shrink-0">
                     <img
