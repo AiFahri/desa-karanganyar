@@ -11,6 +11,7 @@ import pic1 from "../../../assets/Login/pic1.jpg";
 import pic2 from "../../../assets/Login/pic2.jpg";
 import pic3 from "../../../assets/Login/pic3.jpg";
 import Animation from "@/Components/Animation";
+import { validateNIK, isValidEmail } from "../../utils/validation";
 
 export default function Login({ status, canResetPassword, redirect }) {
     const [showPassword, setShowPassword] = useState(false);
@@ -32,13 +33,35 @@ export default function Login({ status, canResetPassword, redirect }) {
         setShowPassword(!showPassword);
     };
 
+    const handleUsernameChange = (e) => {
+        let value = e.target.value;
+        
+        if (/^\d+$/.test(value)) {
+            value = validateNIK(value);
+        }
+        
+        setData("username", value);
+    };
+
     const submit = (e) => {
         e.preventDefault();
+        
+        const isEmail = data.username.includes('@');
+        const isNIK = /^\d+$/.test(data.username);
+        
+        if (isEmail && !isValidEmail(data.username)) {
+            return;
+        }
+        
+        if (isNIK && data.username.length !== 16) {
+            return;
+        }
+        
         post("/login");
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout description="Silakan masuk dulu untuk bergabung di Website Desa Karanganyar dan temukan berbagai informasi serta layanan desa secara mudah">
             <Head title="Log in" />
 
             {status && (
@@ -121,9 +144,7 @@ export default function Login({ status, canResetPassword, redirect }) {
                                     autoComplete="username"
                                     isFocused={true}
                                     placeholder="Masukkan NIK sesuai KTP / Masukkan alamat email"
-                                    onChange={(e) =>
-                                        setData("username", e.target.value)
-                                    }
+                                    onChange={handleUsernameChange}
                                 />
                                 <InputError
                                     message={errors.username}
@@ -223,3 +244,6 @@ export default function Login({ status, canResetPassword, redirect }) {
         </GuestLayout>
     );
 }
+
+
+
