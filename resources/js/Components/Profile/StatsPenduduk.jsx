@@ -61,12 +61,13 @@ const StatItem = ({ icon, value, label, bgColor }) => (
             <p className="md:text-[24px] text-[14px] font-semibold mt-3 text-black md:self-center self-start">
                 {value.toLocaleString("id-ID")}
             </p>
-            <p className="md:text-[14px] text-[11px] font-semibold text-black">
+            <p className="md:text-[14px] text-[12px] self-start md:self-center font-semibold text-black">
                 {label}
             </p>
         </div>
     </div>
 );
+
 
 export const PopulationStats = ({ stats }) => {
     const chartData = [
@@ -86,7 +87,7 @@ export const PopulationStats = ({ stats }) => {
         <Animation delay={0.2}>
             <div className="bg-[#FDFCFC] min-h-screen p-4 sm:p-6 md:p-8 font-sans">
                 <div className="max-w-7xl mx-auto bg-white p-6 sm:p-8 rounded-2xl shadow-lg border border-gray-200">
-                    {/* Header Section */}
+                  
                     <div className="text-center mb-10">
                         <h1 className="text-3xl sm:text-4xl font-bold text-gray-800">
                             Informasi Statistik Penduduk Desa{" "}
@@ -101,9 +102,8 @@ export const PopulationStats = ({ stats }) => {
                         </p>
                     </div>
 
-                    {/* Main Content: Chart and Icons */}
                     <div className="flex flex-col lg:flex-row items-center lg:items-start gap-10 lg:gap-8">
-                        {/* Left Side: Chart */}
+               
                         <div className="w-full lg:w-3/5">
                             <div className="bg-white rounded-2xl shadow-md border border-gray-100 overflow-hidden">
                                 <div className="bg-blue-600 p-5 text-white">
@@ -183,7 +183,7 @@ export const PopulationStats = ({ stats }) => {
                             </div>
                         </div>
 
-                        {/* Right Side: Icons */}
+                 
                         <div className="w-full lg:w-2/5 flex items-center justify-center">
                             <div className="grid grid-cols-2 gap-x-8 gap-y-12 pt-8">
                                 <StatItem

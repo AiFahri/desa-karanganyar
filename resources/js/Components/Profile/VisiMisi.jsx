@@ -12,6 +12,7 @@ const VisiMisi = () => {
                 }}
             >
                 <div className="w-full max-w-4xl space-y-8">
+                  
                     <div className="overflow-hidden flex flex-col items-center">
                         <div
                             className=" md:w-[600px] md:h-[100px] w-[250px] h-[44px] text-[#0272BA] text-center justify-center  border border-gray-300"

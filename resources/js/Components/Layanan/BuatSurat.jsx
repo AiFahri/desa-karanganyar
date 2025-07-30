@@ -94,6 +94,7 @@ const BuatSurat = ({ suratJenis }) => {
     const selectedJenis = suratJenis?.find(
         (jenis) => jenis.id == data.surat_jenis_id
     );
+    console.log("selectedJenis:", selectedJenis); 
 
     return (
         <Animation delay={0.2}>
@@ -105,6 +106,7 @@ const BuatSurat = ({ suratJenis }) => {
                     </h1>
                     <hr className="pb-[40px] border-t border-[#00000066]" />
 
+               
                     {Object.keys(errors).length > 0 && (
                         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
                             <h3 className="text-red-800 font-semibold mb-2">
@@ -120,7 +122,9 @@ const BuatSurat = ({ suratJenis }) => {
 
                     <form onSubmit={handleSubmit}>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                           
                             <div className="space-y-6">
+                                
                                 <div>
                                     <label className="block text-black text-[18px] font-semibold mb-2">
                                         Nama Lengkap
@@ -140,6 +144,7 @@ const BuatSurat = ({ suratJenis }) => {
                                     />
                                 </div>
 
+                          
                                 <div>
                                     <label className="block text-black text-[18px] font-semibold mb-2">
                                         Nomor Induk Kependudukan (NIK)
@@ -165,6 +170,7 @@ const BuatSurat = ({ suratJenis }) => {
                                     )}
                                 </div>
 
+                          
                                 <div>
                                     <label className="block text-black text-[18px] font-semibold mb-2">
                                         Nomor Kartu Keluarga
@@ -256,7 +262,9 @@ const BuatSurat = ({ suratJenis }) => {
                                 </div>
                             </div>
 
+                       
                             <div className="space-y-6">
+                               
                                 <div>
                                     <label className="block text-black text-[18px] font-semibold mb-2">
                                         Unggah Foto KTP
@@ -312,6 +320,7 @@ const BuatSurat = ({ suratJenis }) => {
                                     </div>
                                 </div>
 
+                         
                                 <div>
                                     <label className="block text-black text-[18px] font-semibold mb-2">
                                         Unggah Foto KK
@@ -367,6 +376,7 @@ const BuatSurat = ({ suratJenis }) => {
                                     </div>
                                 </div>
 
+                              
                                 {progress && (
                                     <div className="w-full bg-gray-200 rounded-full h-2">
                                         <div
@@ -383,6 +393,7 @@ const BuatSurat = ({ suratJenis }) => {
                             </div>
                         </div>
 
+                   
                         <div className="lg:col-span-2 flex justify-center lg:justify-end mt-8">
                             <motion.button
                                 type="submit"

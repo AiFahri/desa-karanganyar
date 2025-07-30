@@ -31,11 +31,13 @@ const Home = ({ statistikWilayah, umkmData }) => {
             <PotensiSection
                 id={"potensiGan1"}
                 headerTitle={"Potensi Alam"}
+                
                 umkmData={dummyPotensi}
             />
             <PotensiSection
                 id={"potensiGan2"}
                 headerTitle={"Potensi UMKM"}
+                deskripsi={"Pilih salah satu UMKM pada daftar di bawah untuk mengetahui informasi lebih lengkap."}
                 umkmData={umkmData}
             />
             <BumDesa id={"bumDesa"} headerTitle={"BUM Desa"} />

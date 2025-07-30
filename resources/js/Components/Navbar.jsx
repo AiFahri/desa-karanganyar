@@ -141,11 +141,11 @@ const Navbar = ({ user }) => {
 
                         <div className="border-t border-gray-600 my-4"></div>
                         {user ? (
-                           <div className="px-2 space-y-2">
-                             <Link href={route("profile.edit")} className="block px-3 py-2 text-white hover:bg-gray-700 rounded-md">
+                           <div className="px-[25%] space-y-2 flex flex-row items-center justify-between w-full">
+                             <Link href={route("profile.edit")} className=" px-4 py-2  text-white hover:bg-gray-700 rounded-md">
                                 Profile
                              </Link>
-                             <Link href={route("logout")} method="post" as="button" className="block w-full text-left px-3 py-2 text-white hover:bg-gray-700 rounded-md">
+                             <Link href={route("logout")} method="post" as="button" className=" text-left px-4 py-2 text-white hover:bg-gray-700 rounded-md">
                                 Log Out
                              </Link>
                            </div>
