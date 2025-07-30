@@ -75,23 +75,6 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
     );
   };
 
-  const renderFileButton = (fileUrl, fileName, buttonText, buttonColor) => {
-    if (!fileUrl) {
-      return <span className="text-gray-500 text-xs">-</span>;
-    }
-
-    const isPdf = fileUrl.toLowerCase().includes('.pdf');
-    
-    return (
-      <button
-        onClick={() => window.open(fileUrl, '_blank')}
-        className={`px-2 py-1 ${buttonColor} text-white rounded text-xs hover:opacity-80 transition-colors`}
-      >
-        {isPdf ? `📄 ${buttonText}` : `👁️ ${buttonText}`}
-      </button>
-    );
-  };
-
   return (
     <div className="min-h-screen bg-[#EBE6E6] font-sans flex flex-col">
       <NavbarAdmin toggleSidebar={toggleSidebar} />
@@ -100,142 +83,371 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
         {sidebarOpen && <SidebarAdmin />}
 
         <main className="flex-1 w-full bg-[#EBE6E6] p-4 sm:p-6 overflow-x-auto">
-  <div className="mb-6">
-    <h1 className="text-2xl font-bold text-gray-800 mb-4">Pengajuan Layanan Surat</h1>
+          <div className="mb-6">
+            <h1 className="text-2xl font-bold text-gray-800 mb-4">Pengajuan Layanan Surat</h1>
 
-    <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 mb-4">
-      <input
-        type="text"
-        name="search"
-        placeholder="Cari berdasarkan nama atau NIK..."
-        defaultValue={filters?.search || ''}
-        className="w-full sm:w-auto flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <select
-        name="status"
-        defaultValue={filters?.status || ''}
-        className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        <option value="">Semua Status</option>
-        <option value="sedang diproses">Sedang Diproses</option>
-        <option value="selesai">Selesai</option>
-        <option value="ditolak">Ditolak</option>
-      </select>
-      <button
-        type="submit"
-        className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-      >
-        Cari
-      </button>
-    </form>
-  </div>
+            <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-4 mb-4">
+              <input
+                type="text"
+                name="search"
+                placeholder="Cari berdasarkan nama atau NIK..."
+                defaultValue={filters?.search || ''}
+                className="w-full sm:w-auto flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <select
+                name="status"
+                defaultValue={filters?.status || ''}
+                className="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              >
+                <option value="">Semua Status</option>
+                <option value="sedang diproses">Sedang Diproses</option>
+                <option value="selesai">Selesai</option>
+                <option value="ditolak">Ditolak</option>
+              </select>
+              <button
+                type="submit"
+                className="w-full sm:w-auto px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Cari
+              </button>
+            </form>
+          </div>
 
-  <section className="rounded p-4 shadow text-white" style={{ background: '#0272BA' }}>
-    <h2 className="font-bold text-lg mb-3">Daftar Pengajuan Surat</h2>
+          <section className="rounded p-4 shadow text-white" style={{ background: '#0272BA' }}>
+            <h2 className="font-bold text-lg mb-3">Daftar Pengajuan Surat</h2>
 
-    {/* TABEL RESPONSIF */}
-    <div className="w-full overflow-x-auto text-sm">
-      <table className="min-w-full text-blue-900 rounded overflow-hidden">
-        <thead style={{ backgroundColor: '#FFFFFF80' }} className="text-white">
-          <tr>
-            <th className="p-2 border">ID</th>
-            <th className="p-2 border">NAMA</th>
-            <th className="p-2 border hidden md:table-cell">EMAIL</th>
-            <th className="p-2 border hidden md:table-cell">NO HP</th>
-            <th className="p-2 border hidden md:table-cell">NIK</th>
-            <th className="p-2 border">JENIS SURAT</th>
-            <th className="p-2 border">TANGGAL</th>
-            <th className="p-2 border">STATUS</th>
-            <th className="p-2 border">KTP</th>
-            <th className="p-2 border">KK</th>
-            <th className="p-2 border">AKSI</th>
-          </tr>
-        </thead>
-        <tbody>
-          {pengajuanSurat?.data?.length > 0 ? (
-            pengajuanSurat.data.map((p) => (
-              <tr key={p.id} className="bg-white text-sm md:text-base">
-                <td className="p-2 border text-center">{p.id}</td>
-                <td className="p-2 border">{p.nama_lengkap}</td>
-                <td className="p-2 border hidden md:table-cell">{p.user?.email || '-'}</td>
-                <td className="p-2 border hidden md:table-cell">{p.user?.no_hp || '-'}</td>
-                <td className="p-2 border hidden md:table-cell">{p.nik_pemohon}</td>
-                <td className="p-2 border">{p.surat_jenis?.nama_jenis}</td>
-                <td className="p-2 border text-center">{new Date(p.created_at).toLocaleDateString('id-ID')}</td>
-                <td className="p-2 border text-center">{getStatusBadge(p.status)}</td>
-                <td className="p-2 border text-center">
-                  {p.foto_ktp_url ? (
-                    <button
-                      onClick={() => window.open(p.foto_ktp_url, '_blank')}
-                      className="px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700"
+            <div className="w-full overflow-x-auto text-sm">
+              <table className="min-w-full text-blue-900 rounded overflow-hidden">
+                <thead style={{ backgroundColor: '#FFFFFF80' }} className="text-white">
+                  <tr>
+                    <th className="p-2 border">ID</th>
+                    <th className="p-2 border">NAMA</th>
+                    <th className="p-2 border hidden md:table-cell">EMAIL</th>
+                    <th className="p-2 border hidden md:table-cell">NO HP</th>
+                    <th className="p-2 border hidden md:table-cell">NIK</th>
+                    <th className="p-2 border">JENIS SURAT</th>
+                    <th className="p-2 border">TANGGAL</th>
+                    <th className="p-2 border">STATUS</th>
+                    <th className="p-2 border">KTP</th>
+                    <th className="p-2 border">KK</th>
+                    <th className="p-2 border">AKSI</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {pengajuanSurat?.data?.length > 0 ? (
+                    pengajuanSurat.data.map((p) => (
+                      <tr key={p.id} className="bg-white text-sm md:text-base">
+                        <td className="p-2 border text-center">{p.id}</td>
+                        <td className="p-2 border">{p.nama_lengkap}</td>
+                        <td className="p-2 border hidden md:table-cell">{p.user?.email || '-'}</td>
+                        <td className="p-2 border hidden md:table-cell">{p.user?.no_hp || '-'}</td>
+                        <td className="p-2 border hidden md:table-cell">{p.nik_pemohon}</td>
+                        <td className="p-2 border">{p.surat_jenis?.nama_jenis}</td>
+                        <td className="p-2 border text-center">{new Date(p.created_at).toLocaleDateString('id-ID')}</td>
+                        <td className="p-2 border text-center">{getStatusBadge(p.status)}</td>
+                        <td className="p-2 border text-center">
+                          {p.foto_ktp_url ? (
+                            <button
+                              onClick={() => window.open(p.foto_ktp_url, '_blank')}
+                              className="px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700"
+                            >
+                              Lihat KTP
+                            </button>
+                          ) : <span className="text-xs text-gray-400">-</span>}
+                        </td>
+                        <td className="p-2 border text-center">
+                          {p.foto_kk_url ? (
+                            <button
+                              onClick={() => window.open(p.foto_kk_url, '_blank')}
+                              className="px-2 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700"
+                            >
+                              Lihat KK
+                            </button>
+                          ) : <span className="text-xs text-gray-400">-</span>}
+                        </td>
+                        <td className="p-2 border text-center">
+                          <button
+                            onClick={() => openDetailModal(p)}
+                            className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                          >
+                            Detail
+                          </button>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan="11" className="p-4 text-center text-white">Tidak ada data</td>
+                    </tr>
+                  )}
+                </tbody>
+              </table>
+            </div>
+
+            {pengajuanSurat?.links && (
+              <div className="mt-4 flex justify-center overflow-x-auto text-sm">
+                <div className="flex space-x-1">
+                  {pengajuanSurat.links.map((link, index) =>
+                    !link.url ? (
+                      <span key={index}
+                        className="px-3 py-2 rounded opacity-50 bg-blue-500 text-white cursor-not-allowed"
+                        dangerouslySetInnerHTML={{ __html: link.label }}
+                      />
+                    ) : (
+                      <a key={index}
+                        href={link.url}
+                        className={`px-3 py-2 rounded ${
+                          link.active ? 'bg-white text-blue-600 font-semibold' : 'bg-blue-500 text-white hover:bg-blue-400'
+                        }`}
+                        dangerouslySetInnerHTML={{ __html: link.label }}
+                      />
+                    )
+                  )}
+                </div>
+              </div>
+            )}
+          </section>
+        </main>
+
+        {/* === Modal Detail === */}
+        {showDetailModal && selectedPengajuan && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Detail Pengajuan Surat</h2>
+                <button
+                  onClick={closeDetailModal}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-lg border-b pb-2">Informasi Pemohon</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="font-medium text-gray-700">Nama Lengkap:</label>
+                      <p className="text-gray-900">{selectedPengajuan.nama_lengkap}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">NIK:</label>
+                      <p className="text-gray-900">{selectedPengajuan.nik_pemohon}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">Email:</label>
+                      <p className="text-gray-900">{selectedPengajuan.user?.email || '-'}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">No HP:</label>
+                      <p className="text-gray-900">{selectedPengajuan.user?.no_hp || '-'}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">No KK:</label>
+                      <p className="text-gray-900">{selectedPengajuan.no_kk_pemohon}</p>
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">Jenis Surat:</label>
+                      <p className="text-gray-900">{selectedPengajuan.surat_jenis?.nama_jenis}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <h3 className="font-semibold text-lg border-b pb-2">Dokumen</h3>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="font-medium text-gray-700">Foto KTP:</label>
+                      {selectedPengajuan.foto_ktp_url ? (
+                        <div className="mt-2">
+                          {selectedPengajuan.foto_ktp_url.toLowerCase().includes('.pdf') ? (
+                            <div className="border rounded p-4 text-center">
+                              <div className="text-4xl mb-2">📄</div>
+                              <p className="text-sm text-gray-600 mb-2">File PDF KTP</p>
+                              <button
+                                onClick={() => window.open(selectedPengajuan.foto_ktp_url, '_blank')}
+                                className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
+                              >
+                                Buka PDF
+                              </button>
+                            </div>
+                          ) : (
+                            <>
+                              <img 
+                                src={selectedPengajuan.foto_ktp_url} 
+                                alt="KTP" 
+                                className="w-full max-w-xs h-auto border rounded cursor-pointer"
+                                onClick={() => window.open(selectedPengajuan.foto_ktp_url, '_blank')}
+                                onError={(e) => {
+                                  e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KTP+Not+Found';
+                                }}
+                              />
+                              <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-gray-500 mt-1">Tidak ada foto KTP</p>
+                      )}
+                    </div>
+                    <div>
+                      <label className="font-medium text-gray-700">Foto KK:</label>
+                      {selectedPengajuan.foto_kk_url ? (
+                        <div className="mt-2">
+                          {selectedPengajuan.foto_kk_url.toLowerCase().includes('.pdf') ? (
+                            <div className="border rounded p-4 text-center">
+                              <div className="text-4xl mb-2">📄</div>
+                              <p className="text-sm text-gray-600 mb-2">File PDF KK</p>
+                              <button
+                                onClick={() => window.open(selectedPengajuan.foto_kk_url, '_blank')}
+                                className="px-3 py-1 bg-purple-600 text-white rounded text-sm hover:bg-purple-700"
+                              >
+                                Buka PDF
+                              </button>
+                            </div>
+                          ) : (
+                            <>
+                              <img 
+                                src={selectedPengajuan.foto_kk_url} 
+                                alt="KK" 
+                                className="w-full max-w-xs h-auto border rounded cursor-pointer"
+                                onClick={() => window.open(selectedPengajuan.foto_kk_url, '_blank')}
+                                onError={(e) => {
+                                  e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KK+Not+Found';
+                                }}
+                              />
+                              <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                            </>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-gray-500 mt-1">Tidak ada foto KK</p>
+                      )}
+                    </div>
+                  </div>
+                  
+                  {selectedPengajuan.surat_jadi_url && (
+                    <div>
+                      <label className="font-medium text-gray-700">Surat Jadi:</label>
+                      <a
+                        href={selectedPengajuan.surat_jadi_url}
+                        className="block mt-1 text-blue-600 hover:text-blue-800"
+                      >
+                        Download Surat
+                      </a>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <form onSubmit={handleUpdateStatus} className="mt-6 border-t pt-4">
+                <h3 className="font-semibold text-lg mb-4">Update Status</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block font-medium text-gray-700 mb-2">Status:</label>
+                    <select
+                      value={data.status}
+                      onChange={(e) => setData('status', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
-                      Lihat KTP
-                    </button>
-                  ) : <span className="text-xs text-gray-400">-</span>}
-                </td>
-                <td className="p-2 border text-center">
-                  {p.foto_kk_url ? (
-                    <button
-                      onClick={() => window.open(p.foto_kk_url, '_blank')}
-                      className="px-2 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700"
-                    >
-                      Lihat KK
-                    </button>
-                  ) : <span className="text-xs text-gray-400">-</span>}
-                </td>
-                <td className="p-2 border text-center">
+                      <option value="sedang diproses">Sedang Diproses</option>
+                      <option value="selesai">Selesai</option>
+                      <option value="ditolak">Ditolak</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block font-medium text-gray-700 mb-2">Catatan Admin:</label>
+                    <textarea
+                      value={data.catatan_admin}
+                      onChange={(e) => setData('catatan_admin', e.target.value)}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      rows="3"
+                      placeholder="Catatan untuk pemohon..."
+                    />
+                  </div>
+                </div>
+                <div className="flex gap-4 mt-4">
                   <button
-                    onClick={() => openDetailModal(p)}
-                    className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm"
+                    type="submit"
+                    disabled={processing}
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50"
                   >
-                    Detail
+                    {processing ? 'Menyimpan...' : 'Update Status'}
                   </button>
-                </td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td colSpan="11" className="p-4 text-center text-white">Tidak ada data</td>
-            </tr>
-          )}
-        </tbody>
-      </table>
-    </div>
-
-    {/* Pagination */}
-    {pengajuanSurat?.links && (
-      <div className="mt-4 flex justify-center overflow-x-auto text-sm">
-        <div className="flex space-x-1">
-          {pengajuanSurat.links.map((link, index) =>
-            !link.url ? (
-              <span key={index}
-                className="px-3 py-2 rounded opacity-50 bg-blue-500 text-white cursor-not-allowed"
-                dangerouslySetInnerHTML={{ __html: link.label }}
-              />
-            ) : (
-              <a key={index}
-                href={link.url}
-                className={`px-3 py-2 rounded ${
-                  link.active ? 'bg-white text-blue-600 font-semibold' : 'bg-blue-500 text-white hover:bg-blue-400'
-                }`}
-                dangerouslySetInnerHTML={{ __html: link.label }}
-              />
-            )
-          )}
+                  <button
+                    type="button"
+                    onClick={() => setShowUploadModal(true)}
+                    className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"
+                  >
+                    Upload Surat Jadi
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      )}
+
+        {/* === Modal Upload === */}
+        {showUploadModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg max-w-md w-full">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-bold">Upload Surat Jadi</h2>
+                <button
+                  onClick={() => setShowUploadModal(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+
+              <form onSubmit={handleUploadSurat}>
+                <div className="mb-4">
+                  <label className="block font-medium text-gray-700 mb-2">File Surat (PDF/DOC/DOCX):</label>
+                  <input
+                    type="file"
+                    accept=".pdf,.doc,.docx"
+                    onChange={(e) => setData('file_surat', e.target.files[0])}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required
+                  />
+                  {errors.file_surat && (
+                    <p className="text-red-500 text-sm mt-1">{errors.file_surat}</p>
+                  )}
+                </div>
+                <div className="flex gap-4">
+                  <button
+                    type="submit"
+                    disabled={processing}
+                    className="flex-1 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 disabled:opacity-50"
+                  >
+                    {processing ? 'Mengupload...' : 'Upload'}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setShowUploadModal(false)}
+                    className="flex-1 px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-gray-700"
+                  >
+                    Batal
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
       </div>
-    )}
-  </section>
-</main>
-
-      </div>
-
-      {/* Modal detail dan upload tetap seperti yang kamu kirim */}
-      {/* Sudah responsif karena menggunakan grid-cols-1 di mobile */}
-
-      {/* Modal logic detail dan upload tetap disisipkan seperti sebelumnya */}
     </div>
   );
 };
 
 export default AdminPengajuanLayanan;
+
