@@ -10,9 +10,13 @@ import pic1 from "../../../assets/Login/pic1.jpg";
 import pic2 from "../../../assets/Login/pic2.jpg";
 import pic3 from "../../../assets/Login/pic3.jpg";
 import Animation from "@/Components/Animation";
+import { validateNIK, validatePhoneNumber, isValidNIK, isValidPhoneNumber, isValidEmail } from "../../utils/validation";
 
 export default function Register() {
     const [showPassword, setShowPassword] = useState(false);
+    const [nikError, setNikError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [emailError, setEmailError] = useState('');
 
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
@@ -22,6 +26,39 @@ export default function Register() {
         password: "",
         password_confirmation: "",
     });
+
+    const handleNikChange = (e) => {
+        const validatedNik = validateNIK(e.target.value);
+        setData("nik", validatedNik);
+        
+        if (validatedNik.length > 0 && validatedNik.length < 16) {
+            setNikError('NIK harus 16 digit');
+        } else if (validatedNik.length === 16) {
+            setNikError('');
+        }
+    };
+
+    const handlePhoneChange = (e) => {
+        const validatedPhone = validatePhoneNumber(e.target.value);
+        setData("no_hp", validatedPhone);
+        
+        if (validatedPhone.length > 0 && !isValidPhoneNumber(validatedPhone)) {
+            setPhoneError('Format nomor HP tidak valid');
+        } else {
+            setPhoneError('');
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        const email = e.target.value;
+        setData("email", email);
+        
+        if (email.length > 0 && !isValidEmail(email)) {
+            setEmailError('Format email tidak valid (harus ada @)');
+        } else {
+            setEmailError('');
+        }
+    };
 
     useEffect(() => {
         return () => {
@@ -35,11 +72,27 @@ export default function Register() {
 
     const submit = (e) => {
         e.preventDefault();
+        
+        if (!isValidNIK(data.nik)) {
+            setNikError('NIK harus tepat 16 digit');
+            return;
+        }
+        
+        if (!isValidPhoneNumber(data.no_hp)) {
+            setPhoneError('Format nomor HP tidak valid');
+            return;
+        }
+
+        if (!isValidEmail(data.email)) {
+            setEmailError('Format email tidak valid (harus ada @)');
+            return;
+        }
+        
         post("/register");
     };
 
     return (
-        <GuestLayout>
+        <GuestLayout description="Silakan daftar terlebih dahulu untuk bergabung di Website Desa Karanganyar dan nikmati berbagai layanan desa">
             <Head title="Register" />
             <Animation delay={0.2}>
                 <div className="flex flex-col lg:flex-row w-full max-w-6xl bg-white shadow-xl rounded-lg overflow-hidden">
@@ -69,7 +122,6 @@ export default function Register() {
                         </div>
                     </div>
 
-                    {/* Desktop Images - Show on large screens */}
                     <div className="hidden lg:flex lg:w-1/2 p-8 bg-gradient-to-br from-blue-100 to-white flex-col items-center justify-center space-y-6">
                         <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
                             <img
@@ -96,7 +148,6 @@ export default function Register() {
                         </div>
                     </div>
 
-                    {/* Form */}
                     <div className="w-full lg:w-1/2 p-8 sm:p-10 bg-blue-50 flex flex-col justify-center">
                         <h2 className="text-2xl font-bold text-blue-800 text-center mb-6">
                             Kalau belum punya akun, Daftar Dulu yuk!
@@ -135,15 +186,15 @@ export default function Register() {
                                     className="mt-1 block w-full"
                                     autoComplete="off"
                                     placeholder="Masukkan NIK sesuai KTP (16 digit)"
-                                    onChange={(e) =>
-                                        setData("nik", e.target.value)
-                                    }
+                                    onChange={handleNikChange}
                                     required
                                 />
-                                <InputError
-                                    message={errors.nik}
-                                    className="mt-2"
-                                />
+                                <InputError message={errors.nik || nikError} className="mt-2" />
+                                {data.nik.length > 0 && (
+                                    <div className="mt-1 text-xs text-gray-500">
+                                        {data.nik.length}/16 digit
+                                    </div>
+                                )}
                             </div>
 
                             <div className="mt-4">
@@ -155,15 +206,11 @@ export default function Register() {
                                     value={data.email}
                                     className="mt-1 block w-full"
                                     autoComplete="username"
-                                    onChange={(e) =>
-                                        setData("email", e.target.value)
-                                    }
+                                    placeholder="contoh@email.com"
+                                    onChange={handleEmailChange}
                                     required
                                 />
-                                <InputError
-                                    message={errors.email}
-                                    className="mt-2"
-                                />
+                                <InputError message={errors.email || emailError} className="mt-2" />
                             </div>
 
                             <div className="mt-4">
@@ -179,15 +226,10 @@ export default function Register() {
                                     className="mt-1 block w-full"
                                     autoComplete="tel"
                                     placeholder="Contoh: 08123456789"
-                                    onChange={(e) =>
-                                        setData("no_hp", e.target.value)
-                                    }
+                                    onChange={handlePhoneChange}
                                     required
                                 />
-                                <InputError
-                                    message={errors.no_hp}
-                                    className="mt-2"
-                                />
+                                <InputError message={errors.no_hp || phoneError} className="mt-2" />
                             </div>
 
                             <div className="mt-4">
@@ -294,3 +336,6 @@ export default function Register() {
         </GuestLayout>
     );
 }
+
+
+

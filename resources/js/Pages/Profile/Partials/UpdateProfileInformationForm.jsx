@@ -7,23 +7,59 @@ import TextInput from '@/Components/TextInput';
 import { Transition } from '@headlessui/react';
 import Modal from '@/Components/Modal';
 import { EyeIcon, EyeOffIcon } from '@/Components/Icons/EyeIcon';
+import { validateNIK, validatePhoneNumber, isValidNIK, isValidPhoneNumber, isValidEmail } from "../../../utils/validation";
 
-export default function UpdateProfileInformationForm({ mustVerifyEmail, status, className = '' }) {
+export default function UpdateProfileInformationForm({ className = '' }) {
     const user = usePage().props.auth.user;
     const [showPassword, setShowPassword] = useState(false);
     const [localError, setLocalError] = useState('');
+    const [nikError, setNikError] = useState('');
+    const [phoneError, setPhoneError] = useState('');
+    const [emailError, setEmailError] = useState('');
     const [showSuccessModal, setShowSuccessModal] = useState(false);
 
-    const { data, setData, patch, errors, processing, recentlySuccessful, reset } =
-        useForm({
-            name: user.name,
-            nik: user.nik,
-            email: user.email,
-            no_hp: user.no_hp,
-            current_password: '',
-            password: '',
-            password_confirmation: '',
-        });
+    const { data, setData, patch, errors, processing, recentlySuccessful, reset } = useForm({
+        name: user.name,
+        nik: user.nik,
+        email: user.email,
+        no_hp: user.no_hp,
+        current_password: '',
+        password: '',
+        password_confirmation: '',
+    });
+
+    const handleNikChange = (e) => {
+        const validatedNik = validateNIK(e.target.value);
+        setData('nik', validatedNik);
+        
+        if (validatedNik.length > 0 && validatedNik.length < 16) {
+            setNikError('NIK harus 16 digit');
+        } else if (validatedNik.length === 16) {
+            setNikError('');
+        }
+    };
+
+    const handlePhoneChange = (e) => {
+        const validatedPhone = validatePhoneNumber(e.target.value);
+        setData('no_hp', validatedPhone);
+        
+        if (validatedPhone.length > 0 && !isValidPhoneNumber(validatedPhone)) {
+            setPhoneError('Format nomor HP tidak valid');
+        } else {
+            setPhoneError('');
+        }
+    };
+
+    const handleEmailChange = (e) => {
+        const email = e.target.value;
+        setData('email', email);
+        
+        if (email.length > 0 && !isValidEmail(email)) {
+            setEmailError('Format email tidak valid (harus ada @)');
+        } else {
+            setEmailError('');
+        }
+    };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -32,13 +68,26 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
     const submit = (e) => {
         e.preventDefault();
 
-        // Validasi password hanya jika diisi
+        if (!isValidNIK(data.nik)) {
+            setNikError('NIK harus tepat 16 digit');
+            return;
+        }
+        
+        if (!isValidPhoneNumber(data.no_hp)) {
+            setPhoneError('Format nomor HP tidak valid');
+            return;
+        }
+
+        if (!isValidEmail(data.email)) {
+            setEmailError('Format email tidak valid (harus ada @)');
+            return;
+        }
+
         if (data.password && data.password !== data.password_confirmation) {
             setLocalError('Password dan konfirmasi password tidak cocok.');
             return;
         }
 
-        // Validasi current_password jika ingin ubah password
         if (data.password && !data.current_password) {
             setLocalError('Password lama wajib diisi jika ingin mengubah password.');
             return;
@@ -51,6 +100,9 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
             onSuccess: () => {
                 reset('current_password', 'password', 'password_confirmation');
                 setLocalError('');
+                setNikError('');
+                setPhoneError('');
+                setEmailError('');
                 setShowSuccessModal(true);
             },
             onError: (errors) => {
@@ -80,7 +132,6 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
             </header>
 
             <form onSubmit={submit} className="mt-6 space-y-6">
-                {/* Peringatan */}
                 <div className="bg-yellow-50 border border-yellow-200 rounded-md p-4">
                     <div className="flex">
                         <div className="flex-shrink-0">
@@ -89,10 +140,10 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
                             </svg>
                         </div>
                         <div className="ml-3">
-                            <h3 className="text-sm font-medium text-yellow-800">
+                            <h3 className="text-sm font-medium text-red-600">
                                 Perhatian!
                             </h3>
-                            <div className="mt-2 text-sm text-yellow-700">
+                            <div className="mt-2 text-sm text-red-600">
                                 <p>Harap berhati-hati saat mengubah data berikut:</p>
                                 <ul className="list-disc list-inside mt-1">
                                     <li><strong>NIK:</strong> Pastikan sesuai dengan KTP Anda</li>
@@ -124,11 +175,16 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
                         id="nik"
                         className="mt-1 block w-full"
                         value={data.nik}
-                        onChange={(e) => setData('nik', e.target.value)}
+                        onChange={handleNikChange}
                         required
                         autoComplete="nik"
                     />
-                    <InputError className="mt-2" message={errors.nik} />
+                    <InputError className="mt-2" message={errors.nik || nikError} />
+                    {data.nik.length > 0 && (
+                        <div className="mt-1 text-xs text-gray-500">
+                            {data.nik.length}/16 digit
+                        </div>
+                    )}
                 </div>
 
                 <div>
@@ -138,11 +194,11 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
                         type="email"
                         className="mt-1 block w-full"
                         value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
+                        onChange={handleEmailChange}
                         required
                         autoComplete="email"
                     />
-                    <InputError className="mt-2" message={errors.email} />
+                    <InputError className="mt-2" message={errors.email || emailError} />
                 </div>
 
                 <div>
@@ -152,14 +208,13 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
                         type="tel"
                         className="mt-1 block w-full"
                         value={data.no_hp}
-                        onChange={(e) => setData('no_hp', e.target.value)}
+                        onChange={handlePhoneChange}
                         required
                         autoComplete="no_hp"
                     />
-                    <InputError className="mt-2" message={errors.no_hp} />
+                    <InputError className="mt-2" message={errors.no_hp || phoneError} />
                 </div>
 
-                {/* Section Password */}
                 <div className="border-t border-gray-200 pt-6">
                     <h3 className="text-lg font-medium text-gray-900 mb-4">Ubah Password</h3>
                     <p className="text-sm text-gray-600 mb-4">Kosongkan jika tidak ingin mengubah password</p>
@@ -270,4 +325,6 @@ export default function UpdateProfileInformationForm({ mustVerifyEmail, status, 
         </section>
     );
 }
+
+
 

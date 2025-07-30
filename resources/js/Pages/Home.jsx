@@ -12,11 +12,14 @@ import HeaderPotensi from "@/Components/Home/HeaderPotensi";
 import PotensiSection from "@/Components/Home/PotensiSection";
 import BumDesa from "@/Components/Home/BumDesa";
 import { dummyPotensi } from "@/data/dummyPotensi";
+import { usePage } from "@inertiajs/react";
 
 const Home = ({ statistikWilayah, umkmData }) => {
+    const { auth } = usePage().props;
+    
     return (
         <>
-            <Navbar />
+            <Navbar user={auth.user} />
             <Hero />
             <CardViewDesa backgroundIMG={bgCardView} logo={logoCardView} />
             <PetaRBIHome
@@ -43,3 +46,4 @@ const Home = ({ statistikWilayah, umkmData }) => {
     );
 };
 export default Home;
+

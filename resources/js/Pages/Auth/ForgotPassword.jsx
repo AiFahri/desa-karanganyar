@@ -18,9 +18,7 @@ export default function ForgotPassword({ status }) {
         <GuestLayout>
             <Head title="Lupa Kata Sandi" />
 
-            {/* Container with responsive padding and max-width */}
             <div className="w-full max-w-md mx-auto px-4 sm:px-6 lg:px-8">
-                {/* Header section with responsive text */}
                 <div className="mb-6 sm:mb-8">
                     <h1 className="text-xl sm:text-2xl font-semibold text-gray-900 mb-4 text-center">
                         Lupa Kata Sandi
@@ -32,7 +30,6 @@ export default function ForgotPassword({ status }) {
                     </div>
                 </div>
 
-                {/* Status message with responsive styling */}
                 {status && (
                     <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-green-50 border border-green-200 rounded-md">
                         <div className="text-sm sm:text-base font-medium text-green-600 text-center sm:text-left">
@@ -41,9 +38,7 @@ export default function ForgotPassword({ status }) {
                     </div>
                 )}
 
-                {/* Form with responsive spacing */}
                 <form onSubmit={submit} className="space-y-4 sm:space-y-6">
-                    {/* Email input section */}
                     <div>
                         <label 
                             htmlFor="email" 
@@ -65,7 +60,6 @@ export default function ForgotPassword({ status }) {
                         <InputError message={errors.email} className="mt-2" />
                     </div>
 
-                    {/* Submit button with responsive styling */}
                     <div className="pt-2 sm:pt-4 mx-auto justify-self-center">
                         <PrimaryButton 
                             className="w-full sm:w-auto sm:min-w-[200px] px-6 py-3 text-sm sm:text-base font-medium text-white hover:text-[#0272BA] bg-darkBlue hover:bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 rounded-md transition duration-150 ease-in-out disabled:opacity-50 disabled:cursor-not-allowed" 
@@ -85,7 +79,6 @@ export default function ForgotPassword({ status }) {
                         </PrimaryButton>
                     </div>
 
-                    {/* Back to login link */}
                     <div className="text-center pt-4 sm:pt-6">
                         <a 
                             href={route('login')} 

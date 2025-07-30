@@ -13,16 +13,13 @@ const ItemBerita = ({
     image,
 }) => {
     return (
-        // MAIN CONTAINER: Mobile-first (flex-col), switches to flex-row on large screens.
-        // Padding and gap are now responsive. Removed max-h to allow content to grow.
         <Animation delay={0.2}>
             <div className="font-sans border border-gray-200 w-full rounded-lg bg-white my-4 flex flex-col lg:flex-row gap-6 lg:gap-10 p-6 lg:p-12 lg:items-center">
-                {/* IMAGE CONTAINER: Takes full width on mobile, 1/3 on desktop. */}
+                
                 <div className="w-full lg:w-1/3 flex-shrink-0">
                     <img
                         src={image}
                         alt={title || "Gambar Berita"}
-                        // aspect-video ensures consistent image shape. object-cover prevents distortion.
                         className="w-full h-auto object-cover rounded-lg aspect-video"
                         onError={(e) => {
                             e.target.src =
@@ -31,9 +28,7 @@ const ItemBerita = ({
                     />
                 </div>
 
-                {/* CONTENT CONTAINER: Stacks text and button. flex-grow allows it to fill space. */}
                 <div className="flex flex-col gap-6 lg:justify-between h-full w-full">
-                    {/* Text Block */}
                     <div>
                         <h2 className="text-xl font-semibold mb-1">{title}</h2>
                         <div className="text-blue-600 font-medium text-base mb-2">
@@ -57,8 +52,6 @@ const ItemBerita = ({
                                     "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
                             }}
                             transition={{ duration: 0.3, easing: "easeIn" }}
-                            // Full-width on mobile, auto-width on desktop.
-                            // justify-between replaces the old fixed margin for the icon.
                             className="cursor-pointer self-end justify-self-end text-white font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow w-full lg:max-w-[260px]"
                         >
                             {buttonText}

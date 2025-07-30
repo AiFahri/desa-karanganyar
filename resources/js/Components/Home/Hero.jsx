@@ -1,5 +1,4 @@
 import React from "react";
-import heroBG from "../../../assets/Home/img/hero_bg.png";
 import { Link } from "@inertiajs/react";
 import InfiniteScroll from "./InfiniteGallery";
 import fotoInf1 from "../../../assets/Home/img/perangkatDesa/kades.webp";
@@ -58,12 +57,12 @@ const Hero = () => {
         <div className="w-full overflow-hidden h-screen pt-[76px] max-h-screen mb-0">
             <div className="w-full h-full max-h-[100vh] max-w-[100vw] overflow-hidden py-12 lg:py-0">
                 <img
-                    src={heroBG}
+                    src="/images/gapura karanganyar.webp"
                     className="absolute w-full min-h-[100dvh] top-0 object-cover md:object-cover -z-10 max-h-screen overflow-hidden"
                 />
                 <div className="flex flex-col lg:flex-row justify-between items-center px-5 lg:px-[11.35vw] z-10 lg:align-middle overflow-hidden">
                     <motion.div
-                        className="flex flex-col w-full max-w-[640px] max-h-[400px] px-12 mt-[15%] md:mt-[17%] mb-[0px] z-20 rounded-2xl backdrop-blur self-start"
+                        className="flex flex-col w-full max-w-[640px] max-h-[400px] px-12 mt-[45%] md:mt-[17%] mb-[0px] z-20 rounded-2xl backdrop-blur self-start"
                         style={{
                             background:
                                 "linear-gradient(174deg, rgba(2, 114, 186, 0.20) 6.38%, rgba(2, 114, 186, 0.20) 62.72%, rgba(0, 0, 0, 0.00) 95.47%)",

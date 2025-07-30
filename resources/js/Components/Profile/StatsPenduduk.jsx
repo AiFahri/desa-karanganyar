@@ -17,7 +17,6 @@ import penduduk from "./../../../assets/ProfilDesa/penduduk.png";
 import wanita from "./../../../assets/ProfilDesa/wanita.png";
 import Animation from "../Animation";
 
-// --- SVG Icons (self-contained for easy use) ---
 
 const FamilyIcon = () => (
     <img

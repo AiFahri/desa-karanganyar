@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "../Card";
-// import { dummyPotensi } from "../../data/dummyPotensi";
 import PotensiSecMobile from "./PotensiSecMobile";
 import Animation from "../Animation";
 

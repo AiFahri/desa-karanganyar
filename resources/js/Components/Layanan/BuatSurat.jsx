@@ -4,19 +4,21 @@ import SuccessPopup from "../SuccessPopup";
 import { motion } from "framer-motion";
 import TombolKembali from "../TombolKembali";
 import Animation from "../Animation";
+import { validateNIK, isValidNIK } from "../../utils/validation";
 
 const BuatSurat = ({ suratJenis }) => {
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
+    const [nikError, setNikError] = useState('');
+    const [kkError, setKkError] = useState('');
 
-    const { data, setData, post, processing, errors, progress, reset } =
-        useForm({
-            nama_lengkap: "",
-            nik_pemohon: "",
-            no_kk_pemohon: "",
-            surat_jenis_id: "",
-            foto_ktp: null,
-            foto_kk: null,
-        });
+    const { data, setData, post, processing, errors, progress, reset } = useForm({
+        nama_lengkap: "",
+        nik_pemohon: "",
+        no_kk_pemohon: "",
+        surat_jenis_id: "",
+        foto_ktp: null,
+        foto_kk: null,
+    });
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -35,17 +37,49 @@ const BuatSurat = ({ suratJenis }) => {
         setData(fileType, file);
     };
 
+    const handleNikChange = (e) => {
+        const validatedNik = validateNIK(e.target.value);
+        setData("nik_pemohon", validatedNik);
+        
+        if (validatedNik.length > 0 && validatedNik.length < 16) {
+            setNikError('NIK harus 16 digit');
+        } else if (validatedNik.length === 16) {
+            setNikError('');
+        }
+    };
+
+    const handleKkChange = (e) => {
+        const validatedKk = validateNIK(e.target.value);
+        setData("no_kk_pemohon", validatedKk);
+        
+        if (validatedKk.length > 0 && validatedKk.length < 16) {
+            setKkError('Nomor KK harus 16 digit');
+        } else if (validatedKk.length === 16) {
+            setKkError('');
+        }
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        if (!isValidNIK(data.nik_pemohon)) {
+            setNikError('NIK harus tepat 16 digit');
+            return;
+        }
+        
+        if (!isValidNIK(data.no_kk_pemohon)) {
+            setKkError('Nomor KK harus tepat 16 digit');
+            return;
+        }
+
         post("/pengajuan-surat", {
             forceFormData: true,
             onSuccess: () => {
                 setShowSuccessPopup(true);
                 
                 reset();
-            },
-            onError: (errors) => {
-                console.log("Submit errors:", errors);
+                setNikError('');
+                setKkError('');
             },
         });
     };
@@ -112,16 +146,21 @@ const BuatSurat = ({ suratJenis }) => {
                                         type="text"
                                         name="nik_pemohon"
                                         value={data.nik_pemohon}
-                                        onChange={handleInputChange}
+                                        onChange={handleNikChange}
                                         placeholder="16 digit Nomor Induk Kependudukan"
                                         className={`w-full text-[14px] pl-[20px] py-[14px] font-semibold border rounded-[8px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                                            errors.nik_pemohon
-                                                ? "border-red-500"
-                                                : "border-[#D9D9D9]"
+                                            errors.nik_pemohon || nikError ? "border-red-500" : "border-[#D9D9D9]"
                                         }`}
-                                        maxLength="16"
                                         required
                                     />
+                                    {(errors.nik_pemohon || nikError) && (
+                                        <p className="mt-1 text-sm text-red-600">{errors.nik_pemohon || nikError}</p>
+                                    )}
+                                    {data.nik_pemohon.length > 0 && (
+                                        <div className="mt-1 text-xs text-gray-500">
+                                            {data.nik_pemohon.length}/16 digit
+                                        </div>
+                                    )}
                                 </div>
 
                           
@@ -133,16 +172,21 @@ const BuatSurat = ({ suratJenis }) => {
                                         type="text"
                                         name="no_kk_pemohon"
                                         value={data.no_kk_pemohon}
-                                        onChange={handleInputChange}
+                                        onChange={handleKkChange}
                                         placeholder="Nomor Kartu Keluarga (16 digit)"
                                         className={`w-full text-[14px] pl-[20px] py-[14px] font-semibold border rounded-[8px] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${
-                                            errors.no_kk_pemohon
-                                                ? "border-red-500"
-                                                : "border-[#D9D9D9]"
+                                            errors.no_kk_pemohon || kkError ? "border-red-500" : "border-[#D9D9D9]"
                                         }`}
-                                        maxLength="16"
                                         required
                                     />
+                                    {(errors.no_kk_pemohon || kkError) && (
+                                        <p className="mt-1 text-sm text-red-600">{errors.no_kk_pemohon || kkError}</p>
+                                    )}
+                                    {data.no_kk_pemohon.length > 0 && (
+                                        <div className="mt-1 text-xs text-gray-500">
+                                            {data.no_kk_pemohon.length}/16 digit
+                                        </div>
+                                    )}
                                 </div>
 
                                 <div>
@@ -397,3 +441,4 @@ const BuatSurat = ({ suratJenis }) => {
 };
 
 export default BuatSurat;
+

@@ -3,25 +3,21 @@
 namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
-use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Inertia\Inertia;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Fortify;
+use Inertia\Inertia;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Illuminate\Validation\ValidationException;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class FortifyServiceProvider extends ServiceProvider
 {
-    public function register(): void
-    {
-        //
-    }
-
     public function boot(): void
     {
         Fortify::loginView(function () {
@@ -63,42 +59,25 @@ class FortifyServiceProvider extends ServiceProvider
             ]);
         });
 
-        Fortify::redirects('login', function () {
-            if (auth()->user() && auth()->user()->isAdmin()) {
-                return '/admin/dashboard';
-            }
-            return '/';
-        });
-
         RateLimiter::for('login', function (Request $request) {
             return Limit::perMinute(5)->by($request->input(Fortify::username()) . $request->ip());
         });
 
-        // Custom login response dengan redirect handling
+        // Custom login response - redirect ke home
         $this->app->instance(LoginResponse::class, new class implements LoginResponse {
             public function toResponse($request)
             {
-                $intended = $request->session()->get('url.intended');
-                $redirect = $request->input('redirect');
-                
+                // Admin tetap ke dashboard admin
                 if (auth()->user()->isAdmin()) {
                     return redirect('/admin/dashboard');
                 }
                 
-                // Prioritas: intended URL > redirect parameter > default dashboard
-                if ($intended) {
-                    return redirect($intended);
-                } elseif ($redirect) {
-                    return redirect($redirect);
-                }
-                
+                // User biasa ke home
                 return redirect('/');
             }
         });
     }
 }
-
-
 
 
 

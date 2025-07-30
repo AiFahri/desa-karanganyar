@@ -102,6 +102,7 @@ const SocialMediaSection = ({
                     <div key={index} className="flex items-center">
                                            {" "}
                         
+                        
                                            {" "}
                         <div
                             className={`w-4 h-4 rounded-full mr-2 ${warnaBullet}`}
