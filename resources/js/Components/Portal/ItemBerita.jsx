@@ -14,8 +14,10 @@ const ItemBerita = ({
 }) => {
     return (
         <Animation delay={0.2}>
-            <div className="font-sans border border-gray-200 min-w-full rounded-lg bg-white my-4 flex flex-col lg:flex-row gap-6 lg:gap-10 p-6 lg:p-12 lg:items-center">
+            {/* Tambahkan max-width yang konsisten dan pastikan full width */}
+            <div className="font-sans border border-gray-200 w-full max-w-full rounded-lg bg-white my-4 flex flex-col lg:flex-row gap-6 lg:gap-10 p-6 lg:p-12 lg:items-center">
                 
+                {/* Perbaikan pada container gambar */}
                 <div className="w-full lg:w-1/3 flex-shrink-0">
                     <img
                         src={image}
@@ -28,7 +30,8 @@ const ItemBerita = ({
                     />
                 </div>
 
-                <div className="flex flex-col gap-6 lg:justify-between h-full w-full">
+                {/* Pastikan content menggunakan sisa ruang */}
+                <div className="flex flex-col gap-6 lg:justify-between h-full flex-1">
                     <div>
                         <h2 className="text-xl font-semibold mb-1">{title}</h2>
                         <div className="text-blue-600 font-medium text-base mb-2">
@@ -38,10 +41,10 @@ const ItemBerita = ({
                                 year: "numeric",
                             })}
                         </div>
-                        <p className="text-gray-500 max-w-xl">{description}</p>
+                        <p className="text-gray-500">{description}</p>
                     </div>
 
-                    <Link href={`/berita/${slug}`}>
+                    <Link href={`/berita/${slug}`} className="w-full lg:w-auto">
                         <motion.div
                             initial={{
                                 background:
@@ -52,7 +55,7 @@ const ItemBerita = ({
                                     "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
                             }}
                             transition={{ duration: 0.3, easing: "easeIn" }}
-                            className="cursor-pointer self-end justify-self-end text-white font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow w-full lg:max-w-[260px]"
+                            className="cursor-pointer text-white font-sans font-semibold rounded-lg px-4 py-3 flex items-center justify-between shadow w-full lg:max-w-[260px] lg:ml-auto"
                         >
                             {buttonText}
 
