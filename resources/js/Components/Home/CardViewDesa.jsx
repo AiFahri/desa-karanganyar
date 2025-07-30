@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, scale } from "motion/react";
 
-const DesaKaranganyar = ({ background, logo }) => {
+const DesaKaranganyar = ({ backgroundIMG, logo }) => {
 
   const container = {
     hidden: { scale: 0 },
@@ -26,9 +26,15 @@ const DesaKaranganyar = ({ background, logo }) => {
       whileInView="show"
       viewport={{ once: true }}
       transition={{ duration: 0.2 }}
+      style={{
+                    backgroundImage: `url(${backgroundIMG})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                    // backgroundAttachment: 'fixed', // Optional: for a parallax effect
+      }}
     >
-      <div className="absolute inse-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]  block "></div>
-      <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 block "></div>
+      {/* <div className="absolute inse-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]  block "></div>
+      <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 block "></div> */}
       <div className="w-full max-w-[1400px] bg-transparent lg:bg-white lg:rounded-2xl lg:shadow-2xl overflow-hidden mt-0 lg:mt-0">
 
         

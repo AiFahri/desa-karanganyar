@@ -4,18 +4,19 @@ import Card from "../Card";
 import { dummyPotensi } from "../../data/dummyPotensi";
 import Animation from "../Animation";
 
-const PotensiSecMobile = () => {
+const PotensiSecMobile = ({objek}) => {
+    const dataShow = objek? objek : dummyPotensi;
     const [currentPage, setCurrentPage] = useState(0);
     const containerRef = useRef(null);
     const startX = useRef(0);
     const isDragging = useRef(false);
 
     const itemsPerPage = 2;
-    const totalPages = Math.ceil(dummyPotensi.length / itemsPerPage);
+    const totalPages = Math.ceil(dataShow.length / itemsPerPage);
 
     const getCurrentItems = () => {
         const start = currentPage * itemsPerPage;
-        return dummyPotensi.slice(start, start + itemsPerPage);
+        return dataShow.slice(start, start + itemsPerPage);
     };
 
     const goToPage = (page) => {
@@ -79,9 +80,14 @@ const PotensiSecMobile = () => {
                             {getCurrentItems().map((item) => (
                                 <Card
                                     key={item.id}
-                                    title={item.title}
+                                    title={item.merk_dagang || item.title}
                                     description={item.deskripsi_singkat}
-                                    image={item.image}
+                                    image={
+                                        item.gambar_path
+                                            ? `https://is3.cloudhost.id/karanganyar/${item.gambar_path}`
+                                            : item.image
+                                    }
+                                    slug={item.slug}
                                 />
                             ))}
                         </div>

@@ -1,14 +1,13 @@
 import React from "react";
 import Card from "../Card";
-import { dummyPotensi } from "../../data/dummyPotensi";
+// import { dummyPotensi } from "../../data/dummyPotensi";
 import PotensiSecMobile from "./PotensiSecMobile";
 import Animation from "../Animation";
 
 const PotensiSection = ({ id, className = "", headerTitle, umkmData }) => {
     // Gunakan data UMKM jika ada, fallback ke dummy untuk Potensi Alam
     const dataToShow =
-        umkmData && id === "potensiGan2" ? umkmData : dummyPotensi;
-    console.log(umkmData);
+        umkmData && id === "potensiGan2" ? umkmData : umkmData;
     return (
         <Animation delay={0.2}>
             <section
@@ -36,7 +35,7 @@ const PotensiSection = ({ id, className = "", headerTitle, umkmData }) => {
                         ))}
                     </div>
 
-                    <PotensiSecMobile umkmData={umkmData} id={id} />
+                    <PotensiSecMobile objek={umkmData} />
                 </div>
             </section>
         </Animation>
