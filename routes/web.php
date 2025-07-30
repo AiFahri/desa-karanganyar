@@ -42,7 +42,6 @@ Route::get('/AdminDashboard', function () {
 });
 
 
-
 Route::get('/AdminPengajuanLayanan', function () {
     return Inertia::render('AdminPengajuanLayanan');
 });
@@ -158,45 +157,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('pengajuan-surat', App\Http\Controllers\User\PengajuanSuratController::class)->only(['store']);
 });
 
-// Admin file access route
-Route::middleware(['auth', 'admin.file'])->group(function () {
-    Route::get('/admin/files/layanan_surat/{filename}', function ($filename) {
-        $path = 'layanan_surat/' . $filename;
-        
-        if (!Storage::disk('s3_idcloudhost')->exists($path)) {
-            abort(404);
-        }
-        
-        $file = Storage::disk('s3_idcloudhost')->get($path);
-        $mimeType = Storage::disk('s3_idcloudhost')->mimeType($path);
-        
-        return response($file, 200)->header('Content-Type', $mimeType);
-    })->name('admin.files.layanan_surat');
+// Private file access routes
+Route::middleware(['auth'])->group(function () {
+    // User can access their own files
+    Route::get('/files/layanan_surat/{filename}', [App\Http\Controllers\FileController::class, 'serveLayananSurat'])->name('files.layanan_surat');
+    Route::get('/files/surat-jadi/{pengajuanId}', [App\Http\Controllers\FileController::class, 'serveSuratJadi'])->name('files.surat_jadi');
+    
+    // Admin can access all files
+    Route::middleware(['is_admin'])->group(function () {
+        Route::get('/admin/files/layanan_surat/{filename}', [App\Http\Controllers\FileController::class, 'serveAdminLayananSurat'])->name('admin.files.layanan_surat');
+    });
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
