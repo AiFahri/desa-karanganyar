@@ -35,7 +35,7 @@ class UmkmController extends Controller
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->merk_dagang);
-        $data['published_by'] = auth()->id();
+        
         
         // Filter empty media sosial links
         if (isset($data['media_sosial'])) {

@@ -8,7 +8,7 @@ const DesaKaranganyar = ({ background, logo }) => {
     show: {
       scale: 1,
       transition: {
-        staggerChildren: 0.5,
+        staggerChildren: 0.2,
       }
     }
   }
@@ -25,7 +25,7 @@ const DesaKaranganyar = ({ background, logo }) => {
       animate="show"
       whileInView="show"
       viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.2 }}
     >
       <div className="absolute inse-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%]  block "></div>
       <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 block "></div>
@@ -64,7 +64,7 @@ const DesaKaranganyar = ({ background, logo }) => {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true }}
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 0.5 }}
           >
             <img
               src={logo}
@@ -75,7 +75,7 @@ const DesaKaranganyar = ({ background, logo }) => {
 
           <motion.div 
           className="flex-1 text-center lg:text-left max-w-[640px] self-start"
-          transition={{ delay: 1.5 }}
+          transition={{ delay: 0.5 }}
           variants={item}
           initial="hidden"
           whileInView="show"

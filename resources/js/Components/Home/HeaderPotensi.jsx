@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from "@inertiajs/react"; // `usePage` was unused and has been removed
 import { motion } from "framer-motion";
+import Animation from "../Animation";
 
 const HeaderPotensi = () => {
   return (
     // Section 1: Main container
     // Added horizontal padding `px-4` for mobile.
     // Adjusted vertical margin `my-` and gap `gap-y-` to be responsive.
+    <Animation delay={0.2} >
     <div 
       id='headerpotensi' // Moved ID here for better structure, can be targeted by the link
       className="flex flex-col gap-y-6 md:gap-y-8 justify-center items-center my-16 sm:my-24 px-4 text-center"
@@ -42,6 +44,7 @@ const HeaderPotensi = () => {
         Menyingkap Kekuatan dan Sumber Daya yang Menggerakkan Roda Kehidupan Desa Karanganyar
       </p>
     </div>
+    </Animation>
   );
 };
 

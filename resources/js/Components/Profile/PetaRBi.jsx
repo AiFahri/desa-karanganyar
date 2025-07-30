@@ -2,9 +2,11 @@ import React from 'react';
 import { circInOut, easeInOut, motion } from "framer-motion";
 import { Link } from '@inertiajs/react'
 import imgpetaRBI from '../../../assets/Home/img/imgpetaRBI.png';
+import Animation from "../Animation";
 
 const PetaRBI = ({}) => {
   return (
+    <Animation delay={0.2}>
     <div
       className="bg-[#FDFCFC] min-h-0 md:min-h-96 lg:min-h-screen flex items-center justify-center min-w-screen relative p-4 md:p-6 lg:p-0 pt-20 md:pt-24"
       x
@@ -42,6 +44,7 @@ const PetaRBI = ({}) => {
         </div>
       </div>
     </div>
+    </Animation>
   )
 }
 
