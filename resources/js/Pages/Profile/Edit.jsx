@@ -3,7 +3,7 @@ import { Head } from '@inertiajs/react';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import Navbar from '@/Components/Navbar';
 import TombolKembali from '@/Components/TombolKembali';
 
@@ -14,9 +14,10 @@ const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
 );
 
 export default function Edit({ mustVerifyEmail, status }) {
+    const { auth } = usePage().props;
     return (
         <div>
-            <Navbar />
+            <Navbar user={auth.user} />
             <div className='pt-[76px]'>
             <TombolKembali backTo='/'/>
             </div>

@@ -83,6 +83,23 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
     );
   };
 
+  const renderFileButton = (fileUrl, fileName, buttonText, buttonColor) => {
+    if (!fileUrl) {
+      return <span className="text-gray-500 text-xs">-</span>;
+    }
+
+    const isPdf = fileUrl.toLowerCase().includes('.pdf');
+    
+    return (
+      <button
+        onClick={() => window.open(fileUrl, '_blank')}
+        className={`px-2 py-1 ${buttonColor} text-white rounded text-xs hover:opacity-80 transition-colors`}
+      >
+        {isPdf ? `📄 ${buttonText}` : `👁️ ${buttonText}`}
+      </button>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#EBE6E6] font-sans flex flex-col">
       <NavbarAdmin toggleSidebar={toggleSidebar} />
@@ -158,28 +175,10 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                           {getStatusBadge(pengajuan.status)}
                         </td>
                         <td className="p-2 border text-center">
-                          {pengajuan.foto_ktp_url ? (
-                            <button
-                              onClick={() => window.open(pengajuan.foto_ktp_url, '_blank')}
-                              className="px-2 py-1 bg-green-600 text-white rounded text-xs hover:bg-green-700 transition-colors"
-                            >
-                              Lihat KTP
-                            </button>
-                          ) : (
-                            <span className="text-gray-500 text-xs">-</span>
-                          )}
+                          {renderFileButton(pengajuan.foto_ktp_url, 'KTP', 'Lihat KTP', 'bg-green-600')}
                         </td>
                         <td className="p-2 border text-center">
-                          {pengajuan.foto_kk_url ? (
-                            <button
-                              onClick={() => window.open(pengajuan.foto_kk_url, '_blank')}
-                              className="px-2 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700 transition-colors"
-                            >
-                              Lihat KK
-                            </button>
-                          ) : (
-                            <span className="text-gray-500 text-xs">-</span>
-                          )}
+                          {renderFileButton(pengajuan.foto_kk_url, 'KK', 'Lihat KK', 'bg-purple-600')}
                         </td>
                         <td className="p-2 border text-center">
                           <button
@@ -291,16 +290,31 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                       <label className="font-medium text-gray-700">Foto KTP:</label>
                       {selectedPengajuan.foto_ktp_url ? (
                         <div className="mt-2">
-                          <img 
-                            src={selectedPengajuan.foto_ktp_url} 
-                            alt="KTP" 
-                            className="w-full max-w-xs h-auto border rounded cursor-pointer"
-                            onClick={() => window.open(selectedPengajuan.foto_ktp_url, '_blank')}
-                            onError={(e) => {
-                              e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KTP+Not+Found';
-                            }}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                          {selectedPengajuan.foto_ktp_url.toLowerCase().includes('.pdf') ? (
+                            <div className="border rounded p-4 text-center">
+                              <div className="text-4xl mb-2">📄</div>
+                              <p className="text-sm text-gray-600 mb-2">File PDF KTP</p>
+                              <button
+                                onClick={() => window.open(selectedPengajuan.foto_ktp_url, '_blank')}
+                                className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
+                              >
+                                Buka PDF
+                              </button>
+                            </div>
+                          ) : (
+                            <>
+                              <img 
+                                src={selectedPengajuan.foto_ktp_url} 
+                                alt="KTP" 
+                                className="w-full max-w-xs h-auto border rounded cursor-pointer"
+                                onClick={() => window.open(selectedPengajuan.foto_ktp_url, '_blank')}
+                                onError={(e) => {
+                                  e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KTP+Not+Found';
+                                }}
+                              />
+                              <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                            </>
+                          )}
                         </div>
                       ) : (
                         <p className="text-gray-500 mt-1">Tidak ada foto KTP</p>
@@ -310,16 +324,31 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
                       <label className="font-medium text-gray-700">Foto KK:</label>
                       {selectedPengajuan.foto_kk_url ? (
                         <div className="mt-2">
-                          <img 
-                            src={selectedPengajuan.foto_kk_url} 
-                            alt="KK" 
-                            className="w-full max-w-xs h-auto border rounded cursor-pointer"
-                            onClick={() => window.open(selectedPengajuan.foto_kk_url, '_blank')}
-                            onError={(e) => {
-                              e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KK+Not+Found';
-                            }}
-                          />
-                          <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                          {selectedPengajuan.foto_kk_url.toLowerCase().includes('.pdf') ? (
+                            <div className="border rounded p-4 text-center">
+                              <div className="text-4xl mb-2">📄</div>
+                              <p className="text-sm text-gray-600 mb-2">File PDF KK</p>
+                              <button
+                                onClick={() => window.open(selectedPengajuan.foto_kk_url, '_blank')}
+                                className="px-3 py-1 bg-purple-600 text-white rounded text-sm hover:bg-purple-700"
+                              >
+                                Buka PDF
+                              </button>
+                            </div>
+                          ) : (
+                            <>
+                              <img 
+                                src={selectedPengajuan.foto_kk_url} 
+                                alt="KK" 
+                                className="w-full max-w-xs h-auto border rounded cursor-pointer"
+                                onClick={() => window.open(selectedPengajuan.foto_kk_url, '_blank')}
+                                onError={(e) => {
+                                  e.target.src = 'https://placehold.co/300x200/cccccc/ffffff?text=KK+Not+Found';
+                                }}
+                              />
+                              <p className="text-xs text-gray-500 mt-1">Klik untuk memperbesar</p>
+                            </>
+                          )}
                         </div>
                       ) : (
                         <p className="text-gray-500 mt-1">Tidak ada foto KK</p>
@@ -447,6 +476,8 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
 };
 
 export default AdminPengajuanLayanan;
+
+
 
 
 

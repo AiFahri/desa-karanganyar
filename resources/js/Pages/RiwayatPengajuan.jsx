@@ -1,5 +1,5 @@
 import React from "react";
-import { Head } from "@inertiajs/react";
+import { Head, usePage } from "@inertiajs/react";
 import Navbar from "../Components/Navbar";
 import Footer from "../Components/Footer";
 import TombolKembali from "@/Components/TombolKembali";
@@ -24,11 +24,12 @@ const RiwayatPengajuan = ({ pengajuanSurat }) => {
 
         return statusText[status] || status;
     };
+    const { auth } = usePage().props;
 
     return (
         <div className="min-h-screen max-h-screen bg-gray-50 pt-20">
             <Head title="Riwayat Pengajuan" />
-            <Navbar />
+            <Navbar user={auth.user}/>
             <div className="-mt-1">
                 <TombolKembali backTo="/layanan" />
             </div>
