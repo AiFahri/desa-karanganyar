@@ -18,7 +18,7 @@ const Home = ({ statistikWilayah, umkmData }) => {
         <>
             <Navbar />
             <Hero />
-            <CardViewDesa background={bgCardView} logo={logoCardView} />
+            <CardViewDesa backgroundIMG={bgCardView} logo={logoCardView} />
             <PetaRBIHome
                 backgroundIMG={bgPetaView}
                 statsWilayah={statistikWilayah}

@@ -215,7 +215,7 @@ const SubPotensi = ({ item, umkm }) => {
         <>
             <Navbar />
             <div className="pt-[76px]">
-                <TombolKembali backTo="/" />
+                <TombolKembali backTo="/#headerpotensi" />
             </div>
             <BlurDecorations />
             <Animation delay={0.2}>
