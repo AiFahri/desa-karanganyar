@@ -33,16 +33,17 @@ class PengajuanSuratController extends Controller
         $data = $request->validated();
         
         try {
-            // Upload foto KTP
             if ($request->hasFile('foto_ktp')) {
                 $ktpFile = $request->file('foto_ktp');
-                $ktpFilename = auth()->id() . '-' . $data['nik_pemohon'] . '-ktp-' . time() . '.' . $ktpFile->getClientOriginalExtension();
+                $extension = $ktpFile->getClientOriginalExtension();
+                $ktpFilename = auth()->id() . '-' . $data['nik_pemohon'] . '-ktp-' . time() . '.' . $extension;
                 $ktpPath = 'layanan_surat/' . $ktpFilename;
                 
                 $disk = Storage::disk('s3_idcloudhost');
                 $result = $disk->put($ktpPath, file_get_contents($ktpFile->getRealPath()), [
-                    'visibility' => 'public', // Change to public for admin access
-                    'ACL' => 'public-read'
+                    'visibility' => 'public',
+                    'ACL' => 'public-read',
+                    'ContentType' => $ktpFile->getMimeType()
                 ]);
                 
                 if ($result) {
@@ -52,16 +53,17 @@ class PengajuanSuratController extends Controller
                 }
             }
 
-            // Upload foto KK
             if ($request->hasFile('foto_kk')) {
                 $kkFile = $request->file('foto_kk');
-                $kkFilename = auth()->id() . '-' . $data['nik_pemohon'] . '-kk-' . time() . '.' . $kkFile->getClientOriginalExtension();
+                $extension = $kkFile->getClientOriginalExtension();
+                $kkFilename = auth()->id() . '-' . $data['nik_pemohon'] . '-kk-' . time() . '.' . $extension;
                 $kkPath = 'layanan_surat/' . $kkFilename;
                 
                 $disk = Storage::disk('s3_idcloudhost');
                 $result = $disk->put($kkPath, file_get_contents($kkFile->getRealPath()), [
-                    'visibility' => 'public', // Change to public for admin access
-                    'ACL' => 'public-read'
+                    'visibility' => 'public',
+                    'ACL' => 'public-read',
+                    'ContentType' => $kkFile->getMimeType()
                 ]);
                 
                 if ($result) {
@@ -84,17 +86,11 @@ class PengajuanSuratController extends Controller
             $adminEmail = config('mail.admin_email', 'admin@karanganyar.desa.id');
             Mail::to($adminEmail)->queue(new NewSubmissionEmail($pengajuan));
 
-            Log::info('New surat submission created', [
-                'pengajuan_id' => $pengajuan->id,
-                'user_id' => auth()->id(),
-                'surat_jenis' => $pengajuan->suratJenis->nama_jenis
-            ]);
-
             // Redirect to status page with success message
-            return redirect('/layanan/status-surat')->with('success', 'Pengajuan surat berhasil dikirim');
+            return redirect()->back()->with('success', 'Pengajuan surat berhasil dikirim');
 
         } catch (\Exception $e) {
-            Log::error('Pengajuan Surat Error', [
+            \Log::error('PengajuanSurat store error', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
