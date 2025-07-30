@@ -14,13 +14,13 @@ const View = () => {
         <>
             <Animation delay={0.2}>
                 <section className="min-h-screen w-full bg-white flex items-center pt-[76px] overflow-hidden">
-                    {/* Blur dekoratif kini hanya muncul di layar besar */}
+                   
                     <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 left-[90%] hidden lg:block"></div>
                     <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[100%] hidden lg:block"></div>
 
                     <div className="container mx-auto px-4 sm:px-6">
                         {" "}
-                        {/* Menambahkan padding horizontal untuk mobile */}
+                     
                         <div className="flex justify-center items-center min-h-auto md:pt-[70px] pt-24 ">
                             <div 
                             className="text-[16px] md:text-[32px] lg:text-[50px] font-bold text-white 
@@ -31,11 +31,11 @@ const View = () => {
                         </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-[92px] items-center">
-                            {/* Teks */}
+                          
                             <div className="order-2 md:order-1 flex flex-col justify-center">
-                                {/* Ukuran font dibuat responsif */}
+              
                                 <h1
-                                    className="text-3xl md:text-4xl lg:text-[44px] font-bold text-[#0272BA] mb-4 md:mb-6 text-left md:text-left"
+                                    className=" md:text-4xl text-[20px] lg:text-[44px] text-shadow: 0 0 4px rgba(0, 0, 0, 0.25); font-bold text-[#0272BA] mb-4 md:mb-6 text-left md:text-left max-w-[90%] mx-auto"
                                     style={{
                                         textShadow:
                                             "0px 0px 4px rgba(0, 0, 0, 0.25)",
@@ -44,8 +44,8 @@ const View = () => {
                                     Selamat datang di Layanan Masyarakat Website
                                     Desa Karanganyar!
                                 </h1>
-                                {/* Ukuran font dibuat responsif */}
-                                <p className="text-base md:text-lg lg:text-[24px] text-black mb-6 text-justify md:text-left">
+                              
+                                <p className="text-base md:text-lg lg:text-[24px] text-black mb-6 text-justify md:text-left max-w-[90%] mx-auto">
                                     Kami hadir untuk mempermudah setiap langkah
                                     Anda dalam pengajuan dan pembuatan surat
                                     yang dibutuhkan. Melalui layanan ini, kami
@@ -55,9 +55,9 @@ const View = () => {
                                 </p>
                             </div>
 
-                            {/* Gambar */}
-                            <div className="order-1 md:order-2 relative flex justify-center items-center w-full max-w-[400px] sm:max-w-[500px] md:max-w-[600px] aspect-square mx-auto">
-                                {/* Gambar animasi mengelilingi */}
+                       
+                            <div className="order-1 md:order-2 relative flex justify-center items-center w-full max-w-[300px] sm:max-w-[500px] md:max-w-[600px] aspect-square mx-auto">
+                                
                                 <motion.img
                                     initial={{ scale: 1 }}
                                     animate={{ rotate: 360 }}
@@ -71,7 +71,7 @@ const View = () => {
                                     className="absolute inset-0 w-full h-full object-contain z-0 pointer-events-none"
                                 />
 
-                                {/* Gambar utama */}
+                           
                                 <img
                                     src={layanan1}
                                     alt="Gambar layanan"
@@ -80,12 +80,11 @@ const View = () => {
                             </div>
                         </div>
                         <div className="max-w-full mx-auto my-16 md:my-[83px]">
-                            {/* Layout diubah menjadi grid agar responsif */}
+                          
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 lg:gap-[52px]">
-                                {/* Card 1 - Cepat */}
-                                {/* Lebar w-[395px] dihapus agar mengikuti grid */}
+                               
                                 <div className="bg-transparent rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-2 flex flex-row lg:flex-col items-center gap-4 sm:gap-6">
-                                    {/* Ikon */}
+                                
                                     <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-red-500 flex items-center justify-center flex-shrink-0">
                                         <img
                                             src={albums}
@@ -94,8 +93,8 @@ const View = () => {
                                         />
                                     </div>
 
-                                    {/* Teks */}
-                                    <div className="flex flex-col justify-center flex-grow lg:items-center">
+                                   
+                                    <div className="flex flex-col justify-center flex-grow lg:items-center max-w-[90%] mx-auto">
                                         <h3 className="text-lg sm:text-2xl font-semibold text-black mb-1 sm:mb-2">
                                             Cepat
                                         </h3>
@@ -107,9 +106,9 @@ const View = () => {
                                         </p>
                                     </div>
                                 </div>
-                                {/* Card 2 - Mudah */}
+                            
                                 <div className="bg-transparent rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-2 flex flex-row lg:flex-col items-center gap-4 sm:gap-6">
-                                    {/* Ikon */}
+                                    
                                     <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-[#EAB308] flex items-center justify-center flex-shrink-0">
                                         <img
                                             src={albums}
@@ -118,7 +117,6 @@ const View = () => {
                                         />
                                     </div>
 
-                                    {/* Teks */}
                                     <div className="flex flex-col justify-center flex-grow lg:items-center">
                                         <h3 className="text-lg sm:text-2xl font-semibold text-black mb-1 sm:mb-2">
                                             Mudah
@@ -132,9 +130,9 @@ const View = () => {
                                         </p>
                                     </div>
                                 </div>
-                                {/* Card 3 - Hemat Waktu */}
+                         
                                 <div className="bg-transparent rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:-translate-y-2 flex flex-row lg:flex-col items-center gap-4 sm:gap-6">
-                                    {/* Ikon */}
+                                  
                                     <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-full bg-[#2563EB] flex items-center justify-center flex-shrink-0">
                                         <img
                                             src={albums}
@@ -143,7 +141,7 @@ const View = () => {
                                         />
                                     </div>
 
-                                    {/* Teks */}
+                               
                                     <div className="flex flex-col justify-center flex-grow lg:items-center">
                                         <h3 className="text-lg sm:text-2xl font-semibold text-black mb-1 sm:mb-2">
                                             Hemat Waktu
@@ -165,12 +163,12 @@ const View = () => {
             </Animation>
             <Animation delay={0.2}>
                 <section className="min-h-screen w-full bg-white flex items-center py-8">
-                    {/* Blur dekoratif disembunyikan di mobile untuk performa lebih baik */}
+           
                     <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[110%] hidden md:block"></div>
 
                     <div className="container mx-auto px-4 sm:px-6">
                         {" "}
-                        {/* Tambah padding horizontal untuk mobile */}
+             
                         <div className="flex justify-center items-center min-h-auto my-6 md:my-[32px]">
                             <h1 className="text-2xl md:text-[24px] font-bold text-[#0272BA]">
                                 Pembuatan Surat
@@ -178,11 +176,11 @@ const View = () => {
                         </div>
                         <div className="w-full h-[1px] bg-[#0272BA]/40"></div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-[94px] items-start mt-8 md:mt-[44px]">
-                            {/* Teks Kiri */}
+                          
                             <div className="order-1 md:order-1 flex flex-col justify-start relative w-full">
                                 <div className="absolute inset-0 w-full h-auto rounded-full bg-blue-200 blur-[75px] z-0"></div>
                                 <h1
-                                    className="text-4xl md:text-5xl lg:text-[56px] font-bold text-[#0272BA] relative z-10 text-center md:text-left"
+                                    className=" md:text-5xl text-[20px] lg:text-[56px] text-shadow: 0 0 4px rgba(0, 0, 0, 0.25); font-bold text-[#0272BA] relative z-10 text-center md:text-left max-w-[90%] mx-auto"
                                     style={{
                                         textShadow:
                                             "0px 0px 4px rgba(0, 0, 0, 0.25)",
@@ -192,9 +190,9 @@ const View = () => {
                                 </h1>
                             </div>
 
-                            {/* Teks Kanan */}
+                        
                             <div className="order-1 md:order-2 flex flex-col justify-center items-center md:items-start relative max-w-[770px] h-auto">
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black text-justify md:text-left">
+                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black text-justify md:text-left max-w-[90%] mx-auto">
                                     Selamat datang di bagian Pembuatan Surat
                                     Website Desa Karanganyar!
                                     <br />
@@ -206,7 +204,7 @@ const View = () => {
                                     dirancang untuk memenuhi kebutuhan
                                     administrasi seluruh warga Desa Karanganyar.
                                 </p>
-                                {/* Kontainer untuk kedua tombol agar mudah diatur */}
+                              
                                 <div className="flex flex-col sm:flex-col items-center gap-4 mt-6 md:mt-[36px]">
                                     <Link
                                         href={
@@ -257,8 +255,8 @@ const View = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 md:gap-x-12 md:gap-y-8 lg:gap-[91px] pt-12 md:pt-[56px]">
-                            <div className="space-y-4 md:space-y-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 md:gap-x-12 md:gap-y-8 lg:gap-[91px] pt-12 md:pt-[56px] max-w-[90%] mx-auto">
+                            <div className="space-y-4 md:space-y-6 ">
                                 <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
                                     1. Surat Keterangan Domisili
                                 </p>

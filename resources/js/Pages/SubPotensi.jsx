@@ -8,21 +8,19 @@ import TombolKembali from "@/Components/TombolKembali";
 import Animation from "@/Components/Animation";
 
 
-// Data sample - idealnya ini akan diterima sebagai props atau dari API
 const dataPotensi = [
     {
         id: 1,
         image: "https://picsum.photos/360/415",
         title: "Cimol Baper",
         description: "Cimolnya Baper Rek",
-        notelp: "+62 123-456-7890", // Menambahkan nomor telepon yang hilang
+        notelp: "+62 123-456-7890",
         deskripsi_lengkap:
             "Cimol Baper adalah produk UMKM unggulan yang menawarkan cita rasa autentik dengan kualitas terbaik. Dibuat dengan bahan-bahan pilihan dan resep turun temurun yang telah terbukti kelezatannya. Setiap gigitan memberikan pengalaman kuliner yang tak terlupakan.",
         menu_umkm: ["Cimol"],
     },
 ];
 
-// Komponen untuk bagian header dengan tombol kembali
 const PageHeader = () => (
     <header className="w-full mt-[76px] bg-gradient-to-b from-[#0272BA] to-[#95CFF4] py-11 px-8 shadow-md sticky top-0 z-10 max-h-28">
         <div className="max-w-[100vw] mx-auto">
@@ -37,7 +35,7 @@ const PageHeader = () => (
     </header>
 );
 
-// Komponen untuk elemen dekoratif blur
+
 const BlurDecorations = () => (
     <>
         <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] left-[90%] top-[18%] hidden lg:block z-[2]"></div>
@@ -45,7 +43,7 @@ const BlurDecorations = () => (
     </>
 );
 
-// Komponen untuk informasi produk di bagian kanan atas
+
 const ProductInfo = ({ item }) => (
     <div className="p-6 bg-[#FFFFFF]">
         <h1 className="text-2xl font-bold text-black mb-4">
@@ -57,7 +55,7 @@ const ProductInfo = ({ item }) => (
     </div>
 );
 
-// Komponen untuk ikon telepon` x
+
 const PhoneIcon = () => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +71,7 @@ const PhoneIcon = () => (
     </svg>
 );
 
-// Komponen untuk informasi kontak
+
 const ContactSection = ({ phoneNumber, className = "" }) => (
     <div className={`mb-6 ${className}`}>
         <h3 className="text-lg font-bold text-gray-800 mb-3">
@@ -86,7 +84,7 @@ const ContactSection = ({ phoneNumber, className = "" }) => (
     </div>
 );
 
-// Komponen untuk media sosial
+
 const SocialMediaSection = ({
     mediaSosial,
     className = "",
@@ -103,7 +101,7 @@ const SocialMediaSection = ({
                 mediaSosial.map((media, index) => (
                     <div key={index} className="flex items-center">
                                            {" "}
-                        {/* You can add a generic icon here if desired, or leave it without one */}
+                        
                                            {" "}
                         <div
                             className={`w-4 h-4 rounded-full mr-2 ${warnaBullet}`}
@@ -115,7 +113,7 @@ const SocialMediaSection = ({
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            {/*                         {media.platform ? `${media.platform}: ` : ''}{media.link} */}
+
                                                     {media}                   {" "}
                         </a>
                                        {" "}
@@ -128,7 +126,7 @@ const SocialMediaSection = ({
 );
 
 const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
-    // Ubah ke array yang aman
+   
     let safeMenuUMKM = [];
 
     if (Array.isArray(menuUMKM)) {
@@ -171,10 +169,10 @@ const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
     );
 };
 
-// Komponen untuk menu UMKM dan kontak (kiri bawah)
+
 const MenuAndContactSection = ({ item }) => (
     <div className="p-6 bg-white">
-        {/* Gunakan MenuSection yang baru */}
+        
         <MenuSection
             menuUMKM={item.menu_umkm}
             heading="Menu UMKM"
@@ -182,13 +180,13 @@ const MenuAndContactSection = ({ item }) => (
             className="mb-6"
         />
 
-        {/* Contact - Desktop only */}
+       
         <ContactSection
             phoneNumber={item.kontak_pemesanan}
             className="hidden md:block"
         />
 
-        {/* Social Media - Desktop only */}
+   
         <SocialMediaSection
             mediaSosial={item.media_sosial}
             heading="Media Sosial"
@@ -198,7 +196,6 @@ const MenuAndContactSection = ({ item }) => (
     </div>
 );
 
-// Komponen untuk kontak dan media sosial (mobile only)
 const MobileContactSection = ({ item }) => (
     <div className="p-6 bg-[#FFFFFF]  md:hidden">
         <ContactSection phoneNumber={item.kontak_pemesanan} />
@@ -206,9 +203,9 @@ const MobileContactSection = ({ item }) => (
     </div>
 );
 
-// Komponen utama
+
 const SubPotensi = ({ item, umkm }) => {
-    // Menggunakan data dari props atau fallback ke data sample
+   
     const currentItem = umkm || dataPotensi[0];
     console.log(currentItem);
     return (
@@ -220,11 +217,11 @@ const SubPotensi = ({ item, umkm }) => {
             <BlurDecorations />
             <Animation delay={0.2}>
                 <div className="min-h-screen bg-white p-4">
-                    {/* Main Container */}
+                   
                     <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
-                        {/* Grid Layout - 2x2 */}
+                      
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                            {/* Top Left - Product Image & Description */}
+                          
                             <Card
                                 key={currentItem.id}
                                 title={
@@ -243,12 +240,12 @@ const SubPotensi = ({ item, umkm }) => {
                             <ProductInfo item={currentItem} />
                         </div>
                         <div className="flex-flex-col items-center w-full">
-                            {/* Top Right - Product Info */}
+                     
 
-                            {/* Bottom Left - Menu UMKM & Contact */}
+
                             <MenuAndContactSection item={currentItem} />
 
-                            {/* Bottom Right - Contact & Social Media (Mobile Only) */}
+                  
                             <MobileContactSection item={currentItem} />
                         </div>
                     </div>

@@ -41,13 +41,7 @@ Route::get('/AdminDashboard', function () {
     return Inertia::render('AdminDashboard');
 });
 
-// Route::get('/subpeng', function () {
-//     return Inertia::render('SubPengumuman');
-// });
 
-// Route::get('/ProfileDetail', function () {
-//     return Inertia::render('ProfileDetail');
-// });
 
 Route::get('/AdminPengajuanLayanan', function () {
     return Inertia::render('AdminPengajuanLayanan');

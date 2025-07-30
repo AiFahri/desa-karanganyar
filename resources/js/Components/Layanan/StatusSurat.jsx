@@ -31,10 +31,10 @@ const StatusSurat = ({ pengajuan }) => {
     return (
         <Animation delay={0.2}>
             <section className="relative min-h-screen bg-white pt-[76px] overflow-hidden">
-                {/* Gradien background & tombol kembali */}
+                
                 <TombolKembali backTo="/layanan" />
 
-                {/* Konten utama */}
+               
                 <div className="relative z-10 flex justify-center items-start pt-8 px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ const StatusSurat = ({ pengajuan }) => {
                         transition={{ duration: 0.6 }}
                         className="w-full max-w-3xl bg-white rounded-lg shadow-lg p-10 border"
                     >
-                        {/* Judul */}
+                     
                         <h1 className="md:text-[50px] text-lg pt-[30px] font-bold text-center text-black mb-6">
                             Status Pembuatan Surat
                         </h1>
@@ -109,7 +109,7 @@ const StatusSurat = ({ pengajuan }) => {
                             </div>
                         )}
 
-                        {/* Tombol selesai */}
+                  
                         <div className="flex justify-center mt-10">
                             <button
                                 className={`md:text-[18px] text-[14px] flex items-center gap-2 px-6 py-3 border rounded-lg font-semibold transition ${
