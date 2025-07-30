@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useForm } from "@inertiajs/react";
+import React, { useState, useEffect } from "react";
+import { useForm, usePage } from "@inertiajs/react";
 import SuccessPopup from "../SuccessPopup";
 import { motion } from "framer-motion";
 import TombolKembali from "../TombolKembali";
@@ -7,6 +7,7 @@ import Animation from "../Animation";
 import { validateNIK, isValidNIK } from "../../utils/validation";
 
 const BuatSurat = ({ suratJenis }) => {
+    const { flash } = usePage().props;
     const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const [nikError, setNikError] = useState('');
     const [kkError, setKkError] = useState('');
@@ -62,6 +63,7 @@ const BuatSurat = ({ suratJenis }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
+        
         if (!isValidNIK(data.nik_pemohon)) {
             setNikError('NIK harus tepat 16 digit');
             return;
@@ -74,12 +76,18 @@ const BuatSurat = ({ suratJenis }) => {
 
         post("/pengajuan-surat", {
             forceFormData: true,
-            onSuccess: () => {
-                setShowSuccessPopup(true);
+            onSuccess: (response) => {
+                setShowSuccessPopup(true); // Langsung set popup true di sini
                 reset();
                 setNikError('');
                 setKkError('');
             },
+            onError: (errors) => {
+                console.log('Post error callback:', errors);
+            },
+            onFinish: () => {
+                console.log('Post finished');
+            }
         });
     };
 
@@ -264,7 +272,7 @@ const BuatSurat = ({ suratJenis }) => {
                                         <label className="cursor-pointer">
                                             <input
                                                 type="file"
-                                                accept="image/jpeg,image/png,image/jpg"
+                                                accept="image/jpeg,image/png,image/jpg,application/pdf"
                                                 onChange={(e) =>
                                                     handleFileChange(
                                                         e,
@@ -319,7 +327,7 @@ const BuatSurat = ({ suratJenis }) => {
                                         <label className="cursor-pointer">
                                             <input
                                                 type="file"
-                                                accept="image/jpeg,image/png,image/jpg"
+                                                accept="image/jpeg,image/png,image/jpg,application/pdf"
                                                 onChange={(e) =>
                                                     handleFileChange(
                                                         e,
@@ -420,7 +428,10 @@ const BuatSurat = ({ suratJenis }) => {
                     </form>
                     <SuccessPopup
                         isVisible={showSuccessPopup}
-                        onClose={() => setShowSuccessPopup(false)}
+                        onClose={() => {
+                            setShowSuccessPopup(false);
+                            window.location.href = '/layanan/status-surat';
+                        }}
                     />
                 </div>
             </div>
@@ -429,4 +440,12 @@ const BuatSurat = ({ suratJenis }) => {
 };
 
 export default BuatSurat;
+
+
+
+
+
+
+
+
 
