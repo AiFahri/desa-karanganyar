@@ -1,17 +1,17 @@
-import React from 'react'
-import Navbar from '@/Components/Navbar'
-import Footer from '@/Components/Footer'
-import View from '@/Components/Layanan/View'
-
+import React from "react";
+import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
+import View from "@/Components/Layanan/View";
+import { usePage } from "@inertiajs/react";
 
 const LayananMasyarakat = () => {
-  return (
+    const { auth } = usePage().props;
+    return (
         <>
-            <Navbar />
-            <View />
+            <Navbar user={auth.user} /> <View />
             <Footer />
         </>
-  )
-}
+    );
+};
 
-export default LayananMasyarakat
+export default LayananMasyarakat;

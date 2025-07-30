@@ -6,6 +6,7 @@ import ItemPengumuman from "@/Components/Portal/ItemPengumuman";
 import Footer from "@/Components/Footer";
 import APBD from "../../assets/Portal/img/APBD.jpg";
 import Animation from "@/Components/Animation";
+import { usePage } from "@inertiajs/react";
 
 const APBDPic = ({ src, alt = "APBD Desa" }) => {
     return (
@@ -28,13 +29,15 @@ const PortalBerita = ({
     berita = { data: [] },
     year = 2025,
 }) => {
+    const { auth } = usePage().props;
+
     return (
         <>
-            <Navbar />
+            <Navbar user={auth.user} />
             <Animation delay={0.2}>
                 <div className=" w-full pt-[76px]">
                     <div className="w-full px-5 lg:px-0">
-                            <div 
+                        <div
                             className=" max-w-[30%] mx-auto mt-20 text-[16px] md:text-[32px] lg:text-[50px] font-bold text-white 
               px-4 py-2 rounded-full text-center mb-6 shadow-md 
               bg-gradient-to-b from-[#0272BA] to-[#95CFF4]"

@@ -18,8 +18,8 @@ class PengajuanSuratStoreRequest extends FormRequest
             'nik_pemohon' => 'required|string|digits:16',
             'no_kk_pemohon' => 'required|string|digits:16',
             'surat_jenis_id' => 'required|exists:surat_jenis,id',
-            'foto_ktp' => 'required|image|mimes:jpeg,png,jpg|max:1024',
-            'foto_kk' => 'required|image|mimes:jpeg,png,jpg|max:1024',
+            'foto_ktp' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
+            'foto_kk' => 'required|file|mimes:jpeg,png,jpg,pdf|max:2048',
         ];
     }
 
@@ -34,11 +34,11 @@ class PengajuanSuratStoreRequest extends FormRequest
             'surat_jenis_id.required' => 'Jenis surat harus dipilih',
             'surat_jenis_id.exists' => 'Jenis surat tidak valid',
             'foto_ktp.required' => 'Foto KTP harus diupload',
-            'foto_ktp.image' => 'File KTP harus berupa gambar',
-            'foto_ktp.max' => 'Ukuran foto KTP maksimal 1MB',
+            'foto_ktp.mimes' => 'File KTP harus berupa gambar (JPEG, PNG, JPG) atau PDF',
+            'foto_ktp.max' => 'Ukuran file KTP maksimal 2MB',
             'foto_kk.required' => 'Foto KK harus diupload',
-            'foto_kk.image' => 'File KK harus berupa gambar',
-            'foto_kk.max' => 'Ukuran foto KK maksimal 1MB',
+            'foto_kk.mimes' => 'File KK harus berupa gambar (JPEG, PNG, JPG) atau PDF',
+            'foto_kk.max' => 'Ukuran file KK maksimal 2MB',
         ];
     }
 }
