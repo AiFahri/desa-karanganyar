@@ -160,7 +160,7 @@ const AdminPotensiUMKM = ({ umkm }) => {
                   </div>
 
                   <div>
-                    <label className="text-[18px] font-semibold mb-2 block">Deskripsi Singkat</label>
+                    <label className="text-[18px] font-semibold mb-2 block">Keterangan</label>
                     <textarea
                       value={data.deskripsi_singkat}
                       onChange={(e) => setData('deskripsi_singkat', e.target.value)}
