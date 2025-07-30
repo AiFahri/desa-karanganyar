@@ -21,27 +21,14 @@ const View = () => {
                     <div className="container mx-auto px-4 sm:px-6">
                         {" "}
                         {/* Menambahkan padding horizontal untuk mobile */}
-                        <div className="flex justify-center items-center min-h-auto md:pt-[70px] pt-[33px] ">
-                            <Link className="" href="/layanan">
-                                <motion.div
-                                    initial={{
-                                        background:
-                                            "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
-                                    }}
-                                    whileHover={{
-                                        background:
-                                            "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
-                                    }}
-                                    transition={{
-                                        duration: 0.3,
-                                        easing: "easeIn",
-                                    }}
-                                    // Ukuran font dan padding dibuat responsif
-                                    className="text-xl md:text-[50px] text-[16px] rounded-full font-bold px-8 sm:px-12 lg:px-[80px] py-3 sm:py-4 lg:py-[30px] text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
-                                >
-                                    Layanan Masyarakat
-                                </motion.div>
-                            </Link>
+                        <div className="flex justify-center items-center min-h-auto md:pt-[70px] pt-24 ">
+                            <div 
+                            className="text-[16px] md:text-[32px] lg:text-[50px] font-bold text-white 
+              px-6 py-2 rounded-full text-center mb-6 shadow-md 
+              bg-gradient-to-b from-[#0272BA] to-[#95CFF4]"
+                        >
+                            Layanan Masyarakat
+                        </div>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 lg:gap-[92px] items-center">
                             {/* Teks */}

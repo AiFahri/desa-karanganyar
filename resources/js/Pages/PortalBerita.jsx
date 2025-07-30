@@ -32,22 +32,15 @@ const PortalBerita = ({
         <>
             <Navbar />
             <Animation delay={0.2}>
-                <div className="w-full pt-[76px]">
+                <div className=" w-full pt-[76px]">
                     <div className="w-full px-5 lg:px-0">
-                        <motion.div
-                            initial={{
-                                background:
-                                    "linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)",
-                            }}
-                            whileHover={{
-                                background:
-                                    "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
-                            }}
-                            transition={{ duration: 0.3, easing: "easeIn" }}
-                            className="text-lg md:text-4xl w-[40vw] md:w-full lg:text-[50px] my-7 md:mt-20 mx-auto rounded-full font-bold md:px-[75px] px-6 py-2 md:py-[20px] md:mb-[15px] text-center max-w-fit text-white font-sans opacity-100 transition-all duration-500"
+                            <div 
+                            className=" max-w-[30%] mx-auto mt-20 text-[16px] md:text-[32px] lg:text-[50px] font-bold text-white 
+              px-4 py-2 rounded-full text-center mb-6 shadow-md 
+              bg-gradient-to-b from-[#0272BA] to-[#95CFF4]"
                         >
                             Portal Berita
-                        </motion.div>
+                        </div>
 
                         <div className="max-w-[1400px] mx-auto md:mt-28 bg-[#D9EAF5] text-xl md:text-3xl text-center lg:text-left lg:text-[44px] py-6 px-16 font-bold text-[#0272BA] rounded-lg">
                             <p className="drop-shadow-md">
