@@ -45,12 +45,8 @@ const AdminPengumuman = ({ pengumuman }) => {
       deskripsi: item.deskripsi,
     });
     setEditingId(item.id);
-    
     if (formRef.current) {
-      formRef.current.scrollIntoView({ 
-        behavior: 'smooth', 
-        block: 'start' 
-      });
+      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -76,10 +72,10 @@ const AdminPengumuman = ({ pengumuman }) => {
       <div className="flex flex-1">
         {sidebarOpen && <SidebarAdmin />}
 
-        <main className="flex-1 p-6">
-          <div className="bg-white rounded-lg shadow border border-[#D9D9D9] px-12 py-10 max-w-[1400px] mx-auto">
+        <main className="flex-1 p-4 sm:p-6">
+          <div className="bg-white rounded-lg shadow border border-[#D9D9D9] px-4 sm:px-12 py-6 sm:py-10 max-w-full sm:max-w-[1400px] mx-auto">
             <div ref={formRef}>
-              <h1 className="text-[40px] font-bold text-center mb-6">
+              <h1 className="text-[32px] sm:text-[40px] font-bold text-center mb-6">
                 {editingId ? 'Edit Pengumuman' : 'Upload Pengumuman'}
               </h1>
               <div className="border-t border-black/40 w-full mb-10"></div>
@@ -92,8 +88,8 @@ const AdminPengumuman = ({ pengumuman }) => {
                 </div>
               )}
 
-              <form onSubmit={handleSubmit} className="flex flex-wrap gap-10">
-                <div className="flex flex-col gap-6 w-[500px]">
+              <form onSubmit={handleSubmit} className="flex flex-col md:flex-row flex-wrap gap-10">
+                <div className="flex flex-col gap-6 w-full md:w-[500px]">
                   <div>
                     <label className="text-[18px] font-semibold mb-2 block">Judul Pengumuman</label>
                     <input
@@ -112,7 +108,7 @@ const AdminPengumuman = ({ pengumuman }) => {
                       type="datetime-local"
                       value={data.waktu_acara}
                       onChange={(e) => setData('waktu_acara', e.target.value)}
-                      className="w-[300px] h-[50px] px-4 border border-[#D9D9D9] bg-[#FDFCFC] rounded-lg text-sm font-semibold text-black"
+                      className="w-full h-[50px] px-4 border border-[#D9D9D9] bg-[#FDFCFC] rounded-lg text-sm font-semibold text-black"
                     />
                   </div>
 
@@ -141,7 +137,7 @@ const AdminPengumuman = ({ pengumuman }) => {
                   </div>
                 </div>
 
-                <div className="w-full flex justify-end gap-4 mt-6">
+                <div className="w-full flex flex-col sm:flex-row justify-end gap-4 mt-6">
                   {editingId && (
                     <button
                       type="button"
@@ -154,7 +150,7 @@ const AdminPengumuman = ({ pengumuman }) => {
                   <button
                     type="submit"
                     disabled={processing}
-                    className="flex items-center gap-3 px-6 py-3 rounded-lg text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                    className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg text-white font-semibold text-sm hover:opacity-90 transition-opacity"
                     style={{
                       background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)',
                     }}
@@ -168,12 +164,12 @@ const AdminPengumuman = ({ pengumuman }) => {
 
             <div className="mt-12">
               <h2 className="text-2xl font-bold mb-6">Daftar Pengumuman</h2>
-              <div className="space-y-4">
+              <div className="space-y-4 overflow-x-auto">
                 {pengumuman.data.map((item) => (
                   <div key={item.id} className={`border rounded-lg p-6 transition-colors ${
                     editingId === item.id ? 'border-blue-300 bg-blue-50' : 'border-gray-200 bg-gray-50'
                   }`}>
-                    <div className="flex justify-between items-start">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                       <div className="flex-1">
                         <h3 className="text-lg font-semibold mb-2">{item.judul}</h3>
                         <p className="text-blue-600 text-sm mb-1">
@@ -187,7 +183,7 @@ const AdminPengumuman = ({ pengumuman }) => {
                         <p className="text-gray-600 text-sm mb-2">Tempat: {item.tempat_acara}</p>
                         <p className="text-gray-700">{item.deskripsi}</p>
                       </div>
-                      <div className="flex gap-2 ml-4">
+                      <div className="flex gap-2">
                         <button
                           onClick={() => handleEdit(item)}
                           disabled={processing}
@@ -212,6 +208,7 @@ const AdminPengumuman = ({ pengumuman }) => {
                 ))}
               </div>
             </div>
+
           </div>
         </main>
       </div>

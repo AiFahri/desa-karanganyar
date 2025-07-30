@@ -1,11 +1,11 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from '@inertiajs/react';
 import NavbarAdmin from './NavbarAdmin';
 import SidebarAdmin from './SidebarAdmin';
 import KirimIcon from '../../assets/Home/icons/KirimIcon.png';
 
 const AdminStatistikWilayah = ({ statistik }) => {
-  const [sidebarOpen, setSidebarOpen] = React.useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const formRef = useRef(null);
 
   const { data, setData, put, processing, errors, reset } = useForm({
@@ -35,16 +35,16 @@ const AdminStatistikWilayah = ({ statistik }) => {
       <div className="flex flex-1">
         {sidebarOpen && <SidebarAdmin />}
 
-        <main className="flex-1 p-6">
-          <div className="bg-white rounded-lg shadow border border-[#D9D9D9] px-12 py-10 max-w-[1400px] mx-auto">
+        <main className="flex-1 p-4 sm:p-6">
+          <div className="bg-white rounded-lg shadow border border-[#D9D9D9] px-4 sm:px-12 py-6 sm:py-10 max-w-full sm:max-w-[1400px] mx-auto">
             <div ref={formRef}>
-              <h1 className="text-[40px] font-bold text-center mb-6">
+              <h1 className="text-[32px] sm:text-[40px] font-bold text-center mb-6">
                 Kelola Statistik Wilayah
               </h1>
               <div className="border-t border-black/40 w-full mb-10"></div>
 
-              <form onSubmit={handleSubmit} className="flex flex-wrap gap-10">
-                <div className="flex flex-col gap-6 w-[500px]">
+              <form onSubmit={handleSubmit} className="flex flex-col md:flex-row flex-wrap gap-10">
+                <div className="flex flex-col gap-6 w-full md:w-[500px]">
                   <div>
                     <label className="text-[18px] font-semibold mb-2 block">Luas Wilayah (km²)</label>
                     <input
@@ -95,8 +95,8 @@ const AdminStatistikWilayah = ({ statistik }) => {
                   </div>
                 </div>
 
-                <div className="flex flex-col w-[400px] justify-center items-center">
-                  <div className="text-center p-8 bg-gray-50 rounded-lg">
+                <div className="w-full md:w-[400px] flex justify-center items-center">
+                  <div className="text-center p-6 sm:p-8 bg-gray-50 rounded-lg w-full">
                     <h3 className="text-lg font-semibold mb-4">Preview Data</h3>
                     <div className="space-y-2 text-sm">
                       <p><strong>Luas Wilayah:</strong> {data.luas_wilayah} km²</p>
@@ -107,11 +107,11 @@ const AdminStatistikWilayah = ({ statistik }) => {
                   </div>
                 </div>
 
-                <div className="w-full flex justify-end gap-4 mt-6">
+                <div className="w-full flex flex-col sm:flex-row justify-end gap-4 mt-6">
                   <button
                     type="submit"
                     disabled={processing}
-                    className="flex items-center gap-3 px-6 py-3 rounded-lg text-white font-semibold text-sm hover:opacity-90 transition-opacity"
+                    className="flex items-center justify-center gap-3 px-6 py-3 rounded-lg text-white font-semibold text-sm hover:opacity-90 transition-opacity"
                     style={{
                       background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)',
                     }}

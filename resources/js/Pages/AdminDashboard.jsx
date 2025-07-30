@@ -23,29 +23,28 @@ const AdminDashboard = () => {
       {/* Navbar */}
       <NavbarAdmin toggleSidebar={toggleSidebar} />
 
-      <div className="flex flex-1">
+      <div className="flex flex-1 flex-col md:flex-row">
         {/* Sidebar */}
         {sidebarOpen && <SidebarAdmin />}
 
         {/* Main Content */}
-        <main className="flex-1 p-6">
+        <main className="flex-1 p-4 md:p-6">
           {/* Cards */}
-          <section className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+          <section className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             {cardData.map((card, index) => (
               <div
                 key={index}
-                className="p-4 rounded-xl shadow text-white flex flex-col items-center gap-4 mx-10"
+                className="p-4 rounded-xl shadow text-white flex flex-col items-center gap-4"
                 style={{
-                  background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)'
+                  background: 'linear-gradient(180deg, #0272BA 0%, #95CFF4 98%)',
                 }}
               >
-                <div className='flex flex-row justify-around flex-shrink-0 w-full px-2 items-center'>
-                  <img src={card.icon} alt={card.label} className='w-10 h-10' />
-                  <p className="text-sm font-medium">{card.label}</p>
+                <div className="flex flex-row justify-between w-full items-center gap-4">
+                  <img src={card.icon} alt={card.label} className="w-10 h-10" />
+                  <p className="text-sm md:text-base font-medium text-center">{card.label}</p>
                 </div>
-
                 <div>
-                  <p className="font-bold text-xl">X</p>
+                  <p className="font-bold text-lg md:text-xl">X</p>
                 </div>
               </div>
             ))}
@@ -53,9 +52,9 @@ const AdminDashboard = () => {
 
           {/* Table */}
           <section className="rounded p-4 shadow text-white" style={{ background: '#0272BA' }}>
-            <h2 className="font-bold text-lg mb-3">DATA PENDUDUK</h2>
+            <h2 className="font-bold text-base md:text-lg mb-3">DATA PENDUDUK</h2>
             <div className="overflow-x-auto">
-              <table className="min-w-full text-blue-900 rounded overflow-hidden">
+              <table className="min-w-full text-blue-900 rounded overflow-hidden text-sm md:text-base">
                 <thead style={{ backgroundColor: '#FFFFFF80' }} className="text-white">
                   <tr>
                     <th className="p-2 border">ID</th>
