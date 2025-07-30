@@ -17,7 +17,9 @@ Route::get('/layanan', function () {
     return Inertia::render('LayananMasyarakat');
 });
 
-Route::get('/layanan/buat-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'create'])->name('layanan.buat-surat');
+Route::get('/layanan/buat-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'create'])
+    ->middleware(['auth'])
+    ->name('layanan.buat-surat');
 
 Route::get('/layanan/status-surat', [App\Http\Controllers\User\PengajuanSuratController::class, 'status']);
 
@@ -39,13 +41,13 @@ Route::get('/AdminDashboard', function () {
     return Inertia::render('AdminDashboard');
 });
 
-Route::get('/subpeng', function () {
-    return Inertia::render('SubPengumuman');
-});
+// Route::get('/subpeng', function () {
+//     return Inertia::render('SubPengumuman');
+// });
 
-Route::get('/ProfileDetail', function () {
-    return Inertia::render('ProfileDetail');
-});
+// Route::get('/ProfileDetail', function () {
+//     return Inertia::render('ProfileDetail');
+// });
 
 Route::get('/AdminPengajuanLayanan', function () {
     return Inertia::render('AdminPengajuanLayanan');
@@ -60,11 +62,11 @@ Route::get('/AdminPotensiUMKM', function () {
 
 Route::get('/dashboard', function () {
     return Inertia::render('Profile/Edit');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/riwayat-pengajuan', function () {
     return Inertia::render('RiwayatPengajuan');
-})->middleware(['auth', 'verified'])->name('riwayat-pengajuan');
+})->middleware(['auth'])->name('riwayat-pengajuan');
 
 Route::get('/lupa-password', function () {
     return Inertia::render('Auth/ForgotPassword');
@@ -177,6 +179,7 @@ Route::middleware(['auth', 'admin.file'])->group(function () {
         return response($file, 200)->header('Content-Type', $mimeType);
     })->name('admin.files.layanan_surat');
 });
+
 
 
 
