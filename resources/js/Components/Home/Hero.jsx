@@ -37,6 +37,23 @@ const items = [
 ];
 
 const Hero = () => {
+
+    const container = {
+        hidden: { scale: 0, opacity: 0 },
+        show: {
+            scale: 1,
+            opacity: 1,
+            transition: {
+            staggerChildren: 0.5,
+            }
+        }
+    }
+
+    const item = {
+        hidden: { scale: 0 },
+        show: { scale: 1 }
+    }
+
     return (
         <div className="w-full overflow-hidden h-screen pt-[76px] max-h-screen mb-0">
             <div className="w-full h-full max-h-[100vh] max-w-[100vw] overflow-hidden py-12 lg:py-0">
@@ -45,16 +62,23 @@ const Hero = () => {
                     className="absolute w-full min-h-[100dvh] top-0 object-cover md:object-cover -z-10 max-h-screen overflow-hidden"
                 />
                 <div className="flex flex-col lg:flex-row justify-between items-center px-5 lg:px-[11.35vw] z-10 lg:align-middle overflow-hidden">
-                    <div
+                    <motion.div
                         className="flex flex-col w-full max-w-[640px] max-h-[400px] px-12 mt-[15%] md:mt-[17%] mb-[0px] z-20 rounded-2xl backdrop-blur self-start"
                         style={{
                             background:
                                 "linear-gradient(174deg, rgba(2, 114, 186, 0.20) 6.38%, rgba(2, 114, 186, 0.20) 62.72%, rgba(0, 0, 0, 0.00) 95.47%)",
                         }}
+                        initial={{ scale: 0 ,opacity: 0 }}
+                        animate="show"
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        variants={container}
                     >
-                        <div className="text-white font-bold font-sans opacity-100 mt-10 lg:mt-[72px] lg:text-[56px] text-xl">
+                        <motion.div 
+                        className="text-white font-bold font-sans opacity-100 mt-10 lg:mt-[72px] lg:text-[56px] text-xl"
+                        whileHover={{ y: -10 }}
+                        >
                             Desa Karanganyar
-                        </div>
+                        </motion.div>
                         <div className="text-white font-semibold font-sans opacity-100 pt-3 lg:pt-6 lg:text-2xl text-sm">
                             Kecamatan Poncokusumo, Kabupaten Malang, Jawa Timur
                         </div>
@@ -73,8 +97,14 @@ const Hero = () => {
                                 Yuk Jelajahi
                             </motion.div>
                         </Link>
-                    </div>
-                    <div className="hidden lg:flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-60">
+                    </motion.div>
+                    <motion.div 
+                    className="hidden lg:flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-60"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.5 }}
+                    whileHover={{ scale: 1.04 }}
+                    >
                         <InfiniteScroll
                             items={items}
                             isTilted={false}
@@ -84,7 +114,7 @@ const Hero = () => {
                             autoplayDirection="down"
                             pauseOnHover={false}
                         />
-                    </div>
+                    </motion.div>
                     <div className="lg:hidden flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-0">
                         <HorizontalInfiniteGallery
                             items={items}

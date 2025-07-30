@@ -125,7 +125,7 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
           <section className="rounded p-4 shadow text-white" style={{ background: '#0272BA' }}>
             <h2 className="font-bold text-lg mb-3">Daftar Pengajuan Surat</h2>
             <div className="overflow-x-auto">
-              <table className="min-w-full text-blue-900 rounded overflow-hidden">
+              <table className="min-w-full text-white rounded overflow-hidden">
                 <thead style={{ backgroundColor: '#FFFFFF80' }} className="text-white">
                   <tr>
                     <th className="p-2 border">ID</th>

@@ -5,6 +5,8 @@ import { Link } from "@inertiajs/react";
 import { ArrowLeftIcon } from "lucide-react";
 import Card from "@/Components/Card";
 import TombolKembali from "@/Components/TombolKembali";
+import Animation from "@/Components/Animation";
+
 
 // Data sample - idealnya ini akan diterima sebagai props atau dari API
 const dataPotensi = [
@@ -129,43 +131,45 @@ const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
     // Ubah ke array yang aman
     let safeMenuUMKM = [];
 
-if (Array.isArray(menuUMKM)) {
-    safeMenuUMKM = menuUMKM;
-} else if (typeof menuUMKM === "string") {
-    try {
-        const parsed = JSON.parse(menuUMKM);
-        if (Array.isArray(parsed)) {
-            safeMenuUMKM = parsed;
-        } else {
+    if (Array.isArray(menuUMKM)) {
+        safeMenuUMKM = menuUMKM;
+    } else if (typeof menuUMKM === "string") {
+        try {
+            const parsed = JSON.parse(menuUMKM);
+            if (Array.isArray(parsed)) {
+                safeMenuUMKM = parsed;
+            } else {
+                safeMenuUMKM = [menuUMKM];
+            }
+        } catch (e) {
             safeMenuUMKM = [menuUMKM];
         }
-    } catch (e) {
-        safeMenuUMKM = [menuUMKM];
     }
-}
-
 
     return (
-        <div className={className}>
-            <h3 className="text-lg font-bold text-gray-800 mb-3">{heading}</h3>
-            <div className="space-y-2">
-                {safeMenuUMKM.map((menu, index) => (
-                    <div key={index} className="flex items-start">
-                        <div
-                            className={`w-3 h-3 rounded-full mt-1.5 mr-3 flex-shrink-0 ${warnaBullet}`}
-                        ></div>
-                        <div>
-                            <p className="font-semibold text-gray-800">
-                                {menu}
-                            </p>
+        
+            <div className={className}>
+                <h3 className="text-lg font-bold text-gray-800 mb-3">
+                    {heading}
+                </h3>
+                <div className="space-y-2">
+                    {safeMenuUMKM.map((menu, index) => (
+                        <div key={index} className="flex items-start">
+                            <div
+                                className={`w-3 h-3 rounded-full mt-1.5 mr-3 flex-shrink-0 ${warnaBullet}`}
+                            ></div>
+                            <div>
+                                <p className="font-semibold text-gray-800">
+                                    {menu}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
-        </div>
+       
     );
 };
-
 
 // Komponen untuk menu UMKM dan kontak (kiri bawah)
 const MenuAndContactSection = ({ item }) => (
@@ -214,39 +218,42 @@ const SubPotensi = ({ item, umkm }) => {
                 <TombolKembali backTo="/" />
             </div>
             <BlurDecorations />
+            <Animation delay={0.2}>
+                <div className="min-h-screen bg-white p-4">
+                    {/* Main Container */}
+                    <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
+                        {/* Grid Layout - 2x2 */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+                            {/* Top Left - Product Image & Description */}
+                            <Card
+                                key={currentItem.id}
+                                title={
+                                    currentItem.title || currentItem.merk_dagang
+                                }
+                                description={
+                                    currentItem.deskripsi_singkat ||
+                                    currentItem.description
+                                }
+                                image={
+                                    currentItem.gambar_path
+                                        ? `https://is3.cloudhost.id/karanganyar/${currentItem.gambar_path}`
+                                        : currentItem.image
+                                }
+                            />
+                            <ProductInfo item={currentItem} />
+                        </div>
+                        <div className="flex-flex-col items-center w-full">
+                            {/* Top Right - Product Info */}
 
-            <div className="min-h-screen bg-white p-4">
-                {/* Main Container */}
-                <div className="max-w-4xl mx-auto pt-[70px] bg-[#FDFCFC] rounded-lg shadow-lg overflow-hidden">
-                    {/* Grid Layout - 2x2 */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
-                        {/* Top Left - Product Image & Description */}
-                        <Card
-                            key={currentItem.id}
-                            title={currentItem.title || currentItem.merk_dagang}
-                            description={
-                                currentItem.deskripsi_singkat ||
-                                currentItem.description
-                            }
-                            image={
-                                currentItem.gambar_path
-                                    ? `https://is3.cloudhost.id/karanganyar/${currentItem.gambar_path}`
-                                    : currentItem.image
-                            }
-                        />
-                        <ProductInfo item={currentItem} />
-                    </div>
-                    <div className="flex-flex-col items-center w-full">
-                        {/* Top Right - Product Info */}
+                            {/* Bottom Left - Menu UMKM & Contact */}
+                            <MenuAndContactSection item={currentItem} />
 
-                        {/* Bottom Left - Menu UMKM & Contact */}
-                        <MenuAndContactSection item={currentItem} />
-
-                        {/* Bottom Right - Contact & Social Media (Mobile Only) */}
-                        <MobileContactSection item={currentItem} />
+                            {/* Bottom Right - Contact & Social Media (Mobile Only) */}
+                            <MobileContactSection item={currentItem} />
+                        </div>
                     </div>
                 </div>
-            </div>
+            </Animation>
 
             <Footer />
         </>
