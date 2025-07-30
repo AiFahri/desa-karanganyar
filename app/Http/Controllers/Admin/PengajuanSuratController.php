@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class PengajuanSuratController extends Controller
@@ -78,25 +79,30 @@ class PengajuanSuratController extends Controller
 
         // Send email notification if status changed to 'selesai'
         if ($oldStatus !== 'selesai' && $request->status === 'selesai') {
-            Mail::to($pengajuanSurat->user->email)->queue(new LetterReadyEmail($pengajuanSurat));
-            
-            Log::info('Letter ready email sent', [
-                'pengajuan_id' => $pengajuanSurat->id,
-                'user_email' => $pengajuanSurat->user->email
-            ]);
+            try {
+                Mail::to($pengajuanSurat->user->email)->send(new LetterReadyEmail($pengajuanSurat));
+                
+                Log::info('Letter ready email sent', [
+                    'pengajuan_id' => $pengajuanSurat->id,
+                    'user_email' => $pengajuanSurat->user->email,
+                    'success' => true
+                ]);
+            } catch (\Exception $e) {
+                Log::error('Failed to send letter ready email', [
+                    'error' => $e->getMessage(),
+                    'pengajuan_id' => $pengajuanSurat->id,
+                    'trace' => $e->getTraceAsString()
+                ]);
+            }
         }
 
-        return redirect()->back()->with('success', 'Status pengajuan berhasil diperbarui.');
+        return redirect()->back()->with('success', 'Status berhasil diupdate');
     }
 
     public function uploadSuratJadi(Request $request, PengajuanSurat $pengajuanSurat)
     {
         $request->validate([
             'file_surat' => 'required|file|mimes:pdf,doc,docx|max:5000'
-        ], [
-            'file_surat.required' => 'File surat harus diupload',
-            'file_surat.mimes' => 'Format file harus: PDF, DOC, atau DOCX',
-            'file_surat.max' => 'Ukuran file maksimal 5MB'
         ]);
 
         try {
@@ -105,12 +111,13 @@ class PengajuanSuratController extends Controller
             }
 
             $file = $request->file('file_surat');
-            $filename = 'surat-' . $pengajuanSurat->id . '-' . $pengajuanSurat->nik_pemohon . '-' . time() . '.' . $file->getClientOriginalExtension();
+            $filename = 'surat-' . $pengajuanSurat->id . '-' . $pengajuanSurat->nik_pemohon . '-' . time() . '-' . Str::random(10) . '.' . $file->getClientOriginalExtension();
             $path = 'layanan_surat/generated_surat/' . $filename;
             
             $disk = Storage::disk('s3_idcloudhost');
             $result = $disk->put($path, file_get_contents($file->getRealPath()), [
-                'visibility' => 'private'
+                'visibility' => 'public',
+                'ACL' => 'public-read'
             ]);
             
             if ($result) {
@@ -128,19 +135,20 @@ class PengajuanSuratController extends Controller
                 ]);
 
                 return redirect()->back()->with('success', 'File surat berhasil diupload dan status diubah menjadi selesai.');
-            } else {
-                return redirect()->back()->withErrors(['file_surat' => 'Gagal upload file surat']);
             }
 
         } catch (\Exception $e) {
             Log::error('Upload Surat Jadi Error', [
                 'message' => $e->getMessage(),
- 
-               'pengajuan_id' => $pengajuanSurat->id
+                'pengajuan_id' => $pengajuanSurat->id
             ]);
             return redirect()->back()->withErrors(['file_surat' => 'Error upload: ' . $e->getMessage()]);
         }
     }
 }
+
+
+
+
 
 
