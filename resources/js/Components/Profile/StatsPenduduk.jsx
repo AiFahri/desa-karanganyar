@@ -61,7 +61,7 @@ const StatItem = ({ icon, value, label, bgColor }) => (
             <p className="md:text-[24px] text-[14px] font-semibold mt-3 text-black md:self-center self-start">
                 {value.toLocaleString("id-ID")}
             </p>
-            <p className="md:text-[14px] text-[12px] font-semibold text-black">
+            <p className="md:text-[14px] text-[11px] font-semibold text-black">
                 {label}
             </p>
         </div>

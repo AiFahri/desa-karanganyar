@@ -130,22 +130,18 @@ const Footer = () => {
                     
                         <div className="flex justify-center sm:justify-start space-x-4">
                             <a
-                                href="#"
+                                href="https://facebook.com/groups/401277673330593/"
+                                target="_blank"
                                 className="shadow-md w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
                             >
                                 <Facebook className="w-5 h-5 stroke-black" />
                             </a>
                             <a
                                 href="https://www.instagram.com/seputar_desakaranganyar/"
+                                target="_blank"
                                 className="shadow-md w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
                             >
                                 <Instagram className="w-5 h-5 stroke-black" />
-                            </a>
-                            <a
-                                href="#"
-                                className="shadow-md w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
-                            >
-                                <Youtube className="w-5 h-5 stroke-black" />
                             </a>
                         </div>
 
