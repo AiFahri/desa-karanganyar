@@ -13,13 +13,11 @@ class StatusSuratController extends Controller
         $pengajuanSurat = PengajuanSurat::with(['suratJenis', 'user'])
             ->where('user_id', auth()->id())
             ->latest()
-            ->get()
-            ->map(function ($item) {
-                return $item->append(['foto_ktp_url', 'foto_kk_url', 'surat_jadi_url']);
-            });
+            ->get();
 
         return Inertia::render('RiwayatPengajuan', [
             'pengajuanSurat' => $pengajuanSurat
         ]);
     }
 }
+
