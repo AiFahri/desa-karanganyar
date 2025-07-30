@@ -54,7 +54,7 @@ const Hero = () => {
     }
 
     return (
-        <div className="w-full overflow-hidden h-screen pt-[76px] max-h-screen mb-0">
+        <div className="w-full overflow-hidden h-screen max-h-screen mb-0">
             <div className="w-full h-full max-h-[100vh] max-w-[100vw] overflow-hidden py-12 lg:py-0">
                 <img
                     src="/images/gapura karanganyar.webp"
