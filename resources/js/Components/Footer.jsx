@@ -31,7 +31,7 @@ const Footer = () => {
                             className="flex h-[104px] w-auto"
                         />
 
-                        <div className="text-sm opacity-90 leading-relaxed">
+                        <div className="text-sm opacity-90 font-bold leading-relaxed">
                             Website Resmi Pemerintahan
                             <br />
                             Desa Karanganyar, Kabupaten
