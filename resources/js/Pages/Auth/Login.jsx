@@ -41,11 +41,6 @@ export default function Login({ status, canResetPassword, redirect }) {
         <GuestLayout>
             <Head title="Log in" />
 
-            {/* <p className="text-lg text-gray-700 mb-10 text-center px-4 max-w-2xl">
-                Silakan masuk dulu untuk bergabung di Website Desa Karanganyar
-                dan temukan berbagai informasi serta layanan desa secara mudah
-            </p> */}
-
             {status && (
                 <div className="mb-4 font-medium text-sm text-green-600">
                     {status}
@@ -54,7 +49,6 @@ export default function Login({ status, canResetPassword, redirect }) {
 
             <Animation delay={0.2}>
                 <div className="flex flex-col lg:flex-row w-full max-w-6xl bg-white shadow-xl rounded-lg overflow-hidden">
-                    {/* Mobile Images - Show on small screens */}
                     <div className="lg:hidden w-full p-4 bg-gradient-to-br from-blue-100 to-white">
                         <div className="grid grid-cols-3 gap-2 w-full">
                             <div className="h-20 bg-gray-200 rounded-lg overflow-hidden shadow-md">
@@ -81,7 +75,6 @@ export default function Login({ status, canResetPassword, redirect }) {
                         </div>
                     </div>
 
-                    {/* Desktop Images - Show on large screens */}
                     <div className="hidden lg:flex lg:w-1/2 p-8 bg-gradient-to-br from-blue-100 to-white flex-col items-center justify-center space-y-6">
                         <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
                             <img
@@ -108,7 +101,6 @@ export default function Login({ status, canResetPassword, redirect }) {
                         </div>
                     </div>
 
-                    {/* Form */}
                     <div className="w-full lg:w-1/2 p-8 sm:p-10 bg-blue-50 flex flex-col justify-center">
                         <h2 className="text-2xl font-bold text-blue-800 text-center mb-6">
                             Hai, warga Karanganyar! Silakan login untuk lanjut.

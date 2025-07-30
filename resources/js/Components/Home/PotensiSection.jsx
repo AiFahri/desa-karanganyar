@@ -1,11 +1,9 @@
 import React from "react";
 import Card from "../Card";
-// import { dummyPotensi } from "../../data/dummyPotensi";
 import PotensiSecMobile from "./PotensiSecMobile";
 import Animation from "../Animation";
 
 const PotensiSection = ({ id, className = "", headerTitle, umkmData }) => {
-    // Gunakan data UMKM jika ada, fallback ke dummy untuk Potensi Alam
     const dataToShow =
         umkmData && id === "potensiGan2" ? umkmData : umkmData;
     return (

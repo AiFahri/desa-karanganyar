@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Link, usePage } from "@inertiajs/react";
 import Dropdown from "./Dropdown";
 
-// Component for the brand logo
-// Note: Removed `viewBox` prop as it's not a valid attribute for <img>
 const ApplicationLogo = (props) => (
     <img {...props} alt="Logo Desa Karanganyar" />
 );
 
-// Reusable NavLink component to keep the Navbar clean (DRY principle)
 const NavLink = ({ href, children }) => {
     const { url } = usePage();
     const isActive = url === href;
@@ -16,11 +13,9 @@ const NavLink = ({ href, children }) => {
     return (
         <Link
             href={href}
-            // The `group` class allows the underline to react to the parent Link's hover state
             className="block px-3 py-2 text-white font-medium text-center group md:text-left"
         >
             {children}
-            {/* Animated underline effect */}
             <div
                 className={`mx-auto mt-1 h-[3px] rounded-full bg-white transition-all duration-300 
                 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`}
@@ -35,22 +30,21 @@ const Navbar = () => {
     const { props } = usePage();
     const user = props.auth.user;
 
-    // State to manage the mobile menu's open/closed status
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
         <nav className="bg-darkBlue fixed top-0 z-[120] w-full max-w-[100vw]">
             <div className="mx-0 px-4 sm:px-6 lg:px-16 w-full">
-                <div className="flex items-center justify-between h-[76px]"> {/* Standard height */}
+                <div className="flex items-center justify-between h-[76px]"> 
                     
-                    {/* Logo and Brand Name */}
+                    
                     <div className="flex-shrink-0">
                         <Link href="/" className="flex items-center gap-x-3">
                             <ApplicationLogo
                                 src="/logo_karanganyar.png"
-                                className="h-12 w-auto" // Slightly smaller for better balance
+                                className="h-12 w-auto"
                             />
-                            {/* Text size is now responsive */}
+                            
                             <div className="flex-col font-sans text-white text-sm lg:text-lg">
                                 <span className="flex max-w-[60%] md:max-w-full">PEMERINTAH DESA KARANGANYAR</span>
                                 <span className="hidden sm:flex">KECAMATAN PONCOKUSUMO</span>
@@ -58,14 +52,14 @@ const Navbar = () => {
                         </Link>
                     </div>
 
-                    {/* Desktop Navigation Links & Auth */}
+                    
                     <div className="hidden md:flex items-center space-x-5">
                         <NavLink href="/">Beranda</NavLink>
                         <NavLink href="/profil">Profil Desa</NavLink>
                         <NavLink href="/layanan">Layanan</NavLink>
                         <NavLink href="/portal">Portal Berita</NavLink>
                         
-                        {/* Auth Buttons / User Dropdown */}
+                        
                         {user ? (
                             <Dropdown>
                                 <Dropdown.Trigger>
@@ -118,7 +112,7 @@ const Navbar = () => {
                         )}
                     </div>
 
-                    {/* Hamburger Menu Button (visible on mobile) */}
+                    
                     <div className="md:hidden flex items-center">
                         <button
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -126,7 +120,7 @@ const Navbar = () => {
                             aria-expanded={isMenuOpen}
                         >
                             <span className="sr-only">Open main menu</span>
-                            {/* Icon: changes between hamburger and 'X' */}
+                            
                             <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                 {isMenuOpen ? (
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
@@ -139,7 +133,7 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Mobile Menu (collapsible) */}
+            
             {isMenuOpen && (
                 <div className="md:hidden bg-darkBlue pb-4">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -148,7 +142,7 @@ const Navbar = () => {
                         <NavLink href="/layanan">Layanan</NavLink>
                         <NavLink href="/portal">Portal Berita</NavLink>
 
-                        {/* Auth buttons for mobile */}
+                        
                         <div className="border-t border-gray-600 my-4"></div>
                         {user ? (
                            <div className="px-2 space-y-2">

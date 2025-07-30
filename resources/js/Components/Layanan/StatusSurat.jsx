@@ -31,10 +31,8 @@ const StatusSurat = ({ pengajuan }) => {
     return (
         <Animation delay={0.2}>
             <section className="relative min-h-screen bg-white pt-[76px] overflow-hidden">
-                {/* Gradien background & tombol kembali */}
                 <TombolKembali backTo="/layanan" />
 
-                {/* Konten utama */}
                 <div className="relative z-10 flex justify-center items-start pt-8 px-4">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

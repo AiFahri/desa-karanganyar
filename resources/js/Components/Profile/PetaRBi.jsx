@@ -12,11 +12,9 @@ const PetaRBI = ({}) => {
                 x
             >
                 <div className="relative w-full max-w-sm md:max-w-2xl lg:max-w-[70vw] mx-auto pt-24">
-                    {/* Blur dekoratif kini hanya muncul di layar besar */}
                     <div className="absolute inset-0 w-[15%] h-[30%] rounded-full bg-[#95CFF4] blur-[50px] flex-shrink-0 left-[100%] hidden lg:block"></div>
                     <div className="absolute inset-0 w-[20%] h-[30%] rounded-full bg-[#95CFF4] blur-[50px] flex-shrink-0 left-[-20%] top-[100%] hidden lg:block"></div>
                     <div className="flex flex-col justify-center items-center">
-                        {/* Judul dengan background gradient */}
                         <div 
                             className="text-[16px] md:text-[32px] lg:text-[50px] font-bold text-white 
               px-6 py-2 rounded-full text-center mb-6 shadow-md 

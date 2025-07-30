@@ -165,12 +165,10 @@ const View = () => {
             </Animation>
             <Animation delay={0.2}>
                 <section className="min-h-screen w-full bg-white flex items-center py-8">
-                    {/* Blur dekoratif disembunyikan di mobile untuk performa lebih baik */}
                     <div className="absolute inset-0 w-[10%] h-[30%] rounded-full bg-[#95CFF4] blur-[85px] flex-shrink-0 top-[110%] hidden md:block"></div>
 
                     <div className="container mx-auto px-4 sm:px-6">
                         {" "}
-                        {/* Tambah padding horizontal untuk mobile */}
                         <div className="flex justify-center items-center min-h-auto my-6 md:my-[32px]">
                             <h1 className="text-2xl md:text-[24px] font-bold text-[#0272BA]">
                                 Pembuatan Surat
@@ -192,7 +190,6 @@ const View = () => {
                                 </h1>
                             </div>
 
-                            {/* Teks Kanan */}
                             <div className="order-1 md:order-2 flex flex-col justify-center items-center md:items-start relative max-w-[770px] h-auto">
                                 <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black text-justify md:text-left">
                                     Selamat datang di bagian Pembuatan Surat
@@ -206,7 +203,6 @@ const View = () => {
                                     dirancang untuk memenuhi kebutuhan
                                     administrasi seluruh warga Desa Karanganyar.
                                 </p>
-                                {/* Kontainer untuk kedua tombol agar mudah diatur */}
                                 <div className="flex flex-col sm:flex-col items-center gap-4 mt-6 md:mt-[36px]">
                                     <Link
                                         href={

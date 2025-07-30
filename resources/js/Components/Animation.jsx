@@ -1,4 +1,3 @@
-// resources/js/Components/Layanan/Animation.jsx
 import { motion } from "framer-motion";
 
 const Animation = ({ children, delay = 0, duration = 0.6, y = 50 }) => {

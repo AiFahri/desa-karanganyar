@@ -17,7 +17,6 @@ import penduduk from "./../../../assets/ProfilDesa/penduduk.png";
 import wanita from "./../../../assets/ProfilDesa/wanita.png";
 import Animation from "../Animation";
 
-// --- SVG Icons (self-contained for easy use) ---
 
 const FamilyIcon = () => (
     <img
@@ -51,7 +50,6 @@ const HouseholdIcon = () => (
     />
 );
 
-// --- Reusable Stat Item Component ---
 const StatItem = ({ icon, value, label, bgColor }) => (
     <div className="flex flex-row gap-x-2 md:flex-col items-center text-center">
         <div
@@ -70,7 +68,6 @@ const StatItem = ({ icon, value, label, bgColor }) => (
     </div>
 );
 
-// --- Main Component ---
 export const PopulationStats = ({ stats }) => {
     const chartData = [
         { name: "Pria", Jumlah: stats.jumlah_pria || stats.male || 0 },

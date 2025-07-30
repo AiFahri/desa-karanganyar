@@ -22,9 +22,9 @@ const Footer = () => {
             }}
         >
             <div className="max-w-full">
-                {/* Main Footer Content */}
+                
                 <div className="grid grid-cols-1 md:grid-cols-4 ">
-                    {/* Logo */}
+                    
                     <div className="flex justify-center mb-4">
                         <ApplicationLogo
                             src="/logo_karanganyar.png"
@@ -39,13 +39,13 @@ const Footer = () => {
                             Ponokusumo
                         </div>
                     </div>
-                    {/* Alamat Desa Section */}
+                    
                     <div className="text-center">
                         <h3 className="text-lg font-semibold mb-6">
                             Alamat Desa
                         </h3>
 
-                        {/* Alamat */}
+                        
                         <div className="flex items-start justify-center mb-6 text-sm opacity-90">
                             <MapPin className="w-4 h-4 mr-2 mt-0.5 flex-shrink-0" />
                             <span className="text-left">
@@ -58,13 +58,13 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Layanan Masyarakat Section */}
+                    
                     <div className="text-center">
                         <h3 className="text-lg font-semibold mb-6">
                             Layanan Masyarakat
                         </h3>
 
-                        {/* Services List */}
+                        
                         <ul className="text-sm opacity-90 space-y-2 text-left inline-block">
                             <li className="relative pl-4">
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
@@ -105,7 +105,7 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    {/* Kontak Section */}
+                    
                     <div className="w-full flex flex-col items-center md:items-start text-center md:text-left">
                         <h3 className="text-lg font-semibold mb-6">
                             Kontak yang dapat dihubungi
@@ -125,10 +125,9 @@ const Footer = () => {
                     </div>
                 </div>
 
-                {/* Footer Bottom */}
                 <div className="border-t-2 border-white/20 mt-6 pt-6 text-center mx-[5vw]">
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 sm:gap-0 text-sm opacity-80 px-4 sm:px-8">
-                        {/* Social Media Icons */}
+                    
                         <div className="flex justify-center sm:justify-start space-x-4">
                             <a
                                 href="#"
@@ -150,7 +149,7 @@ const Footer = () => {
                             </a>
                         </div>
 
-                        {/* Logo and credit */}
+                        
                         <div className="flex flex-col sm:flex-row items-center gap-y-2 sm:gap-y-0 sm:gap-x-5">
                             <img src="/logo_only_white.svg" className="w-20" />
                             <div className="text-base md:text-lg font-sans text-center sm:text-left">
@@ -161,7 +160,7 @@ const Footer = () => {
                             </div>
                         </div>
 
-                        {/* Tahun dan lokasi */}
+                        
                         <div className="font-bold font-sans text-base md:text-lg text-center sm:text-right">
                             2025. Desa Karanganyar, Poncokusumo.
                         </div>
