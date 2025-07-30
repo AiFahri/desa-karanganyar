@@ -5,12 +5,12 @@ import ItemBerita from "@/Components/Portal/ItemBerita";
 import ItemPengumuman from "@/Components/Portal/ItemPengumuman";
 import Footer from "@/Components/Footer";
 import APBD from "../../assets/Portal/img/APBD.jpg";
-import Animation from "@/Components/Animation";
+
 import { usePage } from "@inertiajs/react";
 
 const APBDPic = ({ src, alt = "APBD Desa" }) => {
     return (
-        <Animation delay={0.2}>
+       
             <div className="flex justify-center items-center w-full min-h-[300px] py-4">
                 <div className="bg-white rounded-lg shadow-md border p-7 mt-16 max-w-full sm:max-w-md md:max-w-lg lg:max-w-xl">
                     <img
@@ -20,7 +20,7 @@ const APBDPic = ({ src, alt = "APBD Desa" }) => {
                     />
                 </div>
             </div>
-        </Animation>
+    
     );
 };
 
@@ -34,7 +34,7 @@ const PortalBerita = ({
     return (
         <>
             <Navbar user={auth.user} />
-            <Animation delay={0.2}>
+        
                 <div className=" w-full pt-[76px]">
                     <div className="w-full px-5 lg:px-0">
                         <div
@@ -59,7 +59,7 @@ const PortalBerita = ({
                             </p>
                         </div>
 
-                        <div className="z-40 grid grid-cols-1 sm:gap-6 lg:gap-y-12 pt-4 lg:pt-32 justify-items-center max-w-[1400px] mx-auto">
+                        <div className="z-40 grid grid-cols-1 w-full sm:gap-6 lg:gap-y-12 pt-4 lg:pt-32 justify-items-center max-w-[1400px] mx-auto">
                             {pengumuman?.data?.length > 0 ? (
                                 pengumuman.data.map((item) => (
                                     <ItemPengumuman
@@ -118,7 +118,7 @@ const PortalBerita = ({
                         </div>
                     </div>
                 </div>
-            </Animation>
+         
             <Footer />
         </>
     );
