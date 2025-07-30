@@ -17,7 +17,18 @@ const karanganyarStats = {
     regency: "Malang",
     desa: "Karanganyar",
     year: 2025,
-    count2024: 7989,
+    januari: "10310000",
+    februari: "10230000",
+    maret: "10030000",
+    april: "8920000",
+    mei: "6270000",
+    juni: "1250000",
+    juli: "270000",
+    agustus: "165000",
+    september: "120000",
+    oktober: "105000",
+    november: "75000",
+    desember: "75000",
 };
 
 const BumDesa = ({
@@ -26,7 +37,20 @@ const BumDesa = ({
     headerTitle,
     stats = karanganyarStats,
 }) => {
-    const chartData = [{ name: "2024", Jumlah: stats.count2024 }];
+    const chartData = [
+        { name: "Januari", Pendapatan: stats.januari },
+        { name: "Februari", Pendapatan: stats.februari },
+        { name: "Maret", Pendapatan: stats.maret },
+        { name: "April", Pendapatan: stats.april },
+        { name: "Mei", Pendapatan: stats.mei },
+        { name: "Juni", Pendapatan: stats.juni },
+        { name: "Juli", Pendapatan: stats.juli },
+        { name: "Agustus", Pendapatan: stats.agustus },
+        { name: "September", Pendapatan: stats.september },
+        { name: "Oktober", Pendapatan: stats.oktober },
+        { name: "November", Pendapatan: stats.november },
+        { name: "Desember", Pendapatan: stats.desember },
+    ];
 
     return (
         <section
@@ -89,14 +113,14 @@ const BumDesa = ({
                                             }}
                                         />
                                         <Bar
-                                            dataKey="Jumlah"
+                                            dataKey="Pendapatan"
                                             fill="#0284c7"
                                             barSize={100}
                                             radius={[8, 8, 0, 0]}
                                         >
                                             <LabelList
-                                                dataKey="Jumlah"
-                                                position="top"
+                                                dataKey="Pendapatan"
+                                                position="bottom"
                                                 formatter={(value) =>
                                                     value.toLocaleString(
                                                         "id-ID"
@@ -105,6 +129,7 @@ const BumDesa = ({
                                                 style={{
                                                     fill: "#333",
                                                     fontSize: 12,
+                                                    opacity: 0,
                                                 }}
                                             />
                                         </Bar>
@@ -114,7 +139,7 @@ const BumDesa = ({
                         </div>
                     </div>
                     <div className="flex flex-row lg:gap-x-32 items-center justify-around w-full mx-auto max-w-screen overflow-hidden">
-                        <div className="rounded-2xl flex flex-col items-center justify-around px-4 sm:px-6 md:px-8 py-4 bg-white shadow-md ">
+                        {/* <div className="rounded-2xl flex flex-col items-center justify-around px-4 sm:px-6 md:px-8 py-4 bg-white shadow-md ">
                             <div className="text-[#0272BA] drop-shadow font-semibold">
                                 Rumah Terdaftar
                             </div>
@@ -131,7 +156,7 @@ const BumDesa = ({
                                 Jadwal Penarikan
                             </div>
                             <div>Jadwal Penarikan</div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
                 {/* <div className="flex justify-center mt-16">

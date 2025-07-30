@@ -110,35 +110,43 @@ const Footer = () => {
 
                 </div>
 
-                {/* Social Media Icons */}
-                <div className="flex justify-center space-x-4 my-[18px]">
-                    <a 
-                        href="#" 
-                        className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
-                    >
-                        <Facebook className="w-5 h-5" />
-                    </a>
-                    <a 
-                        href="#" 
-                        className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
-                    >
-                        <Instagram className="w-5 h-5" />
-                    </a>
-                    <a 
-                        href="#" 
-                        className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
-                    >
-                        <Youtube className="w-5 h-5" />
-                    </a>
-                </div>
-
                 {/* Footer Bottom */}
-                <div className="border-t border-white/20 pt-6 text-center">
-                    <div className="text-sm opacity-80 mb-3">
+                <div className="border-t-2 border-white/20 mt-6 pt-6 text-center mx-[5vw]">
+                    {/* <div className="text-sm opacity-80 mb-3">
                         Made With Love By MMD FILKOM UB 42 2025
-                    </div>
+                    </div> */}
                     
-                    <div className="flex flex-col sm:flex-row justify-center items-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm opacity-80">
+                    <div className="flex flex-row justify-between items-center space-y-2 sm:space-y-0 sm:space-x-8 text-sm opacity-80 px-8">
+                        {/* Social Media Icons */}
+                        <div className="flex justify-center space-x-4 my-[18px]">
+                            <a 
+                                href="#" 
+                                className="shadow-md w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <Facebook className="w-5 h-5 stroke-black" />
+                            </a>
+                            <a 
+                                href="https://www.instagram.com/seputar_desakaranganyar/" 
+                                className="shadow-md w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <Instagram className="w-5 h-5 stroke-black" />
+                            </a>
+                            <a 
+                                href="#" 
+                                className="shadow-md w-10 h-10 bg-white/100 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <Youtube className="w-5 h-5 stroke-black" />
+                            </a>
+                        </div>
+                        <div className='flex flex-row max-w-max items-center gap-x-5'>
+                            <img src="/logo_only_white.svg" className='w-20' />
+                            <div className='text-base md:text-lg font-sans'>
+                                Dibuat oleh <span className='font-bold'>MMD 42 FILKOM UB</span>
+                            </div>
+                        </div>
+                        <div className='font-bold font-sans text-base md:text-lg'>
+                            2025. Desa Karanganyar, Poncokusumo.
+                        </div>
                     </div>
                 </div>
             </div>

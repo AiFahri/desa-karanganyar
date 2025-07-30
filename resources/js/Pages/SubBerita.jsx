@@ -39,10 +39,7 @@ export default function SubBerita({ berita }) {
       <div className='pt-[76px]'>
         <TombolKembali backTo="/portal" />
       </div>
-      <div className="bg-white font-sans antialiased min-h-screen pt-[76px]">
-        
-        
-
+      <div className="bg-white font-sans antialiased min-h-screen pt-4">
         <main className="p-4 sm:p-6 md:p-8">
           <div className="max-w-[85vw] md:max-w-[66vw] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
             <div className="p-6 sm:p-8">
