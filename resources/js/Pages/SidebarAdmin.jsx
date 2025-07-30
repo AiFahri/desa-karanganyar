@@ -3,8 +3,10 @@ import React from 'react';
 import { Link, usePage } from '@inertiajs/react';
 import HomeIcon from '../../assets/Home/icons/HomeIcon.png';
 import PengajuanIcon from '../../assets/Home/icons/PengajuanLayananIconn.png';
-import PortalIcon from '../../assets/Home/icons/PortalBeritaIconn.png';
+import PortalIcon from '../../assets/Home/icons/PortalBeritaIcon.png';
 import PengumumanIcon from '../../assets/Home/icons/PengumumanIcon.png';
+import PetaIcon from '../../assets/Home/icons/PetaIcon.png';
+import PendudukIcon from '../../assets/Home/icons/PendudukIcon.png';
 import UMKMIconn from '../../assets/Home/icons/UMKMIconn.png';
 
 const SidebarAdmin = () => {
@@ -15,8 +17,8 @@ const SidebarAdmin = () => {
     { id: 'Pengajuan', label: 'Pengajuan Layanan', icon: PengajuanIcon, route: '/admin/pengajuan-surat' },
     { id: 'Portal', label: 'Portal Berita', icon: PortalIcon, route: '/admin/berita' },
     { id: 'Pengumuman', label: 'Pengumuman', icon: PengumumanIcon, route: '/admin/pengumuman' },
-    { id: 'StatistikWilayah', label: 'Statistik Wilayah', icon: HomeIcon, route: '/admin/statistik-wilayah' },
-    { id: 'StatistikPenduduk', label: 'Statistik Penduduk', icon: HomeIcon, route: '/admin/statistik-penduduk' },
+    { id: 'StatistikWilayah', label: 'Statistik Wilayah', icon: PetaIcon, route: '/admin/statistik-wilayah' },
+    { id: 'StatistikPenduduk', label: 'Statistik Penduduk', icon: PendudukIcon, route: '/admin/statistik-penduduk' },
     { id: 'UMKM', label: 'Potensi UMKM', icon: UMKMIconn, route: '/admin/umkm' },
   ];
 
