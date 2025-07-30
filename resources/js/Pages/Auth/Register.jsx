@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import GuestLayout from "@/Layouts/GuestLayout";
 import InputError from "@/Components/InputError";
 import InputLabel from "@/Components/InputLabel";
 import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { EyeIcon, EyeOffIcon } from '@/Components/Icons/EyeIcon';
 import pic1 from "../../../assets/Login/pic1.jpg"
 import pic2 from "../../../assets/Login/pic2.jpg"
 import pic3 from "../../../assets/Login/pic3.jpg"
 
 export default function Register() {
+    const [showPassword, setShowPassword] = useState(false);
+    
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         nik: "",
@@ -25,6 +28,10 @@ export default function Register() {
         };
     }, []);
 
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
     const submit = (e) => {
         e.preventDefault();
         post("/register");
@@ -34,12 +41,34 @@ export default function Register() {
         <GuestLayout>
             <Head title="Register" />
 
-            {/* <p className="text-lg text-gray-700 mb-10 text-center px-4 max-w-2xl">
-                Buat akun baru untuk mengakses informasi, mengajukan surat, dan
-                menggunakan berbagai layanan di Website Desa Karanganyar.
-            </p> */}
-
             <div className="flex flex-col lg:flex-row w-full max-w-6xl bg-white shadow-xl rounded-lg overflow-hidden">
+                <div className="lg:hidden w-full p-4 bg-gradient-to-br from-blue-100 to-white">
+                    <div className="grid grid-cols-3 gap-2 w-full">
+                        <div className="h-20 bg-gray-200 rounded-lg overflow-hidden shadow-md">
+                            <img
+                                src={pic1}
+                                alt="Gambar Kegiatan Warga 1"
+                                className="w-full h-full object-cover rounded-lg"
+                            />
+                        </div>
+                        <div className="h-20 bg-gray-200 rounded-lg overflow-hidden shadow-md">
+                            <img
+                                src={pic2}
+                                alt="Gambar Kegiatan Warga 2"
+                                className="w-full h-full object-cover rounded-lg"
+                            />
+                        </div>
+                        <div className="h-20 bg-gray-200 rounded-lg overflow-hidden shadow-md">
+                            <img
+                                src={pic3}
+                                alt="Gambar Kegiatan Warga 3"
+                                className="w-full h-full object-cover rounded-lg"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                {/* Desktop Images - Show on large screens */}
                 <div className="hidden lg:flex lg:w-1/2 p-8 bg-gradient-to-br from-blue-100 to-white flex-col items-center justify-center space-y-6">
                     <div className="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
                         <img
@@ -47,28 +76,26 @@ export default function Register() {
                             alt="Gambar Kegiatan Warga 1"
                             className="w-full h-full object-cover rounded-lg"
                         />
-                        {/* Gambar Kegiatan Warga 1 */}
                     </div>
                     <div className="grid grid-cols-2 gap-4 w-full">
                         <div className="h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
                             <img
                                 src={pic3}
-                                alt="Gambar Kegiatan Warga 1"
+                                alt="Gambar Kegiatan Warga 2"
                                 className="w-full h-full object-cover rounded-lg"
                             />
-                            {/* Gambar Kegiatan Warga 2 */}
                         </div>
                         <div className="h-32 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 text-sm overflow-hidden shadow-md">
                             <img
                                 src={pic2}
-                                alt="Gambar Kegiatan Warga 1"
+                                alt="Gambar Kegiatan Warga 3"
                                 className="w-full h-full object-cover rounded-lg"
                             />
-                            {/* Gambar Kegiatan Warga 3 */}
                         </div>
                     </div>
                 </div>
 
+                {/* Form */}
                 <div className="w-full lg:w-1/2 p-8 sm:p-10 bg-blue-50 flex flex-col justify-center">
                     <h2 className="text-2xl font-bold text-blue-800 text-center mb-6">
                         Kalau belum punya akun, Daftar Dulu yuk!
@@ -84,15 +111,10 @@ export default function Register() {
                                 className="mt-1 block w-full"
                                 autoComplete="name"
                                 isFocused={true}
-                                onChange={(e) =>
-                                    setData("name", e.target.value)
-                                }
+                                onChange={(e) => setData("name", e.target.value)}
                                 required
                             />
-                            <InputError
-                                message={errors.name}
-                                className="mt-2"
-                            />
+                            <InputError message={errors.name} className="mt-2" />
                         </div>
 
                         <div className="mt-4">
@@ -119,85 +141,74 @@ export default function Register() {
                                 value={data.email}
                                 className="mt-1 block w-full"
                                 autoComplete="username"
-                                placeholder="Masukkan alamat email"
-                                onChange={(e) =>
-                                    setData("email", e.target.value)
-                                }
+                                onChange={(e) => setData("email", e.target.value)}
                                 required
                             />
-                            <InputError
-                                message={errors.email}
-                                className="mt-2"
-                            />
+                            <InputError message={errors.email} className="mt-2" />
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel htmlFor="no_hp" value="Nomor HP" />
+                            <InputLabel htmlFor="no_hp" value="Nomor Telepon" />
                             <TextInput
                                 id="no_hp"
-                                type="text"
+                                type="tel"
                                 name="no_hp"
                                 value={data.no_hp}
                                 className="mt-1 block w-full"
                                 autoComplete="tel"
-                                placeholder="Masukkan nomor HP yang masih aktif"
-                                onChange={(e) =>
-                                    setData("no_hp", e.target.value)
-                                }
+                                placeholder="Contoh: 08123456789"
+                                onChange={(e) => setData("no_hp", e.target.value)}
                                 required
                             />
-                            <InputError
-                                message={errors.no_hp}
-                                className="mt-2"
-                            />
+                            <InputError message={errors.no_hp} className="mt-2" />
                         </div>
 
                         <div className="mt-4">
                             <InputLabel htmlFor="password" value="Password" />
-                            <TextInput
-                                id="password"
-                                type="password"
-                                name="password"
-                                value={data.password}
-                                className="mt-1 block w-full"
-                                autoComplete="new-password"
-                                placeholder="Masukkan kata sandi akun"
-                                onChange={(e) =>
-                                    setData("password", e.target.value)
-                                }
-                                required
-                            />
-                            <InputError
-                                message={errors.password}
-                                className="mt-2"
-                            />
+                            <div className="relative">
+                                <TextInput
+                                    id="password"
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password"
+                                    value={data.password}
+                                    className="mt-1 block w-full pr-10"
+                                    autoComplete="new-password"
+                                    onChange={(e) => setData("password", e.target.value)}
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                                >
+                                    {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                                </button>
+                            </div>
+                            <InputError message={errors.password} className="mt-2" />
                         </div>
 
                         <div className="mt-4">
-                            <InputLabel
-                                htmlFor="password_confirmation"
-                                value="Konfirmasi Password"
-                            />
-                            <TextInput
-                                id="password_confirmation"
-                                type="password"
-                                name="password_confirmation"
-                                value={data.password_confirmation}
-                                className="mt-1 block w-full"
-                                autoComplete="new-password"
-                                placeholder="Masukkan kata sandi akun"
-                                onChange={(e) =>
-                                    setData(
-                                        "password_confirmation",
-                                        e.target.value
-                                    )
-                                }
-                                required
-                            />
-                            <InputError
-                                message={errors.password_confirmation}
-                                className="mt-2"
-                            />
+                            <InputLabel htmlFor="password_confirmation" value="Konfirmasi Password" />
+                            <div className="relative">
+                                <TextInput
+                                    id="password_confirmation"
+                                    type={showPassword ? 'text' : 'password'}
+                                    name="password_confirmation"
+                                    value={data.password_confirmation}
+                                    className="mt-1 block w-full pr-10"
+                                    autoComplete="new-password"
+                                    onChange={(e) => setData("password_confirmation", e.target.value)}
+                                    required
+                                />
+                                <button
+                                    type="button"
+                                    onClick={togglePasswordVisibility}
+                                    className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-gray-600"
+                                >
+                                    {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+                                </button>
+                            </div>
+                            <InputError message={errors.password_confirmation} className="mt-2" />
                         </div>
 
                         <div className="flex items-center justify-between mt-6">
@@ -215,7 +226,7 @@ export default function Register() {
                                 className="ms-4 px-6 py-2 bg-darkBlue"
                                 disabled={processing}
                             >
-                                Daftar
+                                {processing ? 'Mendaftar...' : 'Daftar'}
                             </PrimaryButton>
                         </div>
                     </form>
@@ -224,3 +235,6 @@ export default function Register() {
         </GuestLayout>
     );
 }
+
+
+

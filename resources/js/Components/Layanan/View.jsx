@@ -1,12 +1,14 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "@inertiajs/react";
+import { Link, usePage } from "@inertiajs/react";
 import BuatSurat from "./BuatSurat";
 import col from "./../../../assets/LayananMasyarakat/Col.png";
 import layanan1 from "./../../../assets/LayananMasyarakat/Layanan1.png";
 import albums from "./../../../assets/LayananMasyarakat/albums.svg";
 
 const View = () => {
+    const { auth } = usePage().props;
+    
     return (
         <>
             <section className="min-h-screen w-full bg-white flex items-center pt-[76px] overflow-hidden">
@@ -212,7 +214,7 @@ const View = () => {
                             </p>
                             {/* Kontainer untuk kedua tombol agar mudah diatur */}
                             <div className="flex flex-col sm:flex-col items-center gap-4 mt-6 md:mt-[36px]">
-                                <Link href="layanan/buat-surat">
+                                <Link href={auth.user ? "/layanan/buat-surat" : "/login?redirect=/layanan/buat-surat"}>
                                     <motion.div
                                         initial={{
                                             background:
@@ -228,7 +230,7 @@ const View = () => {
                                         }}
                                         className="text-sm md:text-[20px] rounded-[40px] font-semibold px-6 py-3 md:px-[40px] md:py-[24px] text-center w-full sm:w-auto text-white"
                                     >
-                                        Klik di sini untuk membuat surat
+                                        {auth.user ? "Klik di sini untuk membuat surat" : "Login dulu untuk membuat surat"}
                                     </motion.div>
                                 </Link>
                                 <Link href="/layanan/status-surat">
@@ -296,3 +298,4 @@ const View = () => {
 };
 
 export default View;
+
