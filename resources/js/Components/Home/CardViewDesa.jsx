@@ -20,7 +20,7 @@ const DesaKaranganyar = ({ backgroundIMG, logo }) => {
 
   return (
     <motion.div
-      className="h-full lg:min-h-screen max-h-screen w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 mt-0"
+      className="h-full lg:min-h-screen max-h-max w-full flex items-center justify-center p-4 sm:p-6 lg:p-8 mt-0"
       initial="hidden"
       animate="show"
       whileInView="show"

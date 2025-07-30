@@ -6,7 +6,7 @@ const PetaRBIHome = ({ backgroundIMG }) => {
     return (
         <Animation delay={0.2}>
             <div
-                className="h-full md:min-h-screen max-h-screen w-full flex items-start lg:items-center justify-center p-6 sm:p-12"
+                className="h-full md:min-h-screen max-h-max w-full flex items-start lg:items-center justify-center p-6 sm:p-12"
                 style={{
                     backgroundImage: `url(${backgroundIMG})`,
                     backgroundSize: "cover",

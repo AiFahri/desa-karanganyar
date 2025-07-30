@@ -37,7 +37,7 @@ const StatsWilayah = ({ stats }) => {
                         {statsData.map((item, index) => (
                             <div
                                 key={index}
-                                className="text-center bg-white rounded-lg md:p-6 p-2 shadow-[0_0_4px_0_rgba(0,0,0,0.25)]"
+                                className="text-center bg-white rounded-lg md:p-6 p-2 shadow-[0_0_4px_0_rgba(0,0,0,0.25)] z-10"
                             >
                                 <h3
                                     className={`md:text-[16px] text-[12px] font-medium ${item.color} mb-2`}
