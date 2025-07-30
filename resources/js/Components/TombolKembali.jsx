@@ -10,7 +10,6 @@ const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
 const TombolKembali = ({backTo}) => {
   return (
     <div>
-      {/* Gradien background & tombol kembali */}
       <div className="flex top-0 left-0 w-full md:h-[120px] h-[35px] z-0 bg-gradient-to-b from-[#0272BA] to-[#95CFF4]">
         <div className="absolute md:mt-6 mt-[-3px] md:ml-6 ml-[21px]">
           <Link

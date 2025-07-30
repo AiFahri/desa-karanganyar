@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Mail\ProfileChangedEmail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -19,7 +22,7 @@ class ProfileController extends Controller
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [
-            'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
+            // 'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
         ]);
     }
@@ -29,15 +32,33 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $oldEmail = $request->user()->email;
+        $validated = $request->validated();
+        
+        // Hapus current_password dari data yang akan disimpan
+        unset($validated['current_password']);
+        
+        // Hapus password jika kosong
+        if (empty($validated['password'])) {
+            unset($validated['password']);
+        } else {
+            $validated['password'] = Hash::make($validated['password']);
+        }
+        
+        $request->user()->fill($validated);
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+            
+            if ($oldEmail !== $request->user()->email) {
+                Mail::to($oldEmail)->queue(new ProfileChangedEmail($request->user(), $oldEmail));
+            }
         }
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit');
+        // Return success tanpa redirect, biar frontend yang handle
+        return back()->with('status', 'profile-updated');
     }
 
     /**
@@ -61,3 +82,8 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 }
+
+
+
+
+

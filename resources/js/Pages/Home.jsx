@@ -12,13 +12,16 @@ import HeaderPotensi from "@/Components/Home/HeaderPotensi";
 import PotensiSection from "@/Components/Home/PotensiSection";
 import BumDesa from "@/Components/Home/BumDesa";
 import { dummyPotensi } from "@/data/dummyPotensi";
+import { usePage } from "@inertiajs/react";
 
 const Home = ({ statistikWilayah, umkmData }) => {
+    const { auth } = usePage().props;
+    
     return (
         <>
-            <Navbar />
+            <Navbar user={auth.user} />
             <Hero />
-            <CardViewDesa background={bgCardView} logo={logoCardView} />
+            <CardViewDesa backgroundIMG={bgCardView} logo={logoCardView} />
             <PetaRBIHome
                 backgroundIMG={bgPetaView}
                 statsWilayah={statistikWilayah}
@@ -28,11 +31,13 @@ const Home = ({ statistikWilayah, umkmData }) => {
             <PotensiSection
                 id={"potensiGan1"}
                 headerTitle={"Potensi Alam"}
+                
                 umkmData={dummyPotensi}
             />
             <PotensiSection
                 id={"potensiGan2"}
                 headerTitle={"Potensi UMKM"}
+                deskripsi={"Pilih salah satu UMKM pada daftar di bawah untuk mengetahui informasi lebih lengkap."}
                 umkmData={umkmData}
             />
             <BumDesa id={"bumDesa"} headerTitle={"BUM Desa"} />
@@ -41,3 +46,4 @@ const Home = ({ statistikWilayah, umkmData }) => {
     );
 };
 export default Home;
+

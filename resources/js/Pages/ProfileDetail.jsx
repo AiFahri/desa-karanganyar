@@ -2,10 +2,7 @@ import React from 'react';
 import Footer from '@/Components/Footer';
 import Navbar from '@/Components/Navbar';
 import TombolKembali from '@/Components/TombolKembali';
-// import { ArrowLeftIcon, EyeOffIcon } from '@heroicons/react/outline'; 
-// import { useNavigate } from 'react-router-dom'; 
 
-// SVG Icon for hiding the password
 const EyeOffIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -33,22 +30,18 @@ const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
 );
 
 const ProfileDetail = () => {
-  // const navigate = useNavigate(); // navigasi kembali
 
   return (
     <>
     <Navbar />
     <div className="min-h-screen bg-[#EBE6E6] font-sans flex flex-col pt-[76px]">
 
-      {/* Header */}
       <div className='pt-[76px]'>
         <TombolKembali backTo="/" />
       </div>
 
-      {/* Content */}
       <main className="flex-1 flex justify-center items-center py-10">
         <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-2xl">
-          {/* Profile Icon */}
           <div className="flex flex-col items-center mb-6">
             <div className="w-20 h-20 rounded-full bg-gray-300 flex items-center justify-center mb-2">
               <span className="text-4xl text-white">👤</span>
@@ -57,7 +50,6 @@ const ProfileDetail = () => {
             <p className="text-gray-500">alexarawles@gmail.com</p>
           </div>
 
-          {/* Input Fields */}
           <div className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-gray-700">NIK</label>

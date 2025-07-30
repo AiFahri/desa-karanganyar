@@ -75,6 +75,23 @@ const AdminPengajuanLayanan = ({ pengajuanSurat, filters }) => {
     );
   };
 
+  const renderFileButton = (fileUrl, fileName, buttonText, buttonColor) => {
+    if (!fileUrl) {
+      return <span className="text-gray-500 text-xs">-</span>;
+    }
+
+    const isPdf = fileUrl.toLowerCase().includes('.pdf');
+    
+    return (
+      <button
+        onClick={() => window.open(fileUrl, '_blank')}
+        className={`px-2 py-1 ${buttonColor} text-white rounded text-xs hover:opacity-80 transition-colors`}
+      >
+        {isPdf ? `📄 ${buttonText}` : `👁️ ${buttonText}`}
+      </button>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-[#EBE6E6] font-sans flex flex-col">
       <NavbarAdmin toggleSidebar={toggleSidebar} />

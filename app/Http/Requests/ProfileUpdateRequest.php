@@ -17,14 +17,21 @@ class ProfileUpdateRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'lowercase',
-                'email',
-                'max:255',
-                Rule::unique(User::class)->ignore($this->user()->id),
-            ],
+            'nik' => ['required', 'string', 'max:16', Rule::unique(User::class)->ignore($this->user()->id)],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class)->ignore($this->user()->id)],
+            'no_hp' => ['required', 'string', 'max:15'],
+            'current_password' => ['nullable', 'required_with:password', 'current_password'],
+            'password' => ['nullable', 'confirmed', 'min:8'],
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'current_password.current_password' => 'Password lama yang Anda masukkan salah.',
+            'current_password.required_with' => 'Password lama wajib diisi jika ingin mengubah password.',
         ];
     }
 }
+
+

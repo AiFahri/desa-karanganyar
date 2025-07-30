@@ -37,25 +37,44 @@ class PengajuanSurat extends Model
 
     public function getFotoKtpUrlAttribute()
     {
-        return $this->foto_ktp_path ? 
-            'https://is3.cloudhost.id/karanganyar/' . $this->foto_ktp_path : 
-            null;
+        if (!$this->foto_ktp_path) {
+            return null;
+        }
+        
+        try {
+            return Storage::disk('s3_idcloudhost')->url($this->foto_ktp_path);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     public function getFotoKkUrlAttribute()
     {
-        return $this->foto_kk_path ? 
-            'https://is3.cloudhost.id/karanganyar/' . $this->foto_kk_path : 
-            null;
+        if (!$this->foto_kk_path) {
+            return null;
+        }
+        
+        try {
+            return Storage::disk('s3_idcloudhost')->url($this->foto_kk_path);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     public function getSuratJadiUrlAttribute()
     {
-        return $this->file_surat_jadi_path ? 
-            Storage::disk('s3_idcloudhost')->temporaryUrl($this->file_surat_jadi_path, now()->addMinutes(30)) : 
-            null;
+        if (!$this->file_surat_jadi_path) {
+            return null;
+        }
+        
+        try {
+            return Storage::disk('s3_idcloudhost')->url($this->file_surat_jadi_path);
+        } catch (\Exception $e) {
+            return null;
+        }
     }
 
     protected $appends = ['foto_ktp_url', 'foto_kk_url', 'surat_jadi_url'];
 }
+
 

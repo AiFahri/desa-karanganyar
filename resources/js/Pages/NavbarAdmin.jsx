@@ -10,7 +10,6 @@ const NavbarAdmin = ({ toggleSidebar }) => {
 
   return (
     <header className="flex items-center bg-[#FDFCFC] shadow h-16 w-full">
-      {/* Sidebar Toggle Button */}
       <div
         className="h-full flex items-center px-4"
         style={{
@@ -22,7 +21,6 @@ const NavbarAdmin = ({ toggleSidebar }) => {
         </button>
       </div>
 
-      {/* Logo & Title */}
       <div className="flex items-center justify-center flex-1 gap-4">
         <img src="/logo_karanganyar.png" alt="Logo" className="h-10 w-auto" />
         <div className="text-center text-sm leading-tight font-semibold text-black">
@@ -31,7 +29,6 @@ const NavbarAdmin = ({ toggleSidebar }) => {
         </div>
       </div>
 
-      {/* Avatar Dropdown */}
       <div className="relative mr-4">
         <button
           onClick={() => setDropdownOpen(!dropdownOpen)}
@@ -40,7 +37,6 @@ const NavbarAdmin = ({ toggleSidebar }) => {
           <img src={PhotoProfileIcon} alt="Profile" className="w-full h-full object-cover" />
         </button>
 
-        {/* Dropdown Menu */}
         {dropdownOpen && (
           <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-50">
             <div className="px-4 py-2 text-sm text-gray-700 border-b">
@@ -67,7 +63,6 @@ const NavbarAdmin = ({ toggleSidebar }) => {
         )}
       </div>
 
-      {/* Overlay to close dropdown when clicking outside */}
       {dropdownOpen && (
         <div
           className="fixed inset-0 z-40"

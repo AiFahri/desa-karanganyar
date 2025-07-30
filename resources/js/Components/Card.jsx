@@ -20,13 +20,13 @@ const Card = ({ title, description, image, slug }) => {
 
           <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
             <div className="p-4 text-white pb-12">
-              <p className="text-sm lg:text-base leading-relaxed font-sans">{description}</p>
+              <p className="text-[10px] lg:text-base leading-relaxed font-sans">{description}</p>
             </div>
           </div>
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-1/4 flex items-center justify-center px-4 bg-[#95CFF4] rounded-t-2xl">
-          <h3 className="font-bold text-2xl lg:text-3xl text-black font-display text-center leading-tight transition-colors duration-300 group-hover:text-[#0272BA]">
+          <h3 className="font-bold text-base lg:text-3xl text-black font-display text-center leading-tight transition-colors duration-300 group-hover:text-[#0272BA]">
             {title}
           </h3>
         </div>
