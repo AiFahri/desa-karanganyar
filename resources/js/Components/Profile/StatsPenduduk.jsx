@@ -100,8 +100,7 @@ export const PopulationStats = ({ stats }) => {
                             keluarga, penduduk laki-laki, perempuan, dan total
                             penduduk di Desa{" "}
                             {stats.villageName || "Karanganyar"}, Kecamatan{" "}
-                            {stats.district || "Poncokusumo"} selama bulan{" "}
-                            {stats.month || "Mei"} {stats.year || "2025"}.
+                            {stats.district || "Poncokusumo"}.
                         </p>
                     </div>
 

@@ -26,7 +26,7 @@ const Card = ({ title, description, image, slug }) => {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-1/4 flex items-center justify-center px-4 bg-[#95CFF4] rounded-t-2xl">
-          <h3 className="font-bold text-2xl lg:text-3xl text-black font-display text-center leading-tight transition-colors duration-300 group-hover:text-[#0272BA]">
+          <h3 className="font-bold text-base lg:text-3xl text-black font-display text-center leading-tight transition-colors duration-300 group-hover:text-[#0272BA]">
             {title}
           </h3>
         </div>

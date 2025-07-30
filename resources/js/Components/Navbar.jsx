@@ -39,7 +39,7 @@ const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     return (
-        <nav className="bg-darkBlue fixed top-0 z-50 w-full max-w-[100vw]">
+        <nav className="bg-darkBlue fixed top-0 z-[120] w-full max-w-[100vw]">
             <div className="mx-0 px-4 sm:px-6 lg:px-16 w-full">
                 <div className="flex items-center justify-between h-[76px]"> {/* Standard height */}
                     
