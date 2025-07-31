@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import { useForm } from "@inertiajs/react";
 import NavbarAdmin from "./NavbarAdmin";
 import SidebarAdmin from "./SidebarAdmin";
+import Modal from "../Components/Modal";
 import KirimIcon from "../../assets/Home/icons/KirimIcon.png";
 import UploadGambarIcon from "../../assets/Home/icons/UploadGambarIcon.png";
 
@@ -9,6 +10,7 @@ const AdminPotensiUMKM = ({ umkm }) => {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [editingId, setEditingId] = useState(null);
     const [previewImage, setPreviewImage] = useState(null);
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
     const formRef = useRef(null);
     const fileInputRef = useRef(null);
 
@@ -65,47 +67,90 @@ const AdminPotensiUMKM = ({ umkm }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        // Filter empty values dari arrays
+        const cleanedData = {
+            ...data,
+            menu_umkm: data.menu_umkm.filter(item => item.trim() !== ''),
+            media_sosial: data.media_sosial.filter(item => item.trim() !== ''),
+        };
+
+        console.log('Submitting data:', cleanedData);
+
         if (editingId) {
             const item = umkm.data.find((u) => u.id === editingId);
-            put(`/admin/umkm/${item.slug}`, {
+            put(`/admin/umkm/${item.slug}`, cleanedData, {
                 onSuccess: () => {
                     reset();
                     setEditingId(null);
                     setPreviewImage(null);
+                    setShowSuccessModal(true);
                 },
+                onError: (errors) => {
+                    console.log('Update errors:', errors);
+                }
             });
         } else {
-            post("/admin/umkm", {
+            post("/admin/umkm", cleanedData, {
                 onSuccess: () => {
                     reset();
                     setPreviewImage(null);
                     if (fileInputRef.current) {
                         fileInputRef.current.value = "";
                     }
+                    setShowSuccessModal(true);
                 },
+                onError: (errors) => {
+                    console.log('Create errors:', errors);
+                }
             });
         }
     };
 
     const handleEdit = (item) => {
-        setData({
-            merk_dagang: item.merk_dagang,
-            deskripsi_singkat: item.deskripsi_singkat,
-            deskripsi_lengkap: item.deskripsi_lengkap,
-            menu_umkm: Array.isArray(item.menu_umkm)
-                ? item.menu_umkm
-                : item.menu_umkm
-                ? item.menu_umkm.split("||") // atau delimiter lain yang kamu pakai
-                : [""],
+        // Parse menu_umkm dengan benar
+        let menuUmkm = [""];
+        if (item.menu_umkm) {
+            try {
+                // Jika sudah dalam bentuk array
+                if (Array.isArray(item.menu_umkm)) {
+                    menuUmkm = item.menu_umkm.filter(menu => menu && menu.trim() !== '');
+                } 
+                // Jika dalam bentuk JSON string
+                else if (typeof item.menu_umkm === 'string') {
+                    const parsed = JSON.parse(item.menu_umkm);
+                    menuUmkm = Array.isArray(parsed) ? parsed.filter(menu => menu && menu.trim() !== '') : [item.menu_umkm];
+                }
+                // Fallback jika format lain
+                else {
+                    menuUmkm = [item.menu_umkm.toString()];
+                }
+            } catch (e) {
+                // Jika parsing gagal, treat as string
+                menuUmkm = item.menu_umkm.split("||").filter(menu => menu && menu.trim() !== '');
+            }
+        }
+        
+        // Pastikan minimal ada satu item kosong
+        if (menuUmkm.length === 0) {
+            menuUmkm = [""];
+        }
 
-            media_sosial: item.media_sosial || [""],
+        setData({
+            merk_dagang: item.merk_dagang || "",
+            deskripsi_singkat: item.deskripsi_singkat || "",
+            deskripsi_lengkap: item.deskripsi_lengkap || "",
+            menu_umkm: menuUmkm,
+            media_sosial: Array.isArray(item.media_sosial) ? item.media_sosial : (item.media_sosial ? [item.media_sosial] : [""]),
             kontak_pemesanan: item.kontak_pemesanan || "",
             gambar: null,
         });
+        
         setEditingId(item.id);
 
         if (item.gambar_path) {
             setPreviewImage(item.gambar_path);
+        } else {
+            setPreviewImage(null);
         }
 
         if (formRef.current) {
@@ -485,15 +530,14 @@ const AdminPotensiUMKM = ({ umkm }) => {
                                             <p className="text-gray-700 line-clamp-2">
                                                 {item.deskripsi_singkat}
                                             </p>
-                                            {item.menu_umkm && (
+                                            {item.menu_umkm && Array.isArray(item.menu_umkm) && item.menu_umkm.length > 0 && (
                                                 <p className="text-sm text-gray-500 mt-1">
-                                                    Menu: {item.menu_umkm}
+                                                    Menu: {item.menu_umkm.join(', ')}
                                                 </p>
                                             )}
                                             {item.kontak_pemesanan && (
                                                 <p className="text-sm text-gray-500">
-                                                    Kontak:{" "}
-                                                    {item.kontak_pemesanan}
+                                                    Kontak: {item.kontak_pemesanan}
                                                 </p>
                                             )}
                                         </div>
@@ -507,18 +551,11 @@ const AdminPotensiUMKM = ({ umkm }) => {
                                                         : "bg-blue-500 text-white hover:bg-blue-600"
                                                 }`}
                                             >
-                                                {editingId === item.id
-                                                    ? "Sedang Edit"
-                                                    : "Edit"}
+                                                {editingId === item.id ? "Sedang Edit" : "Edit"}
                                             </button>
                                             <button
-                                                onClick={() =>
-                                                    handleDelete(item)
-                                                }
-                                                disabled={
-                                                    processing ||
-                                                    editingId === item.id
-                                                }
+                                                onClick={() => handleDelete(item)}
+                                                disabled={processing || editingId === item.id}
                                                 className="px-4 py-2 bg-red-500 text-white rounded text-sm font-medium hover:bg-red-600 transition-colors disabled:opacity-50"
                                             >
                                                 Hapus
@@ -536,3 +573,10 @@ const AdminPotensiUMKM = ({ umkm }) => {
 };
 
 export default AdminPotensiUMKM;
+
+
+
+
+
+
+

@@ -59,7 +59,7 @@ const PortalBerita = ({
                             </p>
                         </div>
 
-                        <div className="z-40 grid grid-cols-1 w-full sm:gap-6 lg:gap-y-12 pt-4 lg:pt-32 justify-items-center max-w-[1400px] mx-auto">
+                        <div className="z-40 grid grid-cols-1 w-full sm:gap-6 lg:gap-y-12 pt-4 lg:pt-32 justify-items-center max-w-[70vw] mx-auto">
                             {pengumuman?.data?.length > 0 ? (
                                 pengumuman.data.map((item) => (
                                     <ItemPengumuman
@@ -125,3 +125,6 @@ const PortalBerita = ({
 };
 
 export default PortalBerita;
+
+
+

@@ -1,7 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { useForm } from '@inertiajs/react';
+import { useForm, router } from '@inertiajs/react';
 import NavbarAdmin from './NavbarAdmin';
 import SidebarAdmin from './SidebarAdmin';
+import Modal from '../Components/Modal';
 import KirimIcon from '../../assets/Home/icons/KirimIcon.png';
 import UploadGambarIcon from '../../assets/Home/icons/UploadGambarIcon.png';
 
@@ -9,6 +10,7 @@ const AdminPortalBerita = ({ berita }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [editingId, setEditingId] = useState(null);
   const [previewImage, setPreviewImage] = useState(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
   const formRef = useRef(null);
   const fileInputRef = useRef(null);
 
@@ -34,40 +36,71 @@ const AdminPortalBerita = ({ berita }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
     if (editingId) {
-      const item = berita.data.find(b => b.id === editingId);
-      put(`/admin/berita/${item.slug}`, {
-        onSuccess: () => {
-          reset();
-          setEditingId(null);
-          setPreviewImage(null);
-        }
-      });
+        const item = berita.data.find(b => b.id === editingId);
+        
+        router.post(`/admin/berita/${item.slug}`, {
+            _method: 'PUT',
+            judul: data.judul,
+            deskripsi: data.deskripsi,
+            gambar: data.gambar,
+        }, {
+            forceFormData: true,
+            onSuccess: () => {
+                reset();
+                setEditingId(null);
+                setPreviewImage(null);
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
+                setShowSuccessModal(true);
+            }
+        });
     } else {
-      post('/admin/berita', {
-        onSuccess: () => {
-          reset();
-          setPreviewImage(null);
-          if (fileInputRef.current) {
-            fileInputRef.current.value = '';
-          }
-        }
-      });
+        router.post('/admin/berita', {
+            judul: data.judul,
+            deskripsi: data.deskripsi,
+            gambar: data.gambar,
+        }, {
+            forceFormData: true,
+            onSuccess: () => {
+                reset();
+                setPreviewImage(null);
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
+                setShowSuccessModal(true);
+            }
+        });
     }
   };
 
   const handleEdit = (item) => {
+    // Jangan reset dulu, langsung set data
     setData({
-      judul: item.judul,
-      deskripsi: item.deskripsi,
-      gambar: null,
+        judul: item.judul || '',
+        deskripsi: item.deskripsi || '',
+        gambar: null, // Selalu null untuk edit
     });
+    
     setEditingId(item.id);
+    
+    // Set preview image jika ada
     if (item.gambar) {
-      setPreviewImage(`https://is3.cloudhost.id/karanganyar/${item.gambar}`);
+        setPreviewImage(`https://is3.cloudhost.id/karanganyar/${item.gambar}`);
+    } else {
+        setPreviewImage(null);
     }
+    
+    // Clear file input
+    if (fileInputRef.current) {
+        fileInputRef.current.value = '';
+    }
+    
+    // Scroll to form
     if (formRef.current) {
-      formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        formRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   };
 
@@ -261,8 +294,50 @@ const AdminPortalBerita = ({ berita }) => {
           </div>
         </main>
       </div>
+
+      {/* Success Modal */}
+      <Modal show={showSuccessModal} onClose={() => setShowSuccessModal(false)}>
+        <div className="p-6 text-center">
+          <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+            <svg className="h-6 w-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
+          </div>
+          
+          <h3 className="text-lg font-medium text-gray-900 mb-2">
+            {editingId ? 'Berita Berhasil Diperbarui!' : 'Berita Berhasil Ditambahkan!'}
+          </h3>
+          
+          <p className="text-sm text-gray-600 mb-6">
+            {editingId ? 'Data berita telah berhasil diperbarui.' : 'Berita baru telah berhasil ditambahkan.'}
+          </p>
+          
+          <button
+            onClick={() => setShowSuccessModal(false)}
+            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+          >
+            Tutup
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };
 
 export default AdminPortalBerita;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

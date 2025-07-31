@@ -90,53 +90,51 @@ const SocialMediaSection = ({
     className = "",
     heading,
     warnaBullet,
-}) => (
-    <div className={className}>
-               {" "}
-        <h3 className="text-lg font-bold text-gray-800 mb-3">{heading}</h3>     
-         {" "}
-        <div className="space-y-2">
-                       {" "}
-            {mediaSosial &&
-                mediaSosial.map((media, index) => (
+}) => {
+    // Pastikan mediaSosial adalah array dan tidak kosong
+    const safeMediaSosial = Array.isArray(mediaSosial) 
+        ? mediaSosial.filter(media => media && media.trim() !== '') 
+        : [];
+
+    // Jika tidak ada media sosial, jangan render section ini
+    if (safeMediaSosial.length === 0) {
+        return null;
+    }
+
+    return (
+        <div className={className}>
+            <h3 className="text-lg font-bold text-gray-800 mb-3">{heading}</h3>
+            <div className="space-y-2">
+                {safeMediaSosial.map((media, index) => (
                     <div key={index} className="flex items-center">
-                                           {" "}
-                        
-                        
-                                           {" "}
                         <div
                             className={`w-4 h-4 rounded-full mr-2 ${warnaBullet}`}
                         ></div>
-                                           {" "}
                         <a
                             className="text-gray-700 hover:text-blue-600 transition-colors"
                             href={media}
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-
-                                                    {media}                   {" "}
+                            {media}
                         </a>
-                                       {" "}
                     </div>
                 ))}
-                   {" "}
+            </div>
         </div>
-           {" "}
-    </div>
-);
+    );
+};
 
 const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
-   
     let safeMenuUMKM = [];
 
     if (Array.isArray(menuUMKM)) {
-        safeMenuUMKM = menuUMKM;
+        safeMenuUMKM = menuUMKM.filter(menu => menu && menu.trim() !== '');
     } else if (typeof menuUMKM === "string") {
         try {
             const parsed = JSON.parse(menuUMKM);
             if (Array.isArray(parsed)) {
-                safeMenuUMKM = parsed;
+                safeMenuUMKM = parsed.filter(menu => menu && menu.trim() !== '');
             } else {
                 safeMenuUMKM = [menuUMKM];
             }
@@ -145,28 +143,31 @@ const MenuSection = ({ menuUMKM, className = "", heading, warnaBullet }) => {
         }
     }
 
+    // Jika tidak ada menu, jangan render section ini
+    if (safeMenuUMKM.length === 0) {
+        return null;
+    }
+
     return (
-        
-            <div className={className}>
-                <h3 className="text-lg font-bold text-gray-800 mb-3">
-                    {heading}
-                </h3>
-                <div className="space-y-2">
-                    {safeMenuUMKM.map((menu, index) => (
-                        <div key={index} className="flex items-start">
-                            <div
-                                className={`w-3 h-3 rounded-full mt-1.5 mr-3 flex-shrink-0 ${warnaBullet}`}
-                            ></div>
-                            <div>
-                                <p className="font-semibold text-gray-800">
-                                    {menu}
-                                </p>
-                            </div>
+        <div className={className}>
+            <h3 className="text-lg font-bold text-gray-800 mb-3">
+                {heading}
+            </h3>
+            <div className="space-y-2">
+                {safeMenuUMKM.map((menu, index) => (
+                    <div key={index} className="flex items-start">
+                        <div
+                            className={`w-3 h-3 rounded-full mt-1.5 mr-3 flex-shrink-0 ${warnaBullet}`}
+                        ></div>
+                        <div>
+                            <p className="font-semibold text-gray-800">
+                                {menu}
+                            </p>
                         </div>
-                    ))}
-                </div>
+                    </div>
+                ))}
             </div>
-       
+        </div>
     );
 };
 
@@ -198,17 +199,20 @@ const MenuAndContactSection = ({ item }) => (
 );
 
 const MobileContactSection = ({ item }) => (
-    <div className="p-6 bg-[#FFFFFF]  md:hidden">
+    <div className="p-6 bg-[#FFFFFF] md:hidden">
         <ContactSection phoneNumber={item.kontak_pemesanan} />
-        <SocialMediaSection mediaSosial={item.media_sosial} />
+        <SocialMediaSection 
+            mediaSosial={item.media_sosial} 
+            heading="Media Sosial"
+            warnaBullet="bg-blue-500"
+        />
     </div>
 );
-
+;
 
 const SubPotensi = ({ item, umkm }) => {
    
     const currentItem = umkm || dataPotensi[0];
-    console.log(currentItem);
     return (
         <>
             <Navbar />
@@ -254,8 +258,14 @@ const SubPotensi = ({ item, umkm }) => {
             </Animation>
 
             <Footer />
+
         </>
     );
 };
 
 export default SubPotensi;
+
+
+
+
+
