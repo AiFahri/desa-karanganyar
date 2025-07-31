@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\Admin\UmkmController;
+use App\Http\Controllers\ProfileController;
+use Illuminate\Foundation\Application;
 
 Route::get('/', [App\Http\Controllers\UmkmController::class, 'index']);
 Route::get('/home', [App\Http\Controllers\UmkmController::class, 'index']);
@@ -73,27 +76,19 @@ Route::middleware('auth')->group(function () {
 
 // Admin routes dengan middleware
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('AdminDashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     
-    Route::resource('pengumuman', App\Http\Controllers\Admin\PengumumanController::class)->parameters([
-        'pengumuman' => 'pengumuman:slug'
-    ]);
+    // Berita routes
+    Route::get('/berita', [BeritaController::class, 'index'])->name('admin.berita.index');
+    Route::post('/berita', [BeritaController::class, 'store'])->name('admin.berita.store');
+    Route::put('/berita/{berita:slug}', [BeritaController::class, 'update'])->name('admin.berita.update');
+    Route::delete('/berita/{berita:slug}', [BeritaController::class, 'destroy'])->name('admin.berita.destroy');
     
-    Route::resource('berita', App\Http\Controllers\Admin\BeritaController::class)->parameters([
-        'berita' => 'berita:slug'
-    ]);
-    
-    // Statistik Wilayah
-    Route::get('/statistik-wilayah', [App\Http\Controllers\Admin\StatistikWilayahController::class, 'index'])->name('statistik-wilayah.index');
-    Route::put('/statistik-wilayah', [App\Http\Controllers\Admin\StatistikWilayahController::class, 'update'])->name('statistik-wilayah.update');
-    
-    // Statistik Penduduk
-    Route::get('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'index'])->name('statistik-penduduk.index');
-    Route::put('/statistik-penduduk', [App\Http\Controllers\Admin\StatistikPendudukController::class, 'update'])->name('statistik-penduduk.update');
-
-    Route::resource('umkm', App\Http\Controllers\Admin\UmkmController::class)->except(['show', 'create', 'edit']);
+    // UMKM routes
+    Route::get('/umkm', [UmkmController::class, 'index'])->name('admin.umkm.index');
+    Route::post('/umkm', [UmkmController::class, 'store'])->name('admin.umkm.store');
+    Route::put('/umkm/{umkm:slug}', [UmkmController::class, 'update'])->name('admin.umkm.update');
+    Route::delete('/umkm/{umkm:slug}', [UmkmController::class, 'destroy'])->name('admin.umkm.destroy');
 });
 
 Route::get('/AdminPengumuman', function () {
@@ -168,5 +163,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/admin/files/layanan_surat/{filename}', [App\Http\Controllers\FileController::class, 'serveAdminLayananSurat'])->name('admin.files.layanan_surat');
     });
 });
+
+
+
+
+
 
 
