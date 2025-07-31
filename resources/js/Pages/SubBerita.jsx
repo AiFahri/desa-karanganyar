@@ -1,91 +1,107 @@
-import React from 'react';
-import Navbar from '@/Components/Navbar';
-import Footer from '@/Components/Footer';
-import { Link } from '@inertiajs/react';
-import TombolKembali from '@/Components/TombolKembali';
+import React from "react";
+import Navbar from "@/Components/Navbar";
+import Footer from "@/Components/Footer";
+import { usePage } from "@inertiajs/react";
+import SEO from "@/Components/SEO";
+import JsonLd from "@/Components/JsonLd";
+import Breadcrumbs from "@/Components/Breadcrumbs";
+import { formatDate } from "@/utils/dateFormatter";
 
-// Icon components (using inline SVG for portability)
-const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-  </svg>
-);
-
-const UserIcon = ({ className = "w-5 h-5" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
-  </svg>
-);
-
-const CalendarIcon = ({ className = "w-5 h-5" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0h18M-4.5 12h22.5" />
-    </svg>
-);
-
-const MapPinIcon = ({ className = "w-5 h-5" }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-    </svg>
-);
-
-
-// Main component
-export default function SubBerita({ berita }) {
-  return (
-    <div>
-      <Navbar />
-      <div className='pt-[76px]'>
-        <TombolKembali backTo="/portal" />
-      </div>
-      <div className="bg-white font-sans antialiased min-h-screen pt-4">
-        <main className="p-4 sm:p-6 md:p-8">
-          <div className="max-w-[85vw] md:max-w-[66vw] mx-auto bg-white rounded-xl shadow-md overflow-hidden">
-            <div className="p-6 sm:p-8">
-              
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4 leading-tight">
-                {berita.judul}
-              </h1>
-
-              <div className="flex flex-col sm:flex-row sm:items-center text-sm text-[#0272BA] mb-6 space-y-2 sm:space-y-0 sm:space-x-6">
-                <span className="font-semibold text-[#0272BA] text-2xl">
-                  {new Date(berita.tanggal_publish).toLocaleDateString('id-ID', {
-                    day: 'numeric',
-                    month: 'long',
-                    year: 'numeric'
-                  })}
-                </span>
-                <div className="flex items-center space-x-2">
-                  <UserIcon className="w-5 h-5 text-[#0272BA] fill-[#0272BA]" />
-                  <span className='text-2xl font-semibold'>{berita.published_by || 'Admin Desa Karanganyar'}</span>
+const SubBerita = ({ berita, relatedBerita }) => {
+    const { auth, meta } = usePage().props;
+    
+    return (
+        <>
+            <SEO 
+                title={meta.title}
+                description={meta.description}
+                keywords={meta.keywords}
+                ogImage={meta.ogImage}
+            />
+            <JsonLd 
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "NewsArticle",
+                    "headline": berita.judul,
+                    "image": berita.gambar ? `https://is3.cloudhost.id/karanganyar/${berita.gambar}` : null,
+                    "datePublished": berita.tanggal_publish,
+                    "dateModified": berita.updated_at,
+                    "author": {
+                        "@type": "Organization",
+                        "name": "Desa Karanganyar"
+                    },
+                    "publisher": {
+                        "@type": "Organization",
+                        "name": "Desa Karanganyar",
+                        "logo": {
+                            "@type": "ImageObject",
+                            "url": "https://karanganyarmalang.com/logo_karanganyar.png"
+                        }
+                    },
+                    "description": meta.description
+                }}
+            />
+            <Navbar user={auth.user} />
+            
+            <div className="container mx-auto px-4 py-8 mt-20">
+                <Breadcrumbs 
+                    items={[
+                        { label: 'Portal Berita', href: '/portal' },
+                        { label: berita.judul }
+                    ]} 
+                />
+                
+                <h1 className="text-3xl font-bold mb-4 mt-4">{berita.judul}</h1>
+                <div className="text-gray-600 mb-4">
+                    {berita.tanggal_publish && (
+                        <p>
+                            Dipublikasikan pada {formatDate(berita.tanggal_publish)}
+                        </p>
+                    )}
                 </div>
-              </div>
-
-              {berita.gambar && (
-                <div className="my-6">
-                  <img 
-                      className="md:w-1/3 w-full h-auto object-cover rounded-lg shadow-md" 
-                      src={`https://is3.cloudhost.id/karanganyar/${berita.gambar}`}
-                      alt={berita.judul}
-                      onError={(e) => { 
-                        e.target.onerror = null; 
-                        e.target.src='https://placehold.co/800x450/cccccc/ffffff?text=Image+Not+Found'; 
-                      }}
-                  />
-                </div>
-              )}
-
-              <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                {berita.deskripsi}
-              </div>
-
+                
+                {berita.gambar && (
+                    <img 
+                        src={`https://is3.cloudhost.id/karanganyar/${berita.gambar}`}
+                        alt={berita.judul}
+                        className="w-1/3 h-auto object-cover rounded-lg shadow-md"
+                    />
+                )}
+                
+                <div 
+                    className="prose max-w-none mt-6"
+                    dangerouslySetInnerHTML={{ __html: berita.deskripsi }}
+                />
+                
+                {relatedBerita && relatedBerita.length > 0 && (
+                    <div className="mt-12">
+                        <h2 className="text-2xl font-bold mb-4">Berita Terkait</h2>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {relatedBerita.map((item) => (
+                                <div key={item.id} className="border border-gray-200 rounded-lg p-6">
+                                    <h3 className="text-lg font-semibold mb-2">{item.judul}</h3>
+                                    <p className="text-gray-600 mb-4">{item.deskripsi}</p>
+                                    <a
+                                        href={`/berita/${item.slug}`}
+                                        className="text-blue-600 hover:underline"
+                                    >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                )}
             </div>
-          </div>
-        </main>
-      </div>
-      <Footer />
-    </div>
-  );
-}
+            
+            <Footer />
+        </>
+    );
+};
+
+export default SubBerita;
+
+
+
+
 
