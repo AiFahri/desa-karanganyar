@@ -13,12 +13,35 @@ import PotensiSection from "@/Components/Home/PotensiSection";
 import BumDesa from "@/Components/Home/BumDesa";
 import { dummyPotensi } from "@/data/dummyPotensi";
 import { usePage } from "@inertiajs/react";
+import SEO from "@/Components/SEO";
+import JsonLd from "@/Components/JsonLd";
 
-const Home = ({ statistikWilayah, umkmData }) => {
+const Home = ({ statistikWilayah, umkmData, beritaData }) => {
     const { auth } = usePage().props;
     
     return (
         <>
+            <SEO 
+                title="Desa Karanganyar - Kecamatan Poncokusumo Kabupaten Malang | Website Resmi"
+                description="Website resmi Desa Karanganyar, Kecamatan Poncokusumo, Kabupaten Malang. Informasi layanan desa, berita terkini, pengumuman, dan potensi UMKM desa."
+                keywords="Desa Karanganyar, Poncokusumo, Malang, Website Desa, Layanan Desa, UMKM Karanganyar, Berita Desa"
+            />
+            <JsonLd 
+                data={{
+                    "@context": "https://schema.org",
+                    "@type": "GovernmentOrganization",
+                    "name": "Desa Karanganyar",
+                    "url": "https://karanganyarmalang.com",
+                    "logo": "https://karanganyarmalang.com/logo_karanganyar.png",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Poncokusumo",
+                        "addressRegion": "Malang",
+                        "addressCountry": "ID"
+                    },
+                    "description": "Website resmi Desa Karanganyar, Kecamatan Poncokusumo, Kabupaten Malang."
+                }}
+            />
             <Navbar user={auth.user} />
             <Hero />
             <CardViewDesa backgroundIMG={bgCardView} logo={logoCardView} />
@@ -46,4 +69,6 @@ const Home = ({ statistikWilayah, umkmData }) => {
     );
 };
 export default Home;
+
+
 
