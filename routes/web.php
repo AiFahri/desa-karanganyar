@@ -164,6 +164,29 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+// Sitemap route
+Route::get('/sitemap.xml', [App\Http\Controllers\SitemapController::class, 'index']);
+
+// SEO-focused landing pages
+Route::get('/desa-karanganyar-poncokusumo-malang', function () {
+    $statistikPenduduk = App\Models\StatistikPenduduk::getOrCreate();
+    $statistikWilayah = App\Models\StatistikWilayah::getOrCreate();
+    $umkmData = App\Models\Umkm::latest()->take(6)->get();
+    
+    return Inertia::render('LandingPage', [
+        'statistikPenduduk' => $statistikPenduduk,
+        'statistikWilayah' => $statistikWilayah,
+        'umkmData' => $umkmData,
+        'meta' => [
+            'title' => 'Desa Karanganyar Poncokusumo Malang - Website Resmi',
+            'description' => 'Informasi lengkap tentang Desa Karanganyar, Kecamatan Poncokusumo, Kabupaten Malang. Layanan desa, potensi UMKM, dan berita terkini.',
+            'keywords' => 'desa karanganyar malang, karanganyar poncokusumo, website desa karanganyar, layanan desa karanganyar'
+        ]
+    ]);
+})->name('landing.seo');
+
+
+
 
 
 
