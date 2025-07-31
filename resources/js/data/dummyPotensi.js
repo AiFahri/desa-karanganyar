@@ -21,19 +21,19 @@ export const dummyPotensi = [
     id: 4,
     image: "/images/potensialam/imgJeruk.webp",
     title: "Jeruk",
-    deskripsi_singkat: "Jeruk segar dari Dusun Krajan tumbuh di lahan yang subur, menghasilkan buah dengan rasa manis asam yang seimbang.",
+    deskripsi_singkat: "Jeruk segar dari Dusun Krajan tumbuh di lahan yang subur.",
   },
   {
     id: 5,
     image: "/images/potensialam/imgTimun.webp",
     title: "Timun",
-    deskripsi_singkat: "Timun segar dengan warna hijau cerah. Cocok dinikmati sebagai lalapan, rujak, atau campuran minuman segar.",
+    deskripsi_singkat: "Timun segar yang cocok dinikmati sebagai lalapan, rujak, atau campuran minuman segar.",
   },
   {
     id: 6,
     image: "/images/potensialam/imgTomat.webp",
     title: "Tomat",
-    deskripsi_singkat: "Tomat berwarna merah cerah dengan rasa asam manis yang khas. Ideal untuk olahan sambal, sup, atau dijadikan jus segar.",
+    deskripsi_singkat: "Tomat dengan rasa asam manis yang khas. Ideal untuk olahan sambal, sup, atau dijadikan jus segar.",
   },
   {
     id: 7,
@@ -45,7 +45,7 @@ export const dummyPotensi = [
     id: 8,
     image: "/images/potensialam/imgTerong.webp",
     title: "Terong",
-    deskripsi_singkat: "Terong ungu dengan tekstur lembut dan rasa gurih alami. Cocok untuk berbagai masakan seperti balado, tumis, atau lalapan.",
+    deskripsi_singkat: "Terong ungu dengan tekstur lembut dan rasa gurih alami.",
   },
   {
     id: 9,
