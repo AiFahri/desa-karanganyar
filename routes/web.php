@@ -78,6 +78,12 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
     
+    // Pengumuman routes
+    Route::get('/pengumuman', [App\Http\Controllers\Admin\PengumumanController::class, 'index'])->name('admin.pengumuman.index');
+    Route::post('/pengumuman', [App\Http\Controllers\Admin\PengumumanController::class, 'store'])->name('admin.pengumuman.store');
+    Route::put('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\Admin\PengumumanController::class, 'update'])->name('admin.pengumuman.update');
+    Route::delete('/pengumuman/{pengumuman:slug}', [App\Http\Controllers\Admin\PengumumanController::class, 'destroy'])->name('admin.pengumuman.destroy');
+    
     // Berita routes
     Route::get('/berita', [BeritaController::class, 'index'])->name('admin.berita.index');
     Route::post('/berita', [BeritaController::class, 'store'])->name('admin.berita.store');
@@ -184,6 +190,7 @@ Route::get('/desa-karanganyar-poncokusumo-malang', function () {
         ]
     ]);
 })->name('landing.seo');
+
 
 
 
