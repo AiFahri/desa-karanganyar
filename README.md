@@ -1,61 +1,226 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+    <img src="public/logo_karanganyar.png" width="200" alt="Karanganyar Village Logo">
 </p>
 
-## About Laravel
+<h1 align="center">Karanganyar Village Official Website</h1>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p align="center">
+    <strong>Digital Platform for Karanganyar Village, Poncokusumo District, Malang Regency</strong>
+</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<p align="center">
+    <a href="#features">Features</a> •
+    <a href="#technology-stack">Tech Stack</a> •
+    <a href="#installation">Installation</a> •
+    <a href="#usage">Usage</a> •
+    <a href="#contributing">Contributing</a> •
+    <a href="#license">License</a>
+</p>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
+## 🌐 Live Demo
 
-## Learning Laravel
+Visit the live website: [https://karanganyarmalang.com](https://karanganyarmalang.com)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🏘️ About
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+The **Karanganyar Village Official Website** is a comprehensive digital platform designed to serve the community of Karanganyar Village, located in Poncokusumo District, Malang Regency, East Java, Indonesia. This modern web application facilitates seamless interaction between village administration and residents while promoting local potential and transparency in governance.
 
-## Laravel Sponsors
+### 🎯 Mission
+To create a digital bridge that enhances public services, promotes local economic potential, and fosters community engagement through accessible and user-friendly technology.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ✨ Features
 
-### Premium Partners
+### 🏛️ **Village Administration**
+- **Document Services**: Online letter requests and status tracking
+- **Announcements**: Official village announcements and notifications
+- **News Portal**: Latest village news and updates
+- **Administrative Dashboard**: Comprehensive admin panel for content management
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 📊 **Village Statistics**
+- **Population Demographics**: Real-time population statistics
+- **Geographic Information**: Village area and territorial data
+- **Interactive Maps**: Visual representation of village boundaries
 
-## Contributing
+### 🏪 **Economic Development**
+- **UMKM Showcase**: Local small and medium enterprises directory
+- **Agricultural Products**: Highlighting local agricultural potential
+- **BUMDes Information**: Village-owned enterprise statistics and reports
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 👥 **Community Services**
+- **Village Profile**: Complete information about village vision, mission, and officials
+- **Public Services**: Easy access to various village services
+- **User Authentication**: Secure login system for residents
 
-## Code of Conduct
+### 🔍 **SEO & Performance**
+- **Search Engine Optimized**: Comprehensive SEO implementation
+- **Mobile Responsive**: Fully responsive design for all devices
+- **Fast Loading**: Optimized performance with modern web technologies
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛠️ Technology Stack
 
-## Security Vulnerabilities
+### **Backend**
+- **Framework**: Laravel 11.x
+- **Database**: MySQL
+- **Authentication**: Laravel Sanctum
+- **API**: RESTful API architecture
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### **Frontend**
+- **Framework**: React 18.x with Inertia.js
+- **Styling**: Tailwind CSS
+- **Build Tool**: Vite
+- **State Management**: React Hooks
+- **Animations**: GSAP, Framer Motion
 
-## License
+### **Additional Tools**
+- **Analytics**: Google Analytics 4
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **SEO**: Custom SEO components with JSON-LD structured data
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Installation
+
+### Prerequisites
+- PHP >= 8.1
+- Composer
+- Node.js >= 16.x
+- MySQL >= 8.0
+
+### Setup Instructions
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/karanganyar-village-website.git
+cd karanganyar-village-website
+```
+
+2. **Install PHP dependencies**
+```bash
+composer install
+```
+
+3. **Install Node.js dependencies**
+```bash
+npm install
+```
+
+4. **Environment configuration**
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+5. **Configure database**
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=karanganyar_db
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
+
+6. **Run database migrations**
+```bash
+php artisan migrate --seed
+```
+
+7. **Build frontend assets**
+```bash
+npm run build
+```
+
+8. **Start the development server**
+```bash
+# Backend
+php artisan serve
+
+# Frontend (in another terminal)
+npm run dev
+```
+
+## 📖 Usage
+
+### **For Residents**
+1. **Browse Village Information**: Access village profile, news, and announcements
+2. **Request Documents**: Submit online requests for official letters
+3. **Track Applications**: Monitor the status of document requests
+4. **Explore Local Business**: Discover local UMKM and agricultural products
+
+### **For Administrators**
+1. **Content Management**: Create and manage news, announcements, and UMKM listings
+2. **Document Processing**: Review and process resident document requests
+3. **Statistics Management**: Update village demographic and geographic data
+4. **User Management**: Manage resident accounts and permissions
+
+## 📱 Key Pages
+
+- **Homepage** (`/`): Village overview with key statistics and featured content
+- **Village Profile** (`/profil`): Complete village information, vision, mission, and officials
+- **News Portal** (`/portal`): Latest village news and updates
+- **Services** (`/layanan`): Online document services for residents
+- **Announcements** (`/pengumuman`): Official village announcements
+- **UMKM Directory** (`/sub-umkm/{slug}`): Local business profiles
+
+## 🔧 Configuration
+
+### **SEO Configuration**
+The website includes comprehensive SEO features:
+- Dynamic meta tags
+- Open Graph and Twitter Card support
+- JSON-LD structured data
+- XML sitemap generation
+- Robots.txt optimization
+
+### **Analytics Setup**
+Configure Google Analytics in your `.env` file:
+```env
+VITE_GA_TRACKING_ID=your_ga_tracking_id
+```
+
+## 🤝 Contributing
+
+We welcome contributions from the community! Please follow these steps:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+### **Development Guidelines**
+- Follow PSR-12 coding standards for PHP
+- Use ESLint and Prettier for JavaScript/React code
+- Write meaningful commit messages
+- Include tests for new features
+- Update documentation as needed
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **Karanganyar Village Government** for their vision and support
+- **Laravel Community** for the excellent framework
+- **React Community** for the powerful frontend library
+- **Open Source Contributors** who made this project possible
+
+## 📞 Contact
+
+**Karanganyar Village Government**
+- **Address**: Karanganyar Village, Poncokusumo District, Malang Regency, East Java, Indonesia
+- **Website**: [https://karanganyarmalang.com](https://karanganyarmalang.com)
+- **Email**: info@karanganyarmalang.com
+
+---
+
+<p align="center">
+    <strong>Built with ❤️ for Karanganyar Village Community</strong>
+</p>
+
+<p align="center">
+    <sub>Empowering rural communities through digital innovation</sub>
+</p>
+
