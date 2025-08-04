@@ -27,7 +27,7 @@ const PetaRBI = ({}) => {
 
                         <div className="flex w-full">
                             <img
-                                src="/images/PETARBI.jpg"
+                                src="/images/KARANGANYARBISMILLAH.jpg"
                                 className="w-full max-w-full h-auto object-contain pt-4 md:pt-6 lg:pt-[24px] max-h-[50vh] md:max-h-[60vh] lg:max-h-[70vh]"
                                 alt="Peta RBI"
                             />
