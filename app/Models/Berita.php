@@ -43,21 +43,27 @@ class Berita extends Model
         });
     }
 
-    private static function generateUniqueSlug($title, $excludeId = null)
+    protected static function generateUniqueSlug($title, $id = null)
     {
-        $baseSlug = Str::slug($title);
-        $slug = $baseSlug;
-        $counter = 1;
-
-        while (static::where('slug', $slug)
-                    ->when($excludeId, function ($query, $excludeId) {
-                        return $query->where('id', '!=', $excludeId);
-                    })
-                    ->exists()) {
-            $slug = $baseSlug . '-' . $counter;
-            $counter++;
+        $slug = Str::slug($title);
+        $originalSlug = $slug;
+        $count = 1;
+        
+        // Check if the slug exists
+        $query = static::where('slug', $slug);
+        if ($id) {
+            $query->where('id', '!=', $id);
         }
-
+        
+        // If slug exists, append a number
+        while ($query->exists()) {
+            $slug = $originalSlug . '-' . $count++;
+            $query = static::where('slug', $slug);
+            if ($id) {
+                $query->where('id', '!=', $id);
+            }
+        }
+        
         return $slug;
     }
 
@@ -66,3 +72,4 @@ class Berita extends Model
         return $this->belongsTo(User::class);
     }
 }
+

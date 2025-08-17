@@ -13,11 +13,19 @@ class StoreBeritaRequest extends FormRequest
 
     public function rules(): array
     {
-        return [
+        $rules = [
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120', // 5MB max
         ];
+        
+        // Gambar hanya required untuk create, optional untuk update
+        if ($this->isMethod('post')) {
+            $rules['gambar'] = 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120';
+        } else {
+            $rules['gambar'] = 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:5120';
+        }
+        
+        return $rules;
     }
 
     public function messages(): array

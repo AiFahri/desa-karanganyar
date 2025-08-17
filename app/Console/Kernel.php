@@ -34,5 +34,8 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+    protected $routeMiddleware = [
+        'admin.file' => \App\Http\Middleware\AdminFileAccess::class,
+    ];
 }
 

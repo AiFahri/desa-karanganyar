@@ -1,168 +1,139 @@
-import Footer from '@/Components/Footer'
-import React from 'react'
-import { Link } from '@inertiajs/react'
-import Navbar from '@/Components/Navbar';
+import React from "react";
+import { Head, usePage } from "@inertiajs/react";
+import Navbar from "../Components/Navbar";
+import Footer from "../Components/Footer";
+import TombolKembali from "@/Components/TombolKembali";
 
-// Checkmark Icon SVG
-const CheckIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-  </svg>
-);
+const RiwayatPengajuan = ({ pengajuanSurat }) => {
+    const getStatusBadge = (status) => {
+        const statusConfig = {
+            "sedang diproses": "bg-yellow-100 text-yellow-800",
+            selesai: "bg-green-100 text-green-800",
+            ditolak: "bg-red-100 text-red-800",
+        };
 
-// Cross Icon SVG
-const CrossIcon = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-  </svg>
-);
+        return statusConfig[status] || "bg-gray-100 text-gray-800";
+    };
 
-const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-  </svg>
-);
+    const getStatusText = (status) => {
+        const statusText = {
+            "sedang diproses": "Sedang Diproses",
+            selesai: "Selesai",
+            ditolak: "Ditolak",
+        };
 
-// Hourglass/Processing Icon SVG
-const HourglassIcon = () => (
-    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 mr-1.5 animate-spin" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-);
+        return statusText[status] || status;
+    };
+    const { auth } = usePage().props;
 
-// StatusBadge Component to dynamically render the correct badge
-const StatusBadge = ({ status }) => {
-  if (status === 'Selesai') {
     return (
-      <div className="inline-flex items-center justify-center text-xs font-semibold px-3 py-1 rounded-full bg-green-100 text-green-700">
-        <CheckIcon />
-        <span>Selesai</span>
-      </div>
+        <div className="min-h-screen max-h-screen bg-gray-50 pt-20">
+            <Head title="Riwayat Pengajuan" />
+            <Navbar user={auth.user}/>
+            <div className="-mt-1">
+                <TombolKembali backTo="/layanan" />
+            </div>
+
+            <main className="container mx-auto px-4 pt-8 pb-24">
+                <div className="max-w-4xl mx-auto">
+                    <h1 className="text-3xl font-bold text-gray-800 mb-8">
+                        Riwayat Pengajuan Surat
+                    </h1>
+
+                    {pengajuanSurat?.length > 0 ? (
+                        <div className="space-y-6">
+                            {pengajuanSurat.map((pengajuan) => (
+                                <div
+                                    key={pengajuan.id}
+                                    className="bg-white rounded-lg shadow-md p-6 border"
+                                >
+                                    <div className="flex justify-between items-start mb-4">
+                                        <div>
+                                            <h3 className="text-lg font-semibold text-gray-800">
+                                                {
+                                                    pengajuan.surat_jenis
+                                                        ?.nama_jenis
+                                                }
+                                            </h3>
+                                            <p className="text-sm text-gray-600">
+                                                Diajukan:{" "}
+                                                {new Date(
+                                                    pengajuan.created_at
+                                                ).toLocaleDateString("id-ID")}
+                                            </p>
+                                        </div>
+                                        <span
+                                            className={`px-3 py-1 rounded-full text-sm font-medium ${getStatusBadge(
+                                                pengajuan.status
+                                            )}`}
+                                        >
+                                            {getStatusText(pengajuan.status)}
+                                        </span>
+                                    </div>
+
+                                    <div className="space-y-2 text-sm">
+                                        <p>
+                                            <span className="font-medium">
+                                                Nama:
+                                            </span>{" "}
+                                            {pengajuan.nama_lengkap}
+                                        </p>
+                                        <p>
+                                            <span className="font-medium">
+                                                NIK:
+                                            </span>{" "}
+                                            {pengajuan.nik_pemohon}
+                                        </p>
+                                        {pengajuan.catatan_admin && (
+                                            <p>
+                                                <span className="font-medium">
+                                                    Catatan Admin:
+                                                </span>{" "}
+                                                {pengajuan.catatan_admin}
+                                            </p>
+                                        )}
+                                    </div>
+
+                                    {pengajuan.status === "selesai" && pengajuan.surat_jadi_url && (
+                                        <div className="mt-4 pt-4 border-t">
+                                            <a
+                                                href={pengajuan.surat_jadi_url}
+                                                className="inline-flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors"
+                                            >
+                                                <svg
+                                                    className="w-4 h-4"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        strokeLinecap="round"
+                                                        strokeLinejoin="round"
+                                                        strokeWidth="2"
+                                                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                                                    />
+                                                </svg>
+                                                Download Surat
+                                            </a>
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-center py-12">
+                            <p className="text-gray-500 text-lg">
+                                Belum ada pengajuan surat
+                            </p>
+                        </div>
+                    )}
+                </div>
+            </main>
+
+            <Footer />
+        </div>
     );
-  }
-  if (status === 'Sedang Diproses') {
-    return (
-      <div className="inline-flex items-center justify-center text-xs font-semibold px-3 py-1 rounded-full bg-blue-100 text-blue-700">
-        <HourglassIcon />
-        <span>Sedang Diproses</span>
-      </div>
-    );
-  }
-  if (status === 'Ditolak') {
-    return (
-      <div className="inline-flex items-center justify-center text-xs font-semibold px-3 py-1 rounded-full bg-red-100 text-red-700">
-        <CrossIcon />
-        <span>Ditolak</span>
-      </div>
-    );
-  }
-  return null; // Return null for any other status
 };
 
-const submissionHistory = [
-  {
-    id: 1,
-    purpose: 'Surat Keterangan Domisili',
-    date: '10 Juli 2025',
-    time: '09.30',
-    status: 'Selesai',
-  },
-  {
-    id: 2,
-    purpose: 'Surat SKCK',
-    date: '1 Juni 2025',
-    time: '11.00',
-    status: 'Selesai',
-  },
-  {
-    id: 3,
-    purpose: 'Surat Keterangan Belum Menikah',
-    date: '1 Juni 2025',
-    time: '12.35',
-    status: 'Sedang Diproses',
-  },
-  {
-    id: 4,
-    purpose: 'Surat Kematian',
-    date: '1 Juni 2025',
-    time: '12.45',
-    status: 'Ditolak',
-  },
-];
+export default RiwayatPengajuan;
 
-const RiwayatPengajuan = () => {
-  return (
-    <div>
-      <Navbar />
-      <header className="w-full bg-gradient-to-b from-blue-500 to-cyan-400 py-11 px-8 mt-[76px] shadow-md sticky top-0 z-10 max-h-28">
-        <div className="max-w-[100vw] mx-auto">
-          <Link href="/portal" className="flex items-center space-x-2 text-white font-bold text-lg hover:opacity-80 transition-opacity">
-            <ArrowLeftIcon className="w-8 h-8" />
-            <span className='text-3xl font-sans'>Kembali</span>
-          </Link>
-        </div>
-      </header>
-      <div className='bg-gray-50 min-h-screen flex justify-center p-4 font-sans'>
-      <div className="w-full max-w-[90vw] bg-white rounded-2xl shadow-lg p-6 md:p-8">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6">
-          Riwayat Pengajuan Surat
-        </h1>
-
-        {/* This container handles the responsive layout change */}
-        <div className="overflow-x-auto">
-        
-          {/* Desktop Table View (hidden on small screens) */}
-          <table className="min-w-full hidden md:table">
-            <thead className="bg-gray-100">
-              <tr>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider rounded-l-lg">Tujuan Pengajuan Surat</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider">Tanggal Pengajuan Surat</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider">Waktu Pengajuan Surat</th>
-                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-750 uppercase tracking-wider rounded-r-lg">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {submissionHistory.map((item) => (
-                <tr key={item.id}>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-700">{item.purpose}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-700">{item.date}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-gray-700">{item.time}</td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <StatusBadge status={item.status} />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-
-          {/* Mobile Card View (hidden on medium screens and up) */}
-          <div className="md:hidden space-y-4">
-            {submissionHistory.map((item) => (
-              <div key={item.id} className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
-                <div className="flex justify-between items-start mb-3">
-                    <h2 className="font-bold text-gray-800">{item.purpose}</h2>
-                    <StatusBadge status={item.status} />
-                </div>
-                <div className="text-sm text-gray-600 space-y-2">
-                  <div>
-                    <span className="font-semibold text-gray-500">Tanggal: </span>
-                    {item.date}
-                  </div>
-                  <div>
-                    <span className="font-semibold text-gray-500">Waktu: </span>
-                    {item.time}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </div>
-      </div>
-      <Footer />
-    </div>
-  )
-}
-
-export default RiwayatPengajuan

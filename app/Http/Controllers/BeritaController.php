@@ -15,14 +15,32 @@ class BeritaController extends Controller
         
         return Inertia::render('PortalBerita', [
             'pengumuman' => $pengumuman,
-            'berita' => $berita
+            'berita' => $berita,
+            'meta' => [
+                'title' => 'Portal Berita Desa Karanganyar - Poncokusumo Malang',
+                'description' => 'Berita dan pengumuman terbaru dari Desa Karanganyar, Kecamatan Poncokusumo, Kabupaten Malang',
+                'keywords' => 'berita desa karanganyar, pengumuman desa karanganyar, karanganyar poncokusumo, berita malang'
+            ]
         ]);
     }
 
     public function show(Berita $berita)
     {
+        // Get related news
+        $relatedBerita = Berita::where('id', '!=', $berita->id)
+                              ->latest('tanggal_publish')
+                              ->take(3)
+                              ->get();
+        
         return Inertia::render('SubBerita', [
-            'berita' => $berita
+            'berita' => $berita,
+            'relatedBerita' => $relatedBerita,
+            'meta' => [
+                'title' => $berita->judul . ' - Berita Desa Karanganyar Poncokusumo',
+                'description' => substr(strip_tags($berita->deskripsi), 0, 160),
+                'keywords' => 'berita desa karanganyar, ' . $berita->judul . ', karanganyar poncokusumo, berita malang',
+                'ogImage' => $berita->gambar ? 'https://is3.cloudhost.id/karanganyar/' . $berita->gambar : null
+            ]
         ]);
     }
 }

@@ -1,21 +1,18 @@
-import React from 'react'
-import { circInOut, easeInOut, motion } from "framer-motion";
-import { Link } from '@inertiajs/react'
-import Navbar from '@/Components/Navbar'
-import Footer from '@/Components/Footer'
-import View from '@/Components/Layanan/View'
-import BuatSurat from '@/Components/Layanan/BuatSurat';
+import React from "react";
+import Navbar from "@/Components/Navbar";
+import BuatSurat from "@/Components/Layanan/BuatSurat";
+import Footer from "@/Components/Footer";
+import { usePage } from "@inertiajs/react";
 
-const SubLayananBuatSurat = () => {
-  return (
+const SubLayananBuatSurat = ({ suratJenis }) => {
+    const { auth } = usePage().props;
+    return (
         <>
-            <Navbar />
-            <BuatSurat />
-            
+            <Navbar user={auth.user}/>
+            <BuatSurat suratJenis={suratJenis} />
+            <Footer />
         </>
-  )
-}
+    );
+};
 
-export default SubLayananBuatSurat
-            
-      
+export default SubLayananBuatSurat;

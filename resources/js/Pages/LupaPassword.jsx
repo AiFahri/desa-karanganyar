@@ -1,7 +1,7 @@
 import Footer from '@/Components/Footer';
 import Navbar from '@/Components/Navbar';
 import React, { useState } from 'react';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 
 const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className={className}>
@@ -9,7 +9,6 @@ const ArrowLeftIcon = ({ className = "w-6 h-6" }) => (
   </svg>
 );
 
-// SVG Icon for the user avatar
 const UserAvatarIcon = () => (
   <svg
     className="w-16 h-16 text-gray-400"
@@ -25,7 +24,6 @@ const UserAvatarIcon = () => (
   </svg>
 );
 
-// SVG Icon for showing the password
 const EyeIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +42,6 @@ const EyeIcon = () => (
   </svg>
 );
 
-// SVG Icon for hiding the password
 const EyeOffIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -66,8 +63,8 @@ const EyeOffIcon = () => (
 );
 
 
-// Main Profile Form Component
 function ForgotPasswordForm() {
+  const user = usePage().props.auth.user;
   const [showPassword, setShowPassword] = useState(false);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -81,20 +78,17 @@ function ForgotPasswordForm() {
     <Navbar />
     <div className="bg-gray-50 min-h-screen flex items-center justify-center p-4">
       <div className="w-full max-w-3xl mx-auto">
-        {/* User Profile Header */}
         <div className="flex items-center gap-4 mb-8">
           <div className="w-16 h-16 bg-gray-200 rounded-full flex items-center justify-center">
             <UserAvatarIcon />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-800">Alexa Rawles</h1>
-            <p className="text-gray-500">alexarawles@gmail.com</p>
+            <h1 className="text-2xl font-bold text-gray-800">{user.name}</h1>
+            <p className="text-gray-500">{user.email}</p>
           </div>
         </div>
 
-        {/* Form Section */}
         <form className="space-y-6">
-          {/* NIK Input (Read-only) */}
           <div>
             <label htmlFor="nik" className="block text-sm font-medium text-gray-700 mb-1">
               NIK
@@ -103,13 +97,12 @@ function ForgotPasswordForm() {
               type="text"
               id="nik"
               name="nik"
-              defaultValue="3576021301990002"
+              defaultValue={user.nik}
               readOnly
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
             />
           </div>
 
-          {/* Email Input (Read-only) */}
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -118,13 +111,12 @@ function ForgotPasswordForm() {
               type="email"
               id="email"
               name="email"
-              defaultValue="alexarawles@gmail.com"
+              defaultValue={user.email}
               readOnly
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
             />
           </div>
 
-          {/* Phone Number Input (Read-only) */}
           <div>
             <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
               Nomor HP
@@ -133,13 +125,12 @@ function ForgotPasswordForm() {
               type="tel"
               id="phone"
               name="phone"
-              defaultValue="+6281234567890"
+              defaultValue={user.no_hp}
               readOnly
               className="w-full p-3 border border-gray-300 rounded-lg bg-gray-100 cursor-not-allowed"
             />
           </div>
 
-          {/* Password Input */}
           <div>
             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
@@ -164,7 +155,6 @@ function ForgotPasswordForm() {
             </div>
           </div>
 
-          {/* Confirm Password Input */}
           <div>
             <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
               Konfirmasi Password
@@ -180,7 +170,6 @@ function ForgotPasswordForm() {
             />
           </div>
 
-          {/* Action Button */}
           <div className="flex justify-end pt-4">
             <button
               type="submit"

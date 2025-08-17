@@ -92,6 +92,12 @@ class BeritaController extends Controller
 
     public function update(StoreBeritaRequest $request, Berita $berita)
     {
+        Log::info('BeritaController update called', [
+            'berita_id' => $berita->id,
+            'request_data' => $request->all(),
+            'has_file' => $request->hasFile('gambar')
+        ]);
+        
         $data = $request->validated();
         
         // Handle file upload
@@ -107,7 +113,6 @@ class BeritaController extends Controller
                 $filename = time() . '_' . $file->getClientOriginalName();
                 $path = 'berita/' . $filename;
                 
-                // Upload new image to S3 dengan ACL public-read
                 $result = Storage::disk('s3_idcloudhost')->put($path, file_get_contents($file), [
                     'visibility' => 'public',
                     'ACL' => 'public-read'
@@ -124,9 +129,14 @@ class BeritaController extends Controller
                 Log::error('S3 Update Error', ['message' => $e->getMessage()]);
                 return redirect()->back()->withErrors(['gambar' => 'Error upload: ' . $e->getMessage()]);
             }
+        } else {
+            // Jika tidak ada file baru, hapus 'gambar' dari data
+            unset($data['gambar']);
+            Log::info('No new image, keeping existing image');
         }
         
         $berita->update($data);
+        Log::info('Berita updated successfully', ['berita_id' => $berita->id]);
 
         return redirect()->back()->with('success', 'Berita berhasil diperbarui.');
     }
@@ -150,6 +160,9 @@ class BeritaController extends Controller
         }
     }
 }
+
+
+
 
 
 
