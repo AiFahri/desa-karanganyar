@@ -1,0 +1,39 @@
+{
+    "name": "Website Resmi Desa Karanganyar",
+    "short_name": "Desa Karanganyar",
+    "description": "Website resmi Pemerintahan Desa Karanganyar, Kecamatan Poncokusumo, Kabupaten Malang, Jawa Timur",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0272BA",
+    "theme_color": "#0272BA",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "id",
+    "categories": ["government", "business", "news"],
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "/screenshot-desktop.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "/screenshot-mobile.png",
+            "sizes": "390x844",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ]
+}
