@@ -255,39 +255,49 @@ const View = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6 md:gap-x-12 md:gap-y-8 lg:gap-[91px] pt-12 md:pt-[56px] max-w-[90%] mx-auto">
-                            <div className="space-y-4 md:space-y-6 ">
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-x-8 gap-y-6 md:gap-x-12 md:gap-y-8 lg:gap-[40px] pt-12 md:pt-[56px] max-w-[90%] mx-auto">
+                            <div className="grid grid-rows-2 gap-4 md:gap-6">
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
                                     1. Surat Keterangan Domisili
                                 </p>
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
                                     2. Surat Keterangan Usaha
-                                </p>
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                    3. Surat Berpergian
                                 </p>
                             </div>
 
-                            <div className="space-y-4 md:space-y-6">
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                    4. SKCK
+                            <div className="grid grid-rows-2 gap-4 md:gap-6">
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    3. Surat Berpergian
                                 </p>
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                    5. SKCN
-                                </p>
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                    6. Surat Keterangan Kerja
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    4. Surat Keterangan Kerja
                                 </p>
                             </div>
-                            <div className="space-y-4 md:space-y-6">
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
+
+                            <div className="grid grid-rows-2 gap-4 md:gap-6">
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    5. Surat Kelahiran, Surat Kematian
+                                </p>
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    6. SKCK
+                                </p>
+                            </div>
+
+                            <div className="grid grid-rows-2 gap-4 md:gap-6">
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
                                     7. Surat Keterangan Penghasilan
                                 </p>
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                    8. Surat Keterangan Belum Menikah
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    8. SKCN
                                 </p>
-                                <p className="text-base md:text-lg lg:text-[24px] font-semibold text-black">
-                                    9. Surat Kelahiran, Surat Kematian
+                            </div>
+
+                            <div className="grid grid-rows-2 gap-4 md:gap-6">
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    9. Surat Keterangan Belum Menikah
+                                </p>
+                                <p className="text-base md:text-lg lg:text-[20px] font-semibold text-black">
+                                    10. Surat Umum
                                 </p>
                             </div>
                         </div>

@@ -102,6 +102,10 @@ const Footer = () => {
                                 <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
                                 Surat Berpergian
                             </li>
+                            <li className="relative pl-4">
+                                <span className="absolute left-0 top-2 w-1 h-1 bg-white rounded-full"></span>
+                                Surat Umum
+                            </li>
                         </ul>
                     </div>
 
@@ -145,16 +149,27 @@ const Footer = () => {
                             </a>
                         </div>
 
-                        
+                        <a
+                                href="https://www.instagram.com/mmd_filkom_42/"
+                                target="_blank"
+                                className="hover:underline hover:-translate-y-1 transition-all duration-300"
+                            >
+                            
                         <div className="flex flex-col sm:flex-row items-center gap-y-2 sm:gap-y-0 sm:gap-x-5">
                             <img src="/logo_only_white.svg" className="w-20" />
-                            <div className="text-base md:text-lg font-sans text-center sm:text-left">
-                                Dibuat oleh{" "}
-                                <span className="font-bold">
+                            <div className="flex flex-col items-center sm:items-start justify-center h-20">
+                                <div className="text-base md:text-lg font-sans text-center sm:text-left">
+                                    Dibuat oleh{" "}
+                                    <span className="font-bold">
+                                        Mahasiswa Membangun Desa
+                                    </span>
+                                </div>
+                                <div className="text-base md:text-lg font-sans text-center sm:text-left font-bold">
                                     MMD 42 FILKOM UB
-                                </span>
+                                </div>
                             </div>
                         </div>
+                        </a>
 
                         
                         <div className="font-bold font-sans text-base md:text-lg text-center sm:text-right">
