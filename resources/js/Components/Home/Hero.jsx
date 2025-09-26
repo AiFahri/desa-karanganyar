@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useEffect } from "react";
 import { Link } from "@inertiajs/react";
 import InfiniteScroll from "./InfiniteGallery";
 import fotoInf1 from "../../../assets/Home/img/perangkatDesa/kades.webp";
@@ -17,25 +17,46 @@ import fotoInf13 from "../../../assets/Home/img/perangkatDesa/perdes13.webp";
 import fotoInf14 from "../../../assets/Home/img/perangkatDesa/perdes14.webp";
 import { motion } from "motion/react";
 import HorizontalInfiniteGallery from "./HorizontalInfiniteGallery";
+import InfiniteGalleryFallback from "./InfiniteGalleryFallback";
 
 const items = [
-    { content: <img src={fotoInf1} /> },
-    { content: <img src={fotoInf2} /> },
-    { content: <img src={fotoInf3} /> },
-    { content: <img src={fotoInf4} /> },
-    { content: <img src={fotoInf5} /> },
-    { content: <img src={fotoInf6} /> },
-    { content: <img src={fotoInf7} /> },
-    { content: <img src={fotoInf8} /> },
-    { content: <img src={fotoInf9} /> },
-    { content: <img src={fotoInf10} /> },
-    { content: <img src={fotoInf11} /> },
-    { content: <img src={fotoInf12} /> },
-    { content: <img src={fotoInf13} /> },
-    { content: <img src={fotoInf14} /> },
+    { content: <img src={fotoInf1} alt="Kepala Desa" loading="lazy" /> },
+    { content: <img src={fotoInf2} alt="Sekretaris Desa" loading="lazy" /> },
+    { content: <img src={fotoInf3} alt="Bendahara" loading="lazy" /> },
+    { content: <img src={fotoInf4} alt="Perangkat Desa 4" loading="lazy" /> },
+    { content: <img src={fotoInf5} alt="Perangkat Desa 5" loading="lazy" /> },
+    { content: <img src={fotoInf6} alt="Perangkat Desa 6" loading="lazy" /> },
+    { content: <img src={fotoInf7} alt="Perangkat Desa 7" loading="lazy" /> },
+    { content: <img src={fotoInf8} alt="Perangkat Desa 8" loading="lazy" /> },
+    { content: <img src={fotoInf9} alt="Perangkat Desa 9" loading="lazy" /> },
+    { content: <img src={fotoInf10} alt="Perangkat Desa 10" loading="lazy" /> },
+    { content: <img src={fotoInf11} alt="Perangkat Desa 11" loading="lazy" /> },
+    { content: <img src={fotoInf12} alt="Perangkat Desa 12" loading="lazy" /> },
+    { content: <img src={fotoInf13} alt="Perangkat Desa 13" loading="lazy" /> },
+    { content: <img src={fotoInf14} alt="Perangkat Desa 14" loading="lazy" /> },
 ];
 
-const Hero = () => {
+const Hero = memo(() => {
+    const [gsapAvailable, setGsapAvailable] = React.useState(true);
+    
+    // Preload critical images
+    useEffect(() => {
+        const preloadImage = new Image();
+        preloadImage.src = "/images/gapura karanganyar.webp";
+        
+        // Check if GSAP is available
+        if (typeof window !== 'undefined' && window.gsap) {
+            try {
+                window.gsap.registerPlugin(window.gsap.Observer);
+                setGsapAvailable(true);
+            } catch (error) {
+                console.warn('GSAP Observer registration failed:', error);
+                setGsapAvailable(false);
+            }
+        } else {
+            setGsapAvailable(false);
+        }
+    }, []);
 
     const container = {
         hidden: { scale: 0, opacity: 0 },
@@ -58,7 +79,10 @@ const Hero = () => {
             <div className="w-full h-full max-h-[100vh] max-w-[100vw] overflow-hidden py-12 lg:py-0">
                 <img
                     src="/images/gapura karanganyar.webp"
+                    alt="Gapura Desa Karanganyar"
                     className="absolute w-full min-h-[100dvh] top-0 object-cover md:object-cover -z-10 max-h-screen overflow-hidden"
+                    loading="eager"
+                    fetchPriority="high"
                 />
                 <div className="flex flex-col lg:flex-row justify-between items-center px-5 lg:px-[11.35vw] z-10 lg:align-middle overflow-hidden">
                     <motion.div
@@ -73,12 +97,12 @@ const Hero = () => {
                         variants={container}
                     >
                         <motion.div 
-                        className="text-white font-bold font-sans opacity-100 mt-10 lg:mt-[72px] lg:text-[56px] text-xl"
+                        className="text-white font-bold font-sans opacity-100 mt-10 lg:mt-[72px] lg:text-[56px] text-xl mb-2 lg:mb-4"
                         whileHover={{ y: -10 }}
                         >
                             Desa Karanganyar
                         </motion.div>
-                        <div className="text-white font-semibold font-sans opacity-100 pt-3 lg:pt-6 lg:text-2xl text-sm">
+                        <div className="text-white font-semibold font-sans opacity-100 pt-3 lg:pt-6 lg:text-2xl text-sm mb-2 lg:mb-4">
                             Kecamatan Poncokusumo, Kabupaten Malang, Jawa Timur
                         </div>
                         <Link className="" href="/profil">
@@ -92,17 +116,17 @@ const Hero = () => {
                                   "linear-gradient(180deg, #0272BA 0%, #0272BA 98%)",
                               }}
                               transition={{ duration: 0.3, easing: "easeIn" }}
-                              className="max-w-fit text-xs md:text-xl lg:rounded-[48px] rounded-3xl font-semibold px-5 py-2 lg:px-10 lg:py-6 mt-3 lg:mt-6 lg:mb-[72px] mb-10 text-center text-white font-sans opacity-100 transition-all duration-500">
+                              className="max-w-fit text-xs md:text-xl lg:rounded-[48px] rounded-3xl font-semibold px-5 py-2 lg:px-10 lg:py-6 mt-4 lg:mt-8 lg:mb-[72px] mb-10 text-center text-white font-sans opacity-100 transition-all duration-500">
                                 Yuk Jelajahi
                             </motion.div>
                         </Link>
                     </motion.div>
                     <motion.div 
-                    className="hidden lg:flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-60"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ scale: 1.04 }}
+                        className="hidden lg:flex h-full lg:mt-0 overflow-hidden lg:rotate-0 -mt-60"
+                        initial={{ scale: 0 }}
+                        animate={{ scale: 1 }}
+                        transition={{ duration: 0.5 }}
+                        whileHover={{ scale: 1.04 }}
                     >
                         <InfiniteScroll
                             items={items}
@@ -129,6 +153,8 @@ const Hero = () => {
             </div>
         </div>
     );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

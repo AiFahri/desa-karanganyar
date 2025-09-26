@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "@/Components/Navbar";
 import Footer from "@/Components/Footer";
+import VideoProfil from "@/Components/Profile/VideoProfil";
 import PetaRBI from "@/Components/Profile/PetaRBi";
 import VisiMisi from "@/Components/Profile/VisiMisi";
 import PopulationStats from "@/Components/Profile/StatsPenduduk";
@@ -16,6 +17,7 @@ const ProfilDesa = ({ statistikPenduduk, statistikWilayah }) => {
             <PetaRBI />
             <StatsWilayah stats={statistikWilayah} />
             <PopulationStats stats={statistikPenduduk} />
+            <VideoProfil />
             <VisiMisi />
             <Perangkat />
             <Footer />
